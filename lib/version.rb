@@ -1,5 +1,9 @@
 class Version
+  MAJOR = 0
+  MINOR = 0
+  PATCH = 1
+
   def self.current
-    '0.0.6'
+    "#{MAJOR}.#{MINOR}.#{PATCH}"
   end
 end
