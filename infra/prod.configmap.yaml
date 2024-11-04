@@ -7,4 +7,4 @@ data:
   DATABASE_URL: postgresql://neondb_owner:kDa8OXoBAZC6@ep-shrill-dust-a5gnz8l3.us-east-2.aws.neon.tech/neondb?sslmode=require
   LOG_LEVEL: info
   LOG_URL: https://endpoint4.collection.sumologic.com/receiver/v1/http/ZaVnC4dhaV0G5lfVOUNH_sPVE2bJi1HkCJhQ4HpEfF8dt2eH7q1OhAJRf4xYjZ5RkCyYhVv8mWw6oRbPdpREKAe9cLTWWBpLCp_zZ1H_c5j1h5dtMPSZEw==
-  PORT: 3000
+  PORT: "3000"

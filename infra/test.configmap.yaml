@@ -7,4 +7,4 @@ data:
   DATABASE_URL: postgresql://restapi-db_owner:wsDV4qiNWxB0@ep-jolly-frog-a5oj136c.us-east-2.aws.neon.tech/restapi-db?sslmode=require
   LOG_LEVEL: debug
   LOG_URL: https://endpoint4.collection.sumologic.com/receiver/v1/http/ZaVnC4dhaV04fKdhFbMz6Ea5Lri4WDvtXdmCWqYJqRutWz9jPSptnjlvKmW2UfX6znF9av1B0dzXwnbhAq_QakmJJ1U5t-E34F2p6854s33CKmSEyjCdhA==
-  PORT: 3000
+  PORT: "3000"
