@@ -10,8 +10,10 @@
 		"vscode": {
 		  "extensions": [
 			"Shopify.ruby-extensions-pack",
-			"connorshea.vscode-ruby-test-adapter"
-		  ]
+			"connorshea.vscode-ruby-test-adapter",
+			"mhutchie.git-graph",
+			"GitLab.gitlab-workflow"
+		]
 		}
 	}
 }
