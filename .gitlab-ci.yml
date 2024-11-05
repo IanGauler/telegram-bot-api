@@ -76,4 +76,7 @@ deploy_prod_job:
     - cp ${KUBECONFIG} $HOME/.kube/config
     - kubectl -n ${TEAM}-${CI_ENVIRONMENT_NAME} apply -f infra/${CI_ENVIRONMENT_NAME}.configmap.yaml
     - kubectl -n ${TEAM}-${CI_ENVIRONMENT_NAME} set image deployment/restapi restapi=$CI_REGISTRY_IMAGE:$VERSION
+  only:
+    - tags
   when: manual
+  manual_confirmation: 'Are you sure you want to deploy to production?'
