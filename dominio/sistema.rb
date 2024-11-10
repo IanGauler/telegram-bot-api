@@ -12,4 +12,8 @@ class Sistema
   def usuarios
     @repositorio_usuarios.all
   end
+
+  def eliminar_usuarios
+    @repositorio_usuarios.delete_all
+  end
 end
