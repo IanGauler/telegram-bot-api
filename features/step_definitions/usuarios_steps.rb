@@ -1,5 +1,5 @@
 Cuando(/^creo un usuario$/) do
-  request_body = { email: 'juan@test.com' }.to_json
+  request_body = { id: '1', email: 'juan@test.com' }.to_json
   @response = Faraday.post('/usuarios', request_body, { 'Content-Type' => 'application/json' })
 end
 
@@ -20,4 +20,18 @@ end
 Entonces(/^tengo un listado vacio$/) do
   parsed_response = JSON.parse(@response.body)
   expect(parsed_response)
+end
+
+Dado('que mi usuario es {string}, mi id es {string} y no estoy registrado') do |_nombre_usuario, id_usuario|
+  RepositorioUsuarios.new.delete_all
+  @id = id_usuario
+end
+
+Cuando('envio el comando {string} con email {string}') do |_comando_registrar, email|
+  request_body = { id: @id, email: }.to_json
+  @response = Faraday.post('/usuarios', request_body, { 'Content-Type' => 'application/json' })
+end
+
+Entonces('el bot muestra el mensaje {string}') do |_mensaje_esperado|
+  expect(@response.status).to eq(201)
 end
