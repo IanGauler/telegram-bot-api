@@ -3,9 +3,13 @@ require_relative '../../dominio/cancion'
 require_relative '../../persistencia/repositorio_canciones'
 
 describe RepositorioCanciones do
-  xit 'deberia guardar una cancion nueva' do
+  respositorio_canciones = described_class.new
+
+  it 'deberia guardar una cancion nueva' do
     cancion = Cancion.new('Waka-Waka', 'Shakira', 2010, '3:31')
-    described_class.new.save(cancion)
-    expect(describe_class.all.size).to be 1
+    respositorio_canciones.save(cancion)
+    canciones = respositorio_canciones.all
+    puts "cnaciones: #{canciones}"
+    expect(respositorio_canciones.all.size).to be 1
   end
 end

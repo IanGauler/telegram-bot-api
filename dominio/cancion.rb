@@ -1,8 +1,9 @@
 class Cancion
-  attr_reader :nombre, :artista, :anio, :duracion
+  attr_reader :titulo, :artista, :anio, :duracion, :updated_on, :created_on
+  attr_accessor :id
 
-  def initialize(nombre, artista, anio, duracion)
-    @nombre = nombre
+  def initialize(titulo, artista, anio, duracion)
+    @titulo = titulo
     @artista = artista
     @anio = anio
     @duracion = duracion
