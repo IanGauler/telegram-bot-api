@@ -1,8 +1,8 @@
 require 'integration_helper'
 require 'spec_helper'
-require_relative '../dominio/sistema'
-require_relative '../persistencia/repositorio_usuarios'
-require_relative '../persistencia/abstract_repository'
+require_relative '../../dominio/sistema'
+require_relative '../../persistencia/repositorio_usuarios'
+require_relative '../../persistencia/abstract_repository'
 
 describe Sistema do
   juan_email = 'juan@test.com'

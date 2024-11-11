@@ -1,6 +1,6 @@
 require 'integration_helper'
 require 'spec_helper'
-require_relative '../dominio/cancion'
+require_relative '../../dominio/cancion'
 
 describe Cancion do
   it 'deberia crear una cancion' do
