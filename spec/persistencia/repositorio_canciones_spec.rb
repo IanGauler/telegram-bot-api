@@ -9,7 +9,6 @@ describe RepositorioCanciones do
     cancion = Cancion.new('Waka-Waka', 'Shakira', 2010, '3:31')
     respositorio_canciones.save(cancion)
     canciones = respositorio_canciones.all
-    puts "cnaciones: #{canciones}"
-    expect(respositorio_canciones.all.size).to be 1
+    expect(canciones.size).to be 1
   end
 end

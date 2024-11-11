@@ -4,7 +4,6 @@ Como miembro del equipo de desarrollo
 quiero una API que me permita dar de alta canciones nuevas en la plataforma
 para tener siempre disponible el catalogo de canciones actualizado en el bot
 
-@wip
 Escenario: US3-01 Dar de alta una cancion en la plataforma
 Dado que quiero cargar la cancion "Waka-Waka" del artista "Shakira" lanzada en el año "2010" y con una duracion "3:31"
 Cuando publico en la API con "/agregar_canciones" esas canciones

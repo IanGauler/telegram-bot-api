@@ -14,7 +14,7 @@ configure do
   set :logger, customer_logger
   set :default_content_type, :json
   set :environment, ENV['APP_MODE'].to_sym
-  set :sistema, Sistema.new(RepositorioUsuarios.new)
+  set :sistema, Sistema.new(RepositorioUsuarios.new, RepositorioCanciones.new)
 end
 
 before do
@@ -52,4 +52,9 @@ post '/usuarios' do
 rescue UsuarioYaRegistrado => e
   status 409
   { error: e.message }.to_json
+end
+
+post '/agregar_canciones' do
+  sistema.crear_cancion(@params[:titulo], @params[:artista], @params[:anio], @params[:duracion])
+  status 201
 end
