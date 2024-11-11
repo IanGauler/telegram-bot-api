@@ -4,25 +4,27 @@ AllCops:
   NewCops: disable
   SuggestExtensions: false
   Exclude:
-    - 'bin/**/*'
+    - "bin/**/*"
 # Avoid methods longer than 30 lines of code
 Metrics/MethodLength:
   Max: 30
 Metrics/BlockLength:
-  AllowedMethods: ['controllers', 'describe', 'context']
+  AllowedMethods: ["controllers", "describe", "context"]
 Layout/LineLength:
   Max: 200
-  AllowedPatterns: ['(When|Given|Then)', '(get|post|put)']
+  AllowedPatterns: ["(When|Given|Then)", "(get|post|put)"]
 Naming/PredicateName:
   Enabled: false
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 Style/Documentation:
-  Exclude: ['**/*']
+  Exclude: ["**/*"]
 RSpec/AnyInstance:
   Enabled: false
 RSpec/ExampleWording:
   Enabled: false
+RSpec/ExampleLength:
+  Max: 8
 RSpec/DescribeClass:
   Enabled: false
 RSpec/HookArgument:
@@ -32,8 +34,6 @@ RSpec/MessageSpies:
 RSpec/MultipleExpectations:
   Max: 3
 Style/NumericPredicate:
-  Enabled: false  
+  Enabled: false
 Style/GuardClause:
   Enabled: false
-
-   

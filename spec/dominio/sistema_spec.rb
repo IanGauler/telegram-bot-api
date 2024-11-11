@@ -11,12 +11,14 @@ describe Sistema do
   repositorio_usuarios = RepositorioUsuarios.new
   repositorio_canciones = RepositorioCanciones.new
 
-  describe 'eliminar_usuarios' do
-    it 'deberia vaciar el repositorio de usuarios' do
+  describe 'resetear' do
+    it 'deberia vaciar el repositorio de usuarios y canciones' do
       sistema = described_class.new(repositorio_usuarios, repositorio_canciones)
       sistema.crear_usuario(juan_id, juan_email)
-      sistema.eliminar_usuarios
+      sistema.crear_cancion('Waka-Waka', ['Shakira'], 2010, '3:31')
+      sistema.resetear
       expect(sistema.usuarios.size).to eq 0
+      expect(sistema.canciones.size).to eq 0
     end
   end
 
