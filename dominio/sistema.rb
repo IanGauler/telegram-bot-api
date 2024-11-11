@@ -5,6 +5,8 @@ class Sistema
 
   def crear_usuario(id, email)
     usuario = Usuario.new(id, email)
+    raise UsuarioYaRegistrado, 'Usuario ya registrado' if @repositorio_usuarios.existe_usuario?(usuario)
+
     @repositorio_usuarios.save(usuario)
     usuario
   end
@@ -17,3 +19,5 @@ class Sistema
     @repositorio_usuarios.delete_all
   end
 end
+
+class UsuarioYaRegistrado < StandardError; end

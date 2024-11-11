@@ -35,3 +35,14 @@ end
 Entonces('el bot muestra el mensaje {string}') do |_mensaje_esperado|
   expect(@response.status).to eq(201)
 end
+
+Dado('que mi mail es {string}, mi id es {string} y estoy registrado') do |mail, id|
+  RepositorioUsuarios.new.delete_all
+  @id = id
+  request_body = { id: @id, email: mail }.to_json
+  Faraday.post('/usuarios', request_body, { 'Content-Type' => 'application/json' })
+end
+
+Entonces('el bot muestra el error {string}') do |_error|
+  expect(@response.status).not_to eq(201)
+end

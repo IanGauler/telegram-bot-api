@@ -4,6 +4,10 @@ class RepositorioUsuarios < AbstractRepository
   self.table_name = :usuarios
   self.model_class = 'Usuario'
 
+  def existe_usuario?(usuario)
+    all.any? { |u| u.email == usuario.email }
+  end
+
   protected
 
   def load_object(a_hash)
