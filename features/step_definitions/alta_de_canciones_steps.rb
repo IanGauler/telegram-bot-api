@@ -1,5 +1,6 @@
 Dado('que quiero cargar la cancion {string} del artista {string} lanzada en el año {string} y con una duracion {string}') do |titulo, artista, anio, duracion|
-  @request_body = { titulo:, artista:, anio:, duracion: }.to_json
+  artistas = [artista]
+  @request_body = { titulo:, artistas:, anio:, duracion: }.to_json
 end
 
 Cuando('publico en la API con {string} esas canciones') do |endpoint|

@@ -55,6 +55,6 @@ rescue UsuarioYaRegistrado => e
 end
 
 post '/agregar_canciones' do
-  sistema.crear_cancion(@params[:titulo], @params[:artista], @params[:anio], @params[:duracion])
+  sistema.crear_cancion(@params[:titulo], @params[:artistas], @params[:anio], @params[:duracion])
   status 201
 end

@@ -3,7 +3,7 @@ Sequel.migration do
     create_table(:canciones) do
       primary_key :id
       String :titulo
-      String :artista
+      column :artistas, :text, array: true
       Integer :anio
       String :duracion
       Date :created_on
