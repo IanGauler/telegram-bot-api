@@ -7,7 +7,7 @@ class RepositorioCanciones < AbstractRepository
   protected
 
   def load_object(a_hash)
-    Cancion.new(a_hash[:titulo], a_hash[:artistas], a_hash[:anio], a_hash[:duracion])
+    Cancion.new(a_hash[:titulo], a_hash[:artistas], a_hash[:anio], a_hash[:duracion], a_hash[:id])
   end
 
   def changeset(cancion)

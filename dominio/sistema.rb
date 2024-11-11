@@ -24,6 +24,10 @@ class Sistema
     cancion = Cancion.new(titulo, artista, anio, duracion)
     @repositorio_canciones.save(cancion)
   end
+
+  def canciones
+    @repositorio_canciones.all
+  end
 end
 
 class UsuarioYaRegistrado < StandardError; end

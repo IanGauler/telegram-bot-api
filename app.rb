@@ -58,3 +58,14 @@ post '/agregar_canciones' do
   sistema.crear_cancion(@params[:titulo], @params[:artistas], @params[:anio], @params[:duracion])
   status 201
 end
+
+get '/canciones' do
+  canciones = sistema.canciones
+  respuesta = []
+  canciones.map do |c|
+    puts c.inspect
+    respuesta << { titulo: c.titulo, artistas: c.artistas, anio: c.anio, duracion: c.duracion, id: c.id }
+  end
+  status 200
+  json(respuesta)
+end
