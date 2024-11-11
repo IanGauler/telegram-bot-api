@@ -32,4 +32,12 @@ describe Sistema do
       expect { sistema.crear_usuario(juan_id, juan_email) }.to raise_error(UsuarioYaRegistrado)
     end
   end
+
+  describe 'crear_cancion' do
+    xit 'deberia crear una cancion' do
+      repo = RepositorioCanciones.new
+      sistema = described_class.new(RepositorioUsuarios.new, repo)
+      sistema.crear_cancion('Waka-Waka', 'Shakira', 2010, '3:31')
+    end
+  end
 end
