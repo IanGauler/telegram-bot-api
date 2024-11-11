@@ -33,7 +33,7 @@ get '/version' do
 end
 
 post '/reset' do
-  sistema.eliminar_usuarios
+  sistema.resetear
   status 200
 end
 
@@ -55,7 +55,9 @@ rescue UsuarioYaRegistrado => e
 end
 
 post '/agregar_canciones' do
-  sistema.crear_cancion(@params[:titulo], @params[:artistas], @params[:anio], @params[:duracion])
+  @params.each do |c|
+    sistema.crear_cancion(c[:titulo], c[:artistas], c[:anio].to_i, c[:duracion])
+  end
   status 201
 end
 
@@ -63,7 +65,6 @@ get '/canciones' do
   canciones = sistema.canciones
   respuesta = []
   canciones.map do |c|
-    puts c.inspect
     respuesta << { titulo: c.titulo, artistas: c.artistas, anio: c.anio, duracion: c.duracion, id: c.id }
   end
   status 200

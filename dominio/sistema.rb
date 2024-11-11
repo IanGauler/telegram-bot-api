@@ -16,8 +16,9 @@ class Sistema
     @repositorio_usuarios.all
   end
 
-  def eliminar_usuarios
+  def resetear
     @repositorio_usuarios.delete_all
+    @repositorio_canciones.delete_all
   end
 
   def crear_cancion(titulo, artista, anio, duracion)
