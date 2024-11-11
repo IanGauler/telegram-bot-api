@@ -12,7 +12,8 @@
 			"Shopify.ruby-extensions-pack",
 			"connorshea.vscode-ruby-test-adapter",
 			"mhutchie.git-graph",
-			"GitLab.gitlab-workflow"
+			"GitLab.gitlab-workflow",
+			"alexkrechik.cucumberautocomplete"
 		]
 		}
 	}
