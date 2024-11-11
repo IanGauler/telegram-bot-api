@@ -5,7 +5,7 @@ class RepositorioUsuarios < AbstractRepository
   self.model_class = 'Usuario'
 
   def existe_usuario?(usuario)
-    all.any? { |u| u.email == usuario.email }
+    all.any? { |u| u.id == usuario.id }
   end
 
   protected

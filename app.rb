@@ -46,7 +46,7 @@ get '/usuarios' do
 end
 
 post '/usuarios' do
-  usuario = sistema.crear_usuario(@params[:id], @params[:email])
+  usuario = sistema.crear_usuario(@params[:id].to_i, @params[:email])
   status 201
   { id: usuario.id, email: usuario.email }.to_json
 rescue UsuarioYaRegistrado => e
