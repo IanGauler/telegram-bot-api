@@ -3,7 +3,7 @@
 TARGET_HOST=$1
 VERSION=$2
 
-TARGET_URL="http://$TARGET_HOST/version"
+TARGET_URL="https://$TARGET_HOST/version"
 
 i="0"
 
