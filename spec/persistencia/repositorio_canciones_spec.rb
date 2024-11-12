@@ -12,4 +12,15 @@ describe RepositorioCanciones do
     canciones = respositorio_canciones.all
     expect(canciones.size).to be 1
   end
+
+  describe 'ultimas_canciones' do
+    it 'deberia devolver las últimas 5 canciones agregadas' do
+      respositorio_canciones.delete_all
+      (1..7).each do |i|
+        respositorio_canciones.save(Cancion.new("Cancion#{i}", "Artista#{i}", 2020, '2:00'))
+      end
+      ultimas_canciones = respositorio_canciones.ultimas_canciones(5)
+      expect(ultimas_canciones.size).to be 5
+    end
+  end
 end

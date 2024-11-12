@@ -46,3 +46,27 @@ Dado('que en la plataforma existen {string}, {string}, {string}, {string}, {stri
     repositorio_canciones.save(cancion)
   end
 end
+
+Dado('que en la plataforma existen {string} canciones') do |cantidad_canciones|
+  repositorio_canciones = RepositorioCanciones.new
+  repositorio_canciones.delete_all
+
+  @canciones = []
+
+  cantidad_canciones.to_i.times do |i|
+    cancion = Cancion.new("titulo#{i}", 'Artista', 2020, '2:00')
+    @canciones << cancion
+    repositorio_canciones.save(cancion)
+  end
+end
+
+Entonces('el bot muestra las ultimas {string} canciones agregadas') do |cantidad_mostradas|
+  response_body = JSON.parse(@response.body)
+
+  @canciones.last(cantidad_mostradas.to_i).each_with_index do |c, i|
+    cancion = response_body[i]
+    expect(cancion['titulo']).to eq(c.titulo)
+  end
+
+  expect(@response.status).to eq(200)
+end

@@ -39,6 +39,11 @@ describe Sistema do
       crear_canciones(3, sistema)
       expect(sistema.obtener_novedades.size).to eq 3
     end
+
+    it 'deberia devolver las últimas 5 canciones agregadas si hay 7 canciones' do
+      crear_canciones(7, sistema)
+      expect(sistema.obtener_novedades.size).to eq 5
+    end
   end
 end
 

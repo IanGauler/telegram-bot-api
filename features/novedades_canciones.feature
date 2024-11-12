@@ -33,7 +33,7 @@ Escenario: US4-03 Recibir recomendaciones de novedades cuando no hay canciones
 Dado que en la plataforma no hay canciones
 Cuando envío el comando "/novedades"
 Entonces el bot muestra el mensaje "No se han podido encontrar canciones".
-@wip
+
 Escenario: US4-04 Recibir recomendaciones de novedades cuando hay más de 5 canciones en la plataforma
 Dado que en la plataforma existen "7" canciones
 Cuando envío el comando "/novedades"

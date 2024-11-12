@@ -4,6 +4,11 @@ class RepositorioCanciones < AbstractRepository
   self.table_name = :canciones
   self.model_class = 'Cancion'
 
+  def ultimas_canciones(cantidad)
+    canciones = dataset.order(Sequel.desc(:id)).limit(cantidad).all
+    load_collection(canciones.reverse)
+  end
+
   protected
 
   def load_object(a_hash)

@@ -1,4 +1,5 @@
 class Sistema
+  CANTIDAD_NOVEDADES = 5
   def initialize(repositorio_usuarios, repositorio_canciones)
     @repositorio_usuarios = repositorio_usuarios
     @repositorio_canciones = repositorio_canciones
@@ -31,7 +32,7 @@ class Sistema
   end
 
   def obtener_novedades
-    @repositorio_canciones.all
+    @repositorio_canciones.ultimas_canciones(CANTIDAD_NOVEDADES)
   end
 end
 
