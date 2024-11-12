@@ -29,6 +29,10 @@ class Sistema
   def canciones
     @repositorio_canciones.all
   end
+
+  def obtener_novedades
+    @repositorio_canciones.all
+  end
 end
 
 class UsuarioYaRegistrado < StandardError; end

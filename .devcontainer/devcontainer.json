@@ -13,7 +13,8 @@
 			"connorshea.vscode-ruby-test-adapter",
 			"mhutchie.git-graph",
 			"GitLab.gitlab-workflow",
-			"alexkrechik.cucumberautocomplete"
+			"alexkrechik.cucumberautocomplete",
+			"eamodio.gitlens"
 		]
 		}
 	}

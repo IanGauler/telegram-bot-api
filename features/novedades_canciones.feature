@@ -18,7 +18,7 @@ Canción: Imagine (3)
 Canción: Shape of You (4)
 Canción: Rolling in the Deep (5)
 """
-@wip
+
 Escenario: US4-02 Recibir recomendaciones de novedades cuando hay menos de 5 canciones en la plataforma
 Dado que en la plataforma existen "Bohemian Rhapsody", "Billie Jean", "Imagine"
 Cuando envío el comando "/novedades"

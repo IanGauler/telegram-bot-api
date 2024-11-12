@@ -72,7 +72,11 @@ get '/canciones' do
 end
 
 get '/novedades' do
+  canciones = sistema.obtener_novedades
   respuesta = []
+  canciones.map do |c|
+    respuesta << { titulo: c.titulo, artistas: c.artistas, anio: c.anio, duracion: c.duracion, id: c.id }
+  end
   status 200
   json(respuesta)
 end
