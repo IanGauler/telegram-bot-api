@@ -4,7 +4,6 @@ Dado('que no hay canciones en la plataforma') do
 end
 
 Dado('que quiero cargar la cancion {string} del artista {string} lanzada en el año {string} y con una duracion {string}') do |titulo, artista, anio, duracion|
-  puts RepositorioCanciones.new.all
   artistas = [artista]
   @canciones << ({ titulo:, artistas:, anio:, duracion: })
 end
@@ -16,9 +15,8 @@ end
 
 Entonces('la cancion {string} es dada de alta') do |titulo|
   expect(@response.status).to eq(201)
-  response = Faraday.get('/canciones', {}, { 'Content-Type' => 'application/json' })
+  response = Faraday.get('/canciones')
   response_body = JSON.parse(response.body)
   cancion = response_body.find { |c| c['titulo'] == titulo }
-  puts cancion
   expect(cancion['id']).to be > 0
 end

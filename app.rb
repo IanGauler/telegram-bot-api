@@ -70,3 +70,9 @@ get '/canciones' do
   status 200
   json(respuesta)
 end
+
+get '/novedades' do
+  respuesta = []
+  status 200
+  json(respuesta)
+end
