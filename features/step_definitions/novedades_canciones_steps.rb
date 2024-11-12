@@ -33,3 +33,16 @@ Entonces('el bot muestra {string} canciones') do |cantidad_canciones, _canciones
   end
   expect(@response.status).to eq(200)
 end
+
+Dado('que en la plataforma existen {string}, {string}, {string}, {string}, {string}') do |titulo1, titulo2, titulo3, titulo4, titulo5|
+  repositorio_canciones = RepositorioCanciones.new
+  repositorio_canciones.delete_all
+
+  @canciones = []
+
+  [titulo1, titulo2, titulo3, titulo4, titulo5].each do |titulo|
+    cancion = Cancion.new(titulo, 'Artista', 2020, '2:00')
+    @canciones << cancion
+    repositorio_canciones.save(cancion)
+  end
+end
