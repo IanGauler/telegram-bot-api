@@ -6,7 +6,7 @@ describe RepositorioCanciones do
   respositorio_canciones = described_class.new
 
   it 'deberia guardar una cancion nueva' do
-    artistas = ['Shakira']
+    artistas = 'Shakira'
     cancion = Cancion.new('Waka-Waka', artistas, 2010, '3:31')
     respositorio_canciones.save(cancion)
     canciones = respositorio_canciones.all
