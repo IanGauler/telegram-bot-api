@@ -9,7 +9,8 @@ class RepositorioUsuarios < AbstractRepository
   end
 
   def obtener_usuario_por_email(email)
-    load_object(dataset.where(email:).first)
+    usuario = dataset.where(email:).first
+    load_object(usuario) unless usuario.nil?
   end
 
   protected

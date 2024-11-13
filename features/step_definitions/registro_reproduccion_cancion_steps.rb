@@ -12,3 +12,14 @@ Entonces('el sistema actualiza el historial de escucha del usuario') do
   expect(reproduccion.id_cancion).to eq(@cancion.id)
   expect(@response.status).to eq(201)
 end
+
+Entonces('el sistema devuelve un mensaje de error {string}') do |mensaje_de_error|
+  body = @response.body
+  expect(body).to eq(mensaje_de_error)
+  expect(@response.status).to eq(404)
+end
+
+Entonces('no actualiza el historial de escucha del usuario') do
+  repositorio_reproducciones = RepositorioReproducciones.new
+  expect(repositorio_reproducciones.all.size).to eq(0)
+end

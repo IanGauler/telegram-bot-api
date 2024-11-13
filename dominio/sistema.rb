@@ -41,9 +41,9 @@ class Sistema
   end
 
   def registrar_reproduccion(email, id_cancion)
-    usuarios = @repositorio_usuarios.all
-    puts "Usuarios: #{usuarios}"
     usuario = @repositorio_usuarios.obtener_usuario_por_email(email)
+    raise UsuarioNoRegistrado if usuario.nil?
+
     reproduccion = Reproduccion.new(usuario.id, id_cancion)
     @repositorio_reproducciones.save(reproduccion)
   end
@@ -61,6 +61,12 @@ end
 
 class CancionNoEncontrada < StandardError
   def initialize(msg = 'La cancion no fue encontrada.')
+    super(msg)
+  end
+end
+
+class UsuarioNoRegistrado < StandardError
+  def initialize(msg = 'Usuario no encontrado')
     super(msg)
   end
 end

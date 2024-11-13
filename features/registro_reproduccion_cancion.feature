@@ -14,12 +14,12 @@ Entonces el sistema actualiza el historial de escucha del usuario
 
 @wip
 Escenario: US6-02 Registro de reproduccion con usuario no registrado
-Dado que el sistema recibe una solicitud de registro con mail "facundo@gmail.com" e id de cancion "1234"
+Dado que el sistema recibe una solicitud de registro con mail "facundo@gmail.com" y el id de la cancion "1234"
 Entonces el sistema devuelve un mensaje de error "Usuario no encontrado"
 Y no actualiza el historial de escucha del usuario
 
 @wip
 Escenario: US6-03 Registro de reproduccion de una cancion inexistente
-Dado que el sistema recibe una solicitud de registro con mail "juan@gmail.com" e id de cancion "5687"
+Dado que el sistema recibe una solicitud de registro con mail "juan@gmail.com" y el id de la cancion "5687"
 Entonces el sistema devuelve un mensaje de error "Cancion no encontrada"
 Y no actualiza el historial de escucha del usuario

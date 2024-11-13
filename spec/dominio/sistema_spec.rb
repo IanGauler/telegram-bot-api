@@ -77,6 +77,12 @@ describe Sistema do
       expect(reproduccion.id_usuario).to eq juan_id
       expect(reproduccion.id_cancion).to eq cancion.id
     end
+
+    it 'deberia lanzar error si el email no esta asociado a un usuario registrado' do
+      sistema.crear_cancion('Waka Waka', 'Shakira', 2010, '3:31')
+      cancion = sistema.canciones.first
+      expect { sistema.registrar_reproduccion(juan_email, cancion.id) }.to raise_error(UsuarioNoRegistrado)
+    end
   end
 end
 
