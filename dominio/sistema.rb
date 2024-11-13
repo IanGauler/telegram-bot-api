@@ -1,9 +1,10 @@
 class Sistema
   CANTIDAD_NOVEDADES = 5
-  def initialize(repositorio_usuarios, repositorio_canciones, repositorio_reproducciones)
+  def initialize(repositorio_usuarios, repositorio_canciones, repositorio_reproducciones, repositorio_megustas)
     @repositorio_usuarios = repositorio_usuarios
     @repositorio_canciones = repositorio_canciones
     @repositorio_reproducciones = repositorio_reproducciones
+    @repositorio_megustas = repositorio_megustas
   end
 
   def crear_usuario(id, email)
@@ -54,10 +55,15 @@ class Sistema
     @repositorio_reproducciones.save(reproduccion)
   end
 
-  def registrar_megusta(_id_usuario, id_cancion)
-    raise CancionNoEncontrada if @repositorio_canciones.obtener_cancion_por_id(id_cancion).nil?
+  def registrar_megusta(id_usuario, id_cancion)
+    cancion = @repositorio_canciones.obtener_cancion_por_id(id_cancion)
 
-    raise CancionNoEscuchada
+    raise CancionNoEncontrada if cancion.nil?
+
+    raise CancionNoEscuchada unless @repositorio_reproducciones.existe_reproduccion?(id_usuario, id_cancion)
+
+    megusta = Megusta.new(id_usuario, id_cancion)
+    @repositorio_megustas.save(megusta)
   end
 
   def reproducciones

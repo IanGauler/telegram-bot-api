@@ -12,7 +12,8 @@ describe Sistema do
   repositorio_usuarios = RepositorioUsuarios.new
   repositorio_canciones = RepositorioCanciones.new
   repositorio_reproducciones = RepositorioReproducciones.new
-  sistema = described_class.new(repositorio_usuarios, repositorio_canciones, repositorio_reproducciones)
+  repositorio_megustas = nil
+  sistema = described_class.new(repositorio_usuarios, repositorio_canciones, repositorio_reproducciones, repositorio_megustas)
 
   describe 'resetear' do
     it 'deberia vaciar el repositorio de usuarios y canciones' do
@@ -102,6 +103,19 @@ describe Sistema do
       cancion = sistema.canciones.first
 
       expect { sistema.registrar_megusta(juan_id, cancion.id) }.to raise_error(CancionNoEscuchada)
+    end
+
+    xit 'deberia registrar un me gusta' do
+      sistema.crear_usuario(juan_id, juan_email)
+      sistema.crear_cancion('Waka Waka', 'Shakira', 2010, '3:31')
+      sistema.registrar_reproduccion(juan_email, sistema.canciones.first.id)
+
+      sistema.registrar_megusta(juan_email, cancion.id)
+      expect(sistema.megustas.size).to eq 1
+
+      megusta = sistema.reproducciones.first
+      expect(megusta.id_usuario).to eq juan_id
+      expect(megusta.id_cancion).to eq cancion.id
     end
   end
 end
