@@ -34,6 +34,10 @@ class Sistema
   def obtener_novedades
     @repositorio_canciones.ultimas_canciones(CANTIDAD_NOVEDADES)
   end
+
+  def obtener_datos_cancion_por_id(id)
+    @repositorio_canciones.obtener_cancion_por_id(id)
+  end
 end
 
 class UsuarioYaRegistrado < StandardError; end

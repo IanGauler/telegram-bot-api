@@ -80,3 +80,10 @@ get '/novedades' do
   status 200
   json(respuesta)
 end
+
+get '/detalles/:id' do
+  cancion = sistema.obtener_datos_cancion_por_id(params[:id].to_i)
+  respuesta = { titulo: cancion.titulo, artistas: cancion.artistas, anio: cancion.anio, duracion: cancion.duracion }
+  status 200
+  json(respuesta)
+end

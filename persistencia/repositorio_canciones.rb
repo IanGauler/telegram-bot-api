@@ -9,6 +9,11 @@ class RepositorioCanciones < AbstractRepository
     load_collection(canciones.reverse)
   end
 
+  def obtener_cancion_por_id(id)
+    cancion = dataset.where(id:).first
+    load_object(cancion)
+  end
+
   protected
 
   def load_object(a_hash)

@@ -45,6 +45,18 @@ describe Sistema do
       expect(sistema.obtener_novedades.size).to eq 5
     end
   end
+
+  describe 'obtener_datos_cancion_por_id' do
+    it 'deberia devolver los detalles de una cancion a partir de su id' do
+      crear_canciones(1, sistema)
+      id = sistema.canciones.first.id
+      cancion = sistema.obtener_datos_cancion_por_id(id)
+
+      expect(cancion.titulo).to eq 'Cancion1'
+      expect(cancion.artistas).to eq 'Artista1'
+      expect(cancion.anio).to eq 2020
+    end
+  end
 end
 
 def crear_canciones(cantidad, sistema)
