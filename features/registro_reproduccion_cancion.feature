@@ -8,7 +8,6 @@ Antecedentes:
 Dado que mi usuario es "juan" con id "1" y mail "juan@gmail.com", y estoy registrado
 Y que existe la cancion "Waka Waka"
 
-@wip
 Escenario: US6-01 Registro exitoso de reproduccion
 Dado que el sistema recibe una solicitud de registro con mail "juan@gmail.com" y el id de la cancion "Waka Waka"
 Entonces el sistema actualiza el historial de escucha del usuario

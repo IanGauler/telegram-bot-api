@@ -41,6 +41,8 @@ class Sistema
   end
 
   def registrar_reproduccion(email, id_cancion)
+    usuarios = @repositorio_usuarios.all
+    puts "Usuarios: #{usuarios}"
     usuario = @repositorio_usuarios.obtener_usuario_por_email(email)
     reproduccion = Reproduccion.new(usuario.id, id_cancion)
     @repositorio_reproducciones.save(reproduccion)
