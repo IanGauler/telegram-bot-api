@@ -4,13 +4,15 @@ require_relative '../../dominio/sistema'
 require_relative '../../persistencia/repositorio_usuarios'
 require_relative '../../persistencia/repositorio_canciones'
 require_relative '../../persistencia/abstract_repository'
+require_relative '../../persistencia/repositorio_reproducciones'
 
 describe Sistema do
   juan_email = 'juan@test.com'
   juan_id = 1
   repositorio_usuarios = RepositorioUsuarios.new
   repositorio_canciones = RepositorioCanciones.new
-  sistema = described_class.new(repositorio_usuarios, repositorio_canciones)
+  repositorio_reproducciones = RepositorioReproducciones.new
+  sistema = described_class.new(repositorio_usuarios, repositorio_canciones, repositorio_reproducciones)
 
   describe 'resetear' do
     it 'deberia vaciar el repositorio de usuarios y canciones' do
@@ -63,11 +65,17 @@ describe Sistema do
   end
 
   describe 'registrar_reproduccion' do
-    xit 'deberia registrar una reproduccion' do
+    it 'deberia registrar una reproduccion' do
       sistema.crear_usuario(juan_id, juan_email)
       sistema.crear_cancion('Waka Waka', 'Shakira', 2010, '3:31')
       cancion = sistema.canciones.first
+
       sistema.registrar_reproduccion(juan_email, cancion.id)
+      expect(sistema.reproducciones.size).to eq 1
+
+      reproduccion = sistema.reproducciones.first
+      expect(reproduccion.id_usuario).to eq juan_id
+      expect(reproduccion.id_cancion).to eq cancion.id
     end
   end
 end

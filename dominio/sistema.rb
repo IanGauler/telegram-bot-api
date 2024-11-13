@@ -1,8 +1,9 @@
 class Sistema
   CANTIDAD_NOVEDADES = 5
-  def initialize(repositorio_usuarios, repositorio_canciones)
+  def initialize(repositorio_usuarios, repositorio_canciones, repositorio_reproducciones)
     @repositorio_usuarios = repositorio_usuarios
     @repositorio_canciones = repositorio_canciones
+    @repositorio_reproducciones = repositorio_reproducciones
   end
 
   def crear_usuario(id, email)
@@ -41,8 +42,12 @@ class Sistema
 
   def registrar_reproduccion(email, id_cancion)
     usuario = @repositorio_usuarios.obtener_usuario_por_email(email)
-    Reproduccion.new(usuario.id, id_cancion)
-    # @repositorio_reproducciones.save_reproduccion(reproduccion)
+    reproduccion = Reproduccion.new(usuario.id, id_cancion)
+    @repositorio_reproducciones.save(reproduccion)
+  end
+
+  def reproducciones
+    @repositorio_reproducciones.all
   end
 end
 

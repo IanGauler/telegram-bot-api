@@ -7,7 +7,7 @@ class RepositorioReproducciones < AbstractRepository
   protected
 
   def load_object(a_hash)
-    Reproduccion.new(a_hash[:id_usuario], a_hash[:is_cancion])
+    Reproduccion.new(a_hash[:id_usuario], a_hash[:id_cancion])
   end
 
   def changeset(reproduccion)
