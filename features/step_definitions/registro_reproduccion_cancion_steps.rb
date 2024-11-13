@@ -14,8 +14,8 @@ Entonces('el sistema actualiza el historial de escucha del usuario') do
 end
 
 Entonces('el sistema devuelve un mensaje de error {string}') do |mensaje_de_error|
-  body = @response.body
-  expect(body).to eq(mensaje_de_error)
+  parsed_response = JSON.parse(@response.body)
+  expect(parsed_response['error']).to eq(mensaje_de_error)
   expect(@response.status).to eq(404)
 end
 
