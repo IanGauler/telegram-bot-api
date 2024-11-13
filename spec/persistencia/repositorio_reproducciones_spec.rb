@@ -1,15 +1,22 @@
 require 'integration_helper'
-require_relative '../../dominio/cancion'
+require_relative '../../dominio/reproduccion'
 require_relative '../../persistencia/repositorio_reproducciones'
+require_relative '../../persistencia/repositorio_canciones'
+require_relative '../../persistencia/repositorio_usuarios'
 
 describe RepositorioReproducciones do
   repositorio_reproducciones = described_class.new
 
-  xit 'deberia guardar una cancion nueva' do
-    _reproduccion = Reproduccion.new(1, 1)
+  xit 'deberia guardar una reproduccion nueva' do
+    cancion = Cancion.new('Cancion1', 'Artista1', 2020, '3:31')
+    usuario = Usuario.new(1, 'juan@gmail.com')
+    cancion = RepositorioCanciones.new.save(cancion)
+    RepositorioUsuarios.new.save(usuario)
 
-    repositorio_reproducciones.save(cancion)
-    canciones = repositorio_reproducciones.all
-    expect(canciones.size).to be 1
+    reproduccion = Reproduccion.new(usuario.id, cancion.id)
+
+    repositorio_reproducciones.save(reproduccion)
+    reproducciones = repositorio_reproducciones.all
+    expect(reproducciones.size).to be 1
   end
 end
