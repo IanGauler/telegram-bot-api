@@ -89,6 +89,13 @@ describe Sistema do
       expect { sistema.registrar_reproduccion(juan_email, 1) }.to raise_error(CancionNoEncontrada)
     end
   end
+
+  describe 'registrar_megusta' do
+    it 'deberia devolver error si el id de la cancion no existe en el sistema' do
+      sistema.crear_usuario(juan_id, juan_email)
+      expect { sistema.registrar_megusta(juan_id, 1) }.to raise_error(CancionNoEncontrada)
+    end
+  end
 end
 
 def crear_canciones(cantidad, sistema)

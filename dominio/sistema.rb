@@ -54,6 +54,10 @@ class Sistema
     @repositorio_reproducciones.save(reproduccion)
   end
 
+  def registrar_megusta(_id_usuario, _id_cancion)
+    raise CancionNoEncontrada
+  end
+
   def reproducciones
     @repositorio_reproducciones.all
   end
