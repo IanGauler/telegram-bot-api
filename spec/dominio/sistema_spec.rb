@@ -83,6 +83,11 @@ describe Sistema do
       cancion = sistema.canciones.first
       expect { sistema.registrar_reproduccion(juan_email, cancion.id) }.to raise_error(UsuarioNoRegistrado)
     end
+
+    it 'deberia lanzar error si el id de la cancion no existe en el sistema' do
+      sistema.crear_usuario(juan_id, juan_email)
+      expect { sistema.registrar_reproduccion(juan_email, 1) }.to raise_error(CancionNoEncontrada)
+    end
   end
 end
 

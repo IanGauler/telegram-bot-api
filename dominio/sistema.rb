@@ -37,12 +37,18 @@ class Sistema
   end
 
   def obtener_datos_cancion_por_id(id)
-    @repositorio_canciones.obtener_cancion_por_id(id)
+    cancion = @repositorio_canciones.obtener_cancion_por_id(id)
+    raise CancionNoEncontrada if cancion.nil?
+
+    cancion
   end
 
   def registrar_reproduccion(email, id_cancion)
     usuario = @repositorio_usuarios.obtener_usuario_por_email(email)
     raise UsuarioNoRegistrado if usuario.nil?
+
+    cancion = @repositorio_canciones.obtener_cancion_por_id(id_cancion)
+    raise CancionNoEncontrada if cancion.nil?
 
     reproduccion = Reproduccion.new(usuario.id, id_cancion)
     @repositorio_reproducciones.save(reproduccion)
@@ -66,7 +72,7 @@ class CancionNoEncontrada < StandardError
 end
 
 class UsuarioNoRegistrado < StandardError
-  def initialize(msg = 'Usuario no encontrado')
+  def initialize(msg = 'El usuario no fue encontrado.')
     super(msg)
   end
 end
