@@ -5,6 +5,7 @@ require_relative '../../persistencia/repositorio_usuarios'
 require_relative '../../persistencia/repositorio_canciones'
 require_relative '../../persistencia/abstract_repository'
 require_relative '../../persistencia/repositorio_reproducciones'
+require_relative '../../persistencia/repositorio_megustas'
 
 describe Sistema do
   juan_email = 'juan@test.com'
@@ -12,7 +13,7 @@ describe Sistema do
   repositorio_usuarios = RepositorioUsuarios.new
   repositorio_canciones = RepositorioCanciones.new
   repositorio_reproducciones = RepositorioReproducciones.new
-  repositorio_megustas = nil
+  repositorio_megustas = RepositorioMegustas.new
   sistema = described_class.new(repositorio_usuarios, repositorio_canciones, repositorio_reproducciones, repositorio_megustas)
 
   describe 'resetear' do
@@ -105,17 +106,17 @@ describe Sistema do
       expect { sistema.registrar_megusta(juan_id, cancion.id) }.to raise_error(CancionNoEscuchada)
     end
 
-    xit 'deberia registrar un me gusta' do
+    it 'deberia registrar un me gusta' do
       sistema.crear_usuario(juan_id, juan_email)
       sistema.crear_cancion('Waka Waka', 'Shakira', 2010, '3:31')
       sistema.registrar_reproduccion(juan_email, sistema.canciones.first.id)
 
-      sistema.registrar_megusta(juan_email, cancion.id)
+      sistema.registrar_megusta(juan_id, sistema.canciones.first.id)
       expect(sistema.megustas.size).to eq 1
 
       megusta = sistema.reproducciones.first
       expect(megusta.id_usuario).to eq juan_id
-      expect(megusta.id_cancion).to eq cancion.id
+      expect(megusta.id_cancion).to eq sistema.canciones.first.id
     end
   end
 end

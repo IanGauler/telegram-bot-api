@@ -62,12 +62,16 @@ class Sistema
 
     raise CancionNoEscuchada unless @repositorio_reproducciones.existe_reproduccion?(id_usuario, id_cancion)
 
-    megusta = Megusta.new(id_usuario, id_cancion)
+    megusta = MeGusta.new(id_usuario, id_cancion)
     @repositorio_megustas.save(megusta)
   end
 
   def reproducciones
     @repositorio_reproducciones.all
+  end
+
+  def megustas
+    @repositorio_megustas.all
   end
 end
 

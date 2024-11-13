@@ -8,7 +8,6 @@ Antecedentes:
   Dado que mi usuario es "juan" con id "1" y mail "juan@gmail.com", y estoy registrado
   Y que existe la cancion "Waka Waka"
 
-@wip @current
 Escenario: US7-01 Dar me gusta a una cancion escuchada
   Dado que he reproducido la cancion "Waka Waka"
   Cuando envio el comando "/megusta" con la id de "Waka Waka"
