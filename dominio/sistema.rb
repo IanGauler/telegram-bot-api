@@ -54,8 +54,10 @@ class Sistema
     @repositorio_reproducciones.save(reproduccion)
   end
 
-  def registrar_megusta(_id_usuario, _id_cancion)
-    raise CancionNoEncontrada
+  def registrar_megusta(_id_usuario, id_cancion)
+    raise CancionNoEncontrada if @repositorio_canciones.obtener_cancion_por_id(id_cancion).nil?
+
+    raise CancionNoEscuchada
   end
 
   def reproducciones
@@ -77,6 +79,12 @@ end
 
 class UsuarioNoRegistrado < StandardError
   def initialize(msg = 'El usuario no fue encontrado.')
+    super(msg)
+  end
+end
+
+class CancionNoEscuchada < StandardError
+  def initialize(msg = 'El usuario aún no ha escuchado esta cancion.')
     super(msg)
   end
 end

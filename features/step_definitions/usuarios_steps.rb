@@ -37,7 +37,8 @@ Entonces('el bot muestra el mensaje {string}') do |mensaje_esperado|
     'Usuario registrado' => 201,
     'Bienvenido, juan' => 201,
     'Calificacion registrada' => 201,
-    'La cancion no existe.' => 404
+    'La cancion no existe.' => 404,
+    'Aún no has escuchado esta cancion.' => 409
   }
   expect(@response.status).to eq(codigos_esperados[mensaje_esperado])
 end

@@ -115,4 +115,7 @@ post '/megusta' do
 rescue CancionNoEncontrada => e
   status 404
   { error: e.message }.to_json
+rescue CancionNoEscuchada => e
+  status 409
+  { error: e.message }.to_json
 end

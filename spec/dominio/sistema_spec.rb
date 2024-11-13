@@ -95,6 +95,14 @@ describe Sistema do
       sistema.crear_usuario(juan_id, juan_email)
       expect { sistema.registrar_megusta(juan_id, 1) }.to raise_error(CancionNoEncontrada)
     end
+
+    it 'deberia devolver error si el usuario no ha escuchado la cancion' do
+      sistema.crear_usuario(juan_id, juan_email)
+      sistema.crear_cancion('Waka Waka', 'Shakira', 2010, '3:31')
+      cancion = sistema.canciones.first
+
+      expect { sistema.registrar_megusta(juan_id, cancion.id) }.to raise_error(CancionNoEscuchada)
+    end
   end
 end
 

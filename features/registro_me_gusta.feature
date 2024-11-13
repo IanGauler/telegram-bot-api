@@ -14,7 +14,6 @@ Escenario: US7-01 Dar me gusta a una cancion escuchada
   Cuando envio el comando "/megusta" con la id de "Waka Waka"
   Entonces el bot muestra el mensaje "Calificacion registrada"
 
-@wip
 Escenario: US7-02 Dar me gusta a una cancion no escuchada
   Cuando envio el comando "/megusta" con la id de "Waka Waka"
   Entonces el bot muestra el mensaje "Aún no has escuchado esta cancion."
