@@ -38,6 +38,12 @@ class Sistema
   def obtener_datos_cancion_por_id(id)
     @repositorio_canciones.obtener_cancion_por_id(id)
   end
+
+  def registrar_reproduccion(email, id_cancion)
+    usuario = @repositorio_usuarios.obtener_usuario_por_email(email)
+    Reproduccion.new(usuario.id, id_cancion)
+    # @repositorio_reproducciones.save_reproduccion(reproduccion)
+  end
 end
 
 class UsuarioYaRegistrado < StandardError

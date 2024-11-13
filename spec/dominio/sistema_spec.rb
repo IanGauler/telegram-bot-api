@@ -61,6 +61,15 @@ describe Sistema do
       expect { sistema.obtener_datos_cancion_por_id(1) }.to raise_error(CancionNoEncontrada)
     end
   end
+
+  describe 'registrar_reproduccion' do
+    xit 'deberia registrar una reproduccion' do
+      sistema.crear_usuario(juan_id, juan_email)
+      sistema.crear_cancion('Waka Waka', 'Shakira', 2010, '3:31')
+      cancion = sistema.canciones.first
+      sistema.registrar_reproduccion(juan_email, cancion.id)
+    end
+  end
 end
 
 def crear_canciones(cantidad, sistema)

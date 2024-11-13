@@ -90,3 +90,8 @@ rescue CancionNoEncontrada => e
   status 404
   { error: e.message }.to_json
 end
+
+post '/reproduccion' do
+  sistema.registrar_reproduccion(@params[:email], @params[:id_cancion].to_i)
+  status 201
+end
