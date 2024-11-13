@@ -98,3 +98,13 @@ rescue UsuarioNoRegistrado, CancionNoEncontrada => e
   status 404
   { error: e.message }.to_json
 end
+
+get '/reproducciones' do
+  reproducciones = sistema.reproducciones
+  respuesta = []
+  reproducciones.map do |r|
+    respuesta << { id_usuario: r.id_usuario, id_cancion: r.id_cancion }
+  end
+  status 200
+  json(respuesta)
+end
