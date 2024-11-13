@@ -32,8 +32,13 @@ Cuando('envio el comando {string} con email {string}') do |_comando_registrar, e
   @response = Faraday.post('/usuarios', request_body, { 'Content-Type' => 'application/json' })
 end
 
-Entonces('el bot muestra el mensaje {string}') do |_mensaje_esperado|
-  expect(@response.status).to eq(201)
+Entonces('el bot muestra el mensaje {string}') do |mensaje_esperado|
+  codigos_esperados = {
+    'Usuario registrado' => 201,
+    'Bienvenido, juan' => 201,
+    'Calificacion registrada' => 201,
+  }
+  expect(@response.status).to eq(codigos_esperados[mensaje_esperado])
 end
 
 Dado('que mi mail es {string}, mi id es {string} y estoy registrado') do |mail, id|
