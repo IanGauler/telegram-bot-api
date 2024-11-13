@@ -4,9 +4,9 @@ Característica:
   quiero consultar detalles de una cancion
   para tener mas informacion de la misma
 
-  Contexto:
-  Dado que mi usuario es "juan" con id "1" y mail "juan@gmail.com", y estoy registrado
-  Y que existe la cancion "Waka Waka" con id "1234"
+  Antecedentes:
+    Dado que mi usuario es "juan" con id "1" y mail "juan@gmail.com", y estoy registrado
+    Y que existe la cancion "Waka Waka"
 
   Escenario: US5-01 Consulta de detalles de una cancion existente
     Cuando envío el comando "/detalles" con el id de la cancion WakaWaka

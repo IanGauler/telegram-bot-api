@@ -1,8 +1,15 @@
-Cuando('envío el comando {string} con el id de la cancion WakaWaka') do |_comando|
-  cancion = Cancion.new('Waka-Waka', 'Shakira', 2010, '3:31')
+Dado('que mi usuario es {string} con id {string} y mail {string}, y estoy registrado') do |string, string2, string3|
+  # nothing to do here
+end
+
+Dado('que existe la cancion {string}') do |titulo_cancion|
+  cancion = Cancion.new(titulo_cancion, 'Shakira', 2010, '3:31')
   repositorio_canciones = RepositorioCanciones.new
   repositorio_canciones.save(cancion)
-  id_cancion = repositorio_canciones.all.first.id
+end
+
+Cuando('envío el comando {string} con el id de la cancion WakaWaka') do |_comando|
+  id_cancion = RepositorioCanciones.new.all.first.id
   @response = Faraday.get("datos/#{id_cancion}")
 end
 
