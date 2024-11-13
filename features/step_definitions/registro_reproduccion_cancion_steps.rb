@@ -4,6 +4,11 @@ Dado('que el sistema recibe una solicitud de registro con mail {string} y el id 
   @response = Faraday.post('/reproduccion', request_body, { 'Content-Type' => 'application/json' })
 end
 
+Dado('que el sistema recibe una solicitud de registro con mail {string} y el id de una cancion inexistente') do |email|
+  request_body = { email:, id_cancion: 1 }.to_json
+  @response = Faraday.post('/reproduccion', request_body, { 'Content-Type' => 'application/json' })
+end
+
 Entonces('el sistema actualiza el historial de escucha del usuario') do
   repositorio_reproducciones = RepositorioReproducciones.new
   reproduccion = repositorio_reproducciones.all.first
