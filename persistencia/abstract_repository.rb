@@ -91,3 +91,9 @@ class AbstractRepository
     Sequel[self.class.table_name][:id]
   end
 end
+
+class ObjectNotFound < StandardError
+  def initialize(model_class, id)
+    super("Object of class #{model_class} with id #{id} not found")
+  end
+end

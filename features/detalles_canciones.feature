@@ -17,7 +17,7 @@ Característica:
     Año: 2010
     Duración: 3:31
     """
-  @wip
+
   Escenario: US5-02 Consulta de una cancion inexistente
-    Cuando envio el comando "/detalles 5678"
-    Entonces el bot muestra el mensaje "La cancion no fue encontrada."
+    Cuando envio el comando "/detalles" con el id de una cancion inexistente
+    Entonces el bot muestra el mensaje de error "La cancion no fue encontrada."

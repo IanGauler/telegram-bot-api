@@ -1,9 +1,9 @@
-Cuando('envío el comando {string} con el id de la cancion WakaWaka') do |comando|
+Cuando('envío el comando {string} con el id de la cancion WakaWaka') do |_comando|
   cancion = Cancion.new('Waka-Waka', 'Shakira', 2010, '3:31')
   repositorio_canciones = RepositorioCanciones.new
   repositorio_canciones.save(cancion)
   id_cancion = repositorio_canciones.all.first.id
-  @response = Faraday.get("#{comando}/#{id_cancion}")
+  @response = Faraday.get("datos/#{id_cancion}")
 end
 
 Entonces('el bot muestra los detalles') do |_doc_string|
@@ -13,4 +13,14 @@ Entonces('el bot muestra los detalles') do |_doc_string|
   expect(response_body).to have_key('anio')
   expect(response_body).to have_key('duracion')
   expect(@response.status).to eq(200)
+end
+
+Cuando('envio el comando {string} con el id de una cancion inexistente') do |_string|
+  @response = Faraday.get('datos/-1')
+end
+
+Entonces('el bot muestra el mensaje de error {string}') do |mensaje_error|
+  response_body = JSON.parse(@response.body)
+  expect(@response.status).to eq(404)
+  expect(response_body['error']).to eq(mensaje_error)
 end

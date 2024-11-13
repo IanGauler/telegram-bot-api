@@ -81,9 +81,12 @@ get '/novedades' do
   json(respuesta)
 end
 
-get '/detalles/:id' do
+get '/datos/:id' do
   cancion = sistema.obtener_datos_cancion_por_id(params[:id].to_i)
   respuesta = { titulo: cancion.titulo, artistas: cancion.artistas, anio: cancion.anio, duracion: cancion.duracion }
   status 200
   json(respuesta)
+rescue CancionNoEncontrada => e
+  status 404
+  { error: e.message }.to_json
 end

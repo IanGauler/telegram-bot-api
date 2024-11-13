@@ -23,17 +23,4 @@ describe RepositorioCanciones do
       expect(ultimas_canciones.size).to be 5
     end
   end
-
-  describe 'obtener_cancion_por_id' do
-    it 'deberia devolver los detalles de una cancion a partir de su id' do
-      cancion = Cancion.new('Cancion1', 'Artista1', 2020, '2:00')
-      respositorio_canciones.save(cancion)
-      id = respositorio_canciones.all.first.id
-      cancion_obtenida = respositorio_canciones.obtener_cancion_por_id(id)
-
-      expect(cancion_obtenida.titulo).to eq 'Cancion1'
-      expect(cancion_obtenida.artistas).to eq 'Artista1'
-      expect(cancion_obtenida.anio).to eq 2020
-    end
-  end
 end

@@ -11,6 +11,8 @@ class RepositorioCanciones < AbstractRepository
 
   def obtener_cancion_por_id(id)
     cancion = dataset.where(id:).first
+    raise CancionNoEncontrada if cancion.nil?
+
     load_object(cancion)
   end
 

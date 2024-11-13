@@ -56,6 +56,10 @@ describe Sistema do
       expect(cancion.artistas).to eq 'Artista1'
       expect(cancion.anio).to eq 2020
     end
+
+    it 'deberia lanzar error de CancionNoEncontrada si la cancion no existe' do
+      expect { sistema.obtener_datos_cancion_por_id(1) }.to raise_error(CancionNoEncontrada)
+    end
   end
 end
 

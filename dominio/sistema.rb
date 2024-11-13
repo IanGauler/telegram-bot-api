@@ -40,4 +40,14 @@ class Sistema
   end
 end
 
-class UsuarioYaRegistrado < StandardError; end
+class UsuarioYaRegistrado < StandardError
+  def initialize(msg = 'Usuario ya registrado')
+    super(msg)
+  end
+end
+
+class CancionNoEncontrada < StandardError
+  def initialize(msg = 'La cancion no fue encontrada.')
+    super(msg)
+  end
+end
