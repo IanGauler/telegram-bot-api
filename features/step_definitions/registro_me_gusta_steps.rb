@@ -6,7 +6,7 @@ Dado('que he reproducido la cancion {string}') do |_cancion|
 end
 
 Cuando('envio el comando {string} con la id de {string}') do |_comando, cancion|
-  @id_cancion ||= RepositorioCanciones.new.all.first.id
+  @id_cancion = RepositorioCanciones.new.all.first.id
   @id_cancion = 0 if cancion == 'Cancion Inexistente'
   request_body = { id_cancion: @id_cancion, id_usuario: @id_usuario }.to_json
   @response = Faraday.post('/megusta', request_body, { 'Content-Type' => 'application/json' })

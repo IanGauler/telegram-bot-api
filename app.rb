@@ -119,3 +119,13 @@ rescue CancionNoEscuchada => e
   status 409
   { error: e.message }.to_json
 end
+
+get '/megustas' do
+  megustas = sistema.megustas
+  respuesta = []
+  megustas.map do |m|
+    respuesta << { id_usuario: m.id_usuario, id_cancion: m.id_cancion }
+  end
+  status 200
+  json(respuesta)
+end
