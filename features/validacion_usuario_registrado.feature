@@ -10,7 +10,6 @@ Dado que mi usuario es "juan" con id "1" y mail "juan@gmail.com", y estoy regist
 Cuando envio el comando "/registrar" con email "juan@gmail.com"
 Entonces el bot muestra el mensaje "El usuario juan ya esta registrado"
 
-@wip
 Escenario: US2.1-02 No puedo registrarme con un correo que ya fue registrado
 Dado que mi usuario es "juan", mi id es "1" y no estoy registrado
 Y existe un usuario registrado con el mail "juan@gmail.com"
