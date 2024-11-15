@@ -9,7 +9,8 @@ class Sistema
 
   def crear_usuario(id, email)
     usuario = Usuario.new(id, email)
-    raise UsuarioYaRegistrado, 'Usuario ya registrado' if @repositorio_usuarios.existe_usuario?(usuario)
+    raise UsuarioYaRegistrado if @repositorio_usuarios.existe_usuario_con_id?(usuario)
+    raise MailYaRegistrado unless @repositorio_usuarios.obtener_usuario_por_email(email).nil?
 
     @repositorio_usuarios.save(usuario)
     usuario
@@ -77,6 +78,12 @@ end
 
 class UsuarioYaRegistrado < StandardError
   def initialize(msg = 'Usuario ya registrado')
+    super(msg)
+  end
+end
+
+class MailYaRegistrado < StandardError
+  def initialize(msg = 'Mail ya registrado')
     super(msg)
   end
 end

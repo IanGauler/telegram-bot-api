@@ -4,7 +4,7 @@ class RepositorioUsuarios < AbstractRepository
   self.table_name = :usuarios
   self.model_class = 'Usuario'
 
-  def existe_usuario?(usuario)
+  def existe_usuario_con_id?(usuario)
     all.any? { |u| u.id == usuario.id }
   end
 

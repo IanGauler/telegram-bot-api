@@ -1,8 +1,3 @@
-Dado('que mi usuario es {string} con id {string} y mail {string}, y estoy registrado') do |_nombre_usuario, id_usuario, email|
-  @usuario = Usuario.new(id_usuario, email)
-  RepositorioUsuarios.new.save(@usuario)
-end
-
 Dado('que existe la cancion {string}') do |titulo_cancion|
   cancion = Cancion.new(titulo_cancion, 'Shakira', 2010, '3:31')
   repositorio_canciones = RepositorioCanciones.new

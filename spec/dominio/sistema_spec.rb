@@ -36,6 +36,11 @@ describe Sistema do
       sistema.crear_usuario(juan_id, juan_email)
       expect { sistema.crear_usuario(juan_id, juan_email) }.to raise_error(UsuarioYaRegistrado)
     end
+
+    it 'deberia lanzar MailYaRegistrado si ya hay un usuario con ese mail' do
+      sistema.crear_usuario(juan_id, juan_email)
+      expect { sistema.crear_usuario(juan_id + 1, juan_email) }.to raise_error(MailYaRegistrado)
+    end
   end
 
   describe 'obtener_novedades' do
