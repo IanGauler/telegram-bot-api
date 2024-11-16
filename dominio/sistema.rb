@@ -1,8 +1,10 @@
 require_relative './modulos_sistema/sistema_canciones'
 require_relative './modulos_sistema/sistema_megusta'
+require_relative './modulos_sistema/sistema_reproducciones'
 class Sistema
   include SistemaCanciones
   include SistemaMeGusta
+  include SistemaReproducciones
   CANTIDAD_NOVEDADES = 5
   def initialize(repositorio_usuarios, repositorio_canciones, repositorio_reproducciones, repositorio_megustas)
     @repositorio_usuarios = repositorio_usuarios
@@ -38,17 +40,6 @@ class Sistema
     raise CancionNoEncontrada if cancion.nil?
 
     cancion
-  end
-
-  def registrar_reproduccion(email, id_cancion)
-    usuario = @repositorio_usuarios.obtener_usuario_por_email(email)
-    raise UsuarioNoRegistrado if usuario.nil?
-
-    cancion = @repositorio_canciones.obtener_cancion_por_id(id_cancion)
-    raise CancionNoEncontrada if cancion.nil?
-
-    reproduccion = Reproduccion.new(usuario.id, id_cancion)
-    @repositorio_reproducciones.save(reproduccion)
   end
 
   def reproducciones
