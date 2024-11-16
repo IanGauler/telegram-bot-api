@@ -1,4 +1,7 @@
+require_relative './modulos_sistema/sistema_canciones'
+
 class Sistema
+  include SistemaCanciones
   CANTIDAD_NOVEDADES = 5
   def initialize(repositorio_usuarios, repositorio_canciones, repositorio_reproducciones, repositorio_megustas)
     @repositorio_usuarios = repositorio_usuarios
@@ -23,15 +26,6 @@ class Sistema
   def resetear
     @repositorio_usuarios.delete_all
     @repositorio_canciones.delete_all
-  end
-
-  def crear_cancion(titulo, artista, anio, duracion)
-    cancion = Cancion.new(titulo, artista, anio, duracion)
-    @repositorio_canciones.save(cancion)
-  end
-
-  def canciones
-    @repositorio_canciones.all
   end
 
   def obtener_novedades
@@ -88,20 +82,8 @@ class MailYaRegistrado < StandardError
   end
 end
 
-class CancionNoEncontrada < StandardError
-  def initialize(msg = 'La cancion no fue encontrada.')
-    super(msg)
-  end
-end
-
 class UsuarioNoRegistrado < StandardError
   def initialize(msg = 'El usuario no fue encontrado.')
-    super(msg)
-  end
-end
-
-class CancionNoEscuchada < StandardError
-  def initialize(msg = 'El usuario aún no ha escuchado esta cancion.')
     super(msg)
   end
 end
