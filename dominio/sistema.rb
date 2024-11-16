@@ -8,7 +8,7 @@ class Sistema
   end
 
   def crear_usuario(id, email)
-    usuario = Usuario.new(id, email)
+    usuario = Usuario.new(id.to_s, email)
     raise UsuarioYaRegistrado if @repositorio_usuarios.existe_usuario_con_id?(usuario)
     raise MailYaRegistrado unless @repositorio_usuarios.obtener_usuario_por_email(email).nil?
 
