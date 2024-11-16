@@ -9,7 +9,7 @@ describe RepositorioReproducciones do
 
   it 'deberia guardar una reproduccion nueva' do
     cancion = Cancion.new('Cancion1', 'Artista1', 2020, '3:31')
-    usuario = Usuario.new(1, 'juan@gmail.com')
+    usuario = Usuario.new('1', 'juan@gmail.com')
     cancion = RepositorioCanciones.new.save(cancion)
     RepositorioUsuarios.new.save(usuario)
 

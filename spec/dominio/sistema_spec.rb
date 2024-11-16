@@ -9,7 +9,7 @@ require_relative '../../persistencia/repositorio_megustas'
 
 describe Sistema do
   juan_email = 'juan@test.com'
-  juan_id = 1
+  juan_id = '1'
   repositorio_usuarios = RepositorioUsuarios.new
   repositorio_canciones = RepositorioCanciones.new
   repositorio_reproducciones = RepositorioReproducciones.new
@@ -39,7 +39,7 @@ describe Sistema do
 
     it 'deberia lanzar MailYaRegistrado si ya hay un usuario con ese mail' do
       sistema.crear_usuario(juan_id, juan_email)
-      expect { sistema.crear_usuario(juan_id + 1, juan_email) }.to raise_error(MailYaRegistrado)
+      expect { sistema.crear_usuario('2', juan_email) }.to raise_error(MailYaRegistrado)
     end
   end
 

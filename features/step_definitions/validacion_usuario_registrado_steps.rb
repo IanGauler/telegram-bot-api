@@ -5,6 +5,6 @@ Dado('que mi usuario es {string} con id {string} y mail {string}, y estoy regist
 end
 
 Dado('existe un usuario registrado con el mail {string}') do |email|
-  @usuario = Usuario.new(100, email)
+  @usuario = Usuario.new('100', email)
   RepositorioUsuarios.new.save(@usuario)
 end
