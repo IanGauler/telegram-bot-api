@@ -1,0 +1,15 @@
+module SistemaMeGusta
+  def megustas
+    @repositorio_megustas.all
+  end
+
+  def registrar_megusta(id_usuario, id_cancion)
+    cancion = @repositorio_canciones.obtener_cancion_por_id(id_cancion)
+
+    raise CancionNoEncontrada if cancion.nil?
+    raise CancionNoEscuchada unless @repositorio_reproducciones.existe_reproduccion?(id_usuario, id_cancion)
+
+    megusta = MeGusta.new(id_usuario, id_cancion)
+    @repositorio_megustas.save(megusta)
+  end
+end
