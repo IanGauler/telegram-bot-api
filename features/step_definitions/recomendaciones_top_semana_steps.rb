@@ -64,3 +64,6 @@ end
 Dado('que no hay canciones escuchadas durante la semana laboral') do
   RepositorioReproducciones.new.delete_all
 end
+
+Dado('que las otras {string} no tienen reproducciones') do |_cantidad_canciones|
+end

@@ -156,6 +156,18 @@ describe Sistema do
       recomendaciones = sistema.recomendaciones_de_la_semana
       expect(recomendaciones.size).to eq 0
     end
+
+    it 'deberia devolver solo canciones escuchadas en el fin de semana' do
+      crear_canciones(5, sistema)
+      reproducir_canciones(3, sistema, dia_de_semana)
+      canciones_reproducidas_finde = reproducir_canciones(2, sistema, dia_fin_de_semana, 3)
+
+      allow(Date).to receive(:today).and_return(dia_fin_de_semana)
+      expect(sistema.recomendaciones_de_la_semana.size).to eq 2
+      sistema.recomendaciones_de_la_semana.each do |r|
+        expect(canciones_reproducidas_finde.any? { |c| r.titulo == c.titulo }).to be true
+      end
+    end
   end
 end
 
