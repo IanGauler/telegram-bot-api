@@ -19,6 +19,14 @@ module SistemaContenido
     podcast = Podcast.new(titulo, creador, anio)
     @administrador_de_contenido.repositorio_podcasts.save(podcast)
   end
+
+  private
+
+  def crear_episodios(episodios, podcast)
+    episodios.each do |episodio|
+      Episodio.new(podcast.id, episodio[:titulo], episodio[:participantes], episodio[:duracion])
+    end
+  end
 end
 
 class ErrorCancion < StandardError
