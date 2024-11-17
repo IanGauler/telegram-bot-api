@@ -19,4 +19,16 @@ describe RepositorioEpisodios do
     expect(episodios.size).to be 1
     expect(episodios.first.id).not_to be nil
   end
+
+  it 'deberia obtener episodios por podcast' do
+    podcast = Podcast.new('Podcast1', 'Autor1', 2020)
+    RepositorioPodcasts.new.save(podcast)
+
+    episodio = Episodio.new(podcast.id, 'Episodio1', 'Participante1', '59:00')
+    respositorio_episodios.save(episodio)
+
+    episodios = respositorio_episodios.obtener_episodios_por_podcast(podcast.id)
+    expect(episodios.size).to be 1
+    expect(episodios.first.id).not_to be nil
+  end
 end

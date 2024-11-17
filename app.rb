@@ -133,7 +133,6 @@ end
 
 post '/podcasts' do
   podcast = @params.first
-  puts "Podcast.inspect: #{podcast.inspect}"
   sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio].to_i, podcast[:episodios])
   status 201
 end
@@ -142,7 +141,7 @@ get '/podcasts' do
   podcasts = sistema.podcasts
   respuesta = []
   podcasts.map do |p|
-    respuesta << { titulo: p.titulo, creador: p.creador, anio: p.anio, episodios: p.episodios }
+    respuesta << { id: p.id, titulo: p.titulo, creador: p.creador, anio: p.anio, episodios: p.episodios }
   end
   status 200
   json(respuesta)

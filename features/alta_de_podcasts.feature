@@ -7,7 +7,6 @@ para tener siempre disponible el catalogo de podcast actualizado
 Antecedentes:
 Dado que no hay podcasts en la plataforma
 
-@wip
 Escenario: US8-01 Dar de alta un podcast en la plataforma
 Dado que quiero cargar el podcast "Caja Negra" de "Filo.news" lanzado en el año "2020" con "2" episodios
 Cuando publico en la API con "/podcasts"

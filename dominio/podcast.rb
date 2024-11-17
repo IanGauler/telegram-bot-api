@@ -10,6 +10,18 @@ class Podcast
     @episodios = []
   end
 
+  def agregar_episodios(episodios)
+    if episodios.is_a?(Array)
+      episodios.each do |episodio|
+        agregar_episodio(episodio)
+      end
+    else
+      agregar_episodio(episodios)
+    end
+  end
+
+  private
+
   def agregar_episodio(episodio)
     @episodios << episodio
   end

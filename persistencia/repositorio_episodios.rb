@@ -9,6 +9,14 @@ class RepositorioEpisodios < AbstractRepository
     super(episodio)
   end
 
+  def obtener_episodios_por_podcast(id_podcast)
+    episodios = []
+    all.each do |episodio|
+      episodios << episodio if episodio.id_podcast == id_podcast
+    end
+    episodios
+  end
+
   protected
 
   def load_object(a_hash)
