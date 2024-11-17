@@ -124,24 +124,25 @@ end
 get '/megustas' do
   megustas = sistema.megustas
   respuesta = []
-  megustas.map do |m|
-    respuesta << { id_usuario: m.id_usuario, id_cancion: m.id_cancion }
+  megustas.map do |me_gustas|
+    respuesta << { id_usuario: me_gustas.id_usuario, id_cancion: me_gustas.id_cancion }
   end
   status 200
   json(respuesta)
 end
 
 post '/podcasts' do
-  podcast = @params.first
-  sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio].to_i, podcast[:episodios])
+  @params.each do |podcast|
+    sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio].to_i, podcast[:episodios])
+  end
   status 201
 end
 
 get '/podcasts' do
   podcasts = sistema.podcasts
   respuesta = []
-  podcasts.map do |p|
-    respuesta << { id: p.id, titulo: p.titulo, creador: p.creador, anio: p.anio, episodios: p.episodios }
+  podcasts.map do |podcast|
+    respuesta << { id: podcast.id, titulo: podcast.titulo, creador: podcast.creador, anio: podcast.anio, episodios: podcast.episodios }
   end
   status 200
   json(respuesta)

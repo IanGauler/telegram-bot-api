@@ -20,7 +20,6 @@ Entonces('el podcast {string} es dado de alta') do |titulo|
 
   response = Faraday.get('/podcasts')
   response_body = JSON.parse(response.body)
-
   podcast = response_body.find { |c| c['titulo'] == titulo }
   expect(podcast['id']).to be > 0
 end

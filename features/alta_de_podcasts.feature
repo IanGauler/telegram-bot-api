@@ -12,7 +12,6 @@ Dado que quiero cargar el podcast "Caja Negra" de "Filo.news" lanzado en el año
 Cuando publico en la API con "/podcasts"
 Entonces el podcast "Caja Negra" es dado de alta
 
-@wip
 Escenario: US8-02 Dar de alta dos podcast en la plataforma
 Dado que quiero cargar el podcast "Caja Negra" de "Filo.news" lanzado en el año "2020" con "2" episodios
 Y que quiero cargar el podcast "La Cruda" de "Spotify Studios" lanzado en el año "2020" con "2" episodios
