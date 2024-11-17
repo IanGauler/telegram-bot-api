@@ -14,7 +14,7 @@ configure do
   set :logger, customer_logger
   set :default_content_type, :json
   set :environment, ENV['APP_MODE'].to_sym
-  administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new, RepositorioPodcasts.new)
+  administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new, RepositorioPodcasts.new, RepositorioEpisodios.new)
   set :sistema, Sistema.new(RepositorioUsuarios.new, administrador_de_contenido, RepositorioReproducciones.new, RepositorioMegustas.new)
 end
 
@@ -132,6 +132,18 @@ get '/megustas' do
 end
 
 post '/podcasts' do
-  sistema.crear_podcast(@params[:titulo], @params[:anio].to_i, @params[:creador], @params[:episodios])
+  podcast = @params.first
+  puts "Podcast.inspect: #{podcast.inspect}"
+  sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio].to_i, podcast[:episodios])
   status 201
+end
+
+get '/podcasts' do
+  podcasts = sistema.podcasts
+  respuesta = []
+  podcasts.map do |p|
+    respuesta << { titulo: p.titulo, creador: p.creador, anio: p.anio, episodios: p.episodios }
+  end
+  status 200
+  json(respuesta)
 end

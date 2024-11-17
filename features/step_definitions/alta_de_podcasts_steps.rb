@@ -2,8 +2,12 @@ Dado('que no hay podcasts en la plataforma') do
   @podcasts = []
 end
 
-Dado('que quiero cargar el podcast {string} de {string} lanzado en el año {string} con {string} episodios') do |titulo_podcast, creador, anio, cantidad_episodios|
-  @podcasts << ({ titulo_podcast:, creador:, anio:, cantidad_episodios: })
+Dado('que quiero cargar el podcast {string} de {string} lanzado en el año {string} con {string} episodios') do |titulo, creador, anio, cantidad_episodios|
+  episodios = []
+  cantidad_episodios.to_i.times do |i|
+    episodios << ({ titulo: "Ep#{i}", participantes: creador, duracion: '30:00' })
+  end
+  @podcasts << ({ titulo:, creador:, anio:, episodios: })
 end
 
 Cuando('publico en la API con {string}') do |endpoint|

@@ -15,17 +15,23 @@ module SistemaContenido
     cancion
   end
 
-  def crear_podcast(titulo, creador, anio, _episodios)
+  def crear_podcast(titulo, creador, anio, episodios)
     podcast = Podcast.new(titulo, creador, anio)
+    puts 'podcast creado'
     @administrador_de_contenido.repositorio_podcasts.save(podcast)
+    puts 'podcast guardado'
+    crear_episodios(episodios, podcast)
   end
 
   private
 
   def crear_episodios(episodios, podcast)
     episodios.each do |episodio|
+      puts "episodio: #{episodio.inspect}"
       episodio = Episodio.new(podcast.id, episodio[:titulo], episodio[:participantes], episodio[:duracion])
+      puts 'episodio creado'
       @administrador_de_contenido.repositorio_episodios.save(episodio)
+      puts 'episodio guardado'
     end
   end
 end
