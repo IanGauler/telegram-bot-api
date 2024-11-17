@@ -10,17 +10,6 @@ class RepositorioReproducciones < AbstractRepository
     !reproduccion.nil?
   end
 
-  def contenido_popular_de_la_semana(fecha)
-    dow_condition = fecha.saturday? || fecha.sunday? ? 'NOT IN (0, 6)' : 'IN (0, 6)'
-
-    dataset
-      .exclude(Sequel.lit("EXTRACT(DOW FROM created_on) #{dow_condition}"))
-      .group_and_count(:id_cancion)
-      .order(Sequel.desc(:count))
-      .limit(5)
-      .map { |row| row[:id_cancion] }
-  end
-
   protected
 
   def load_object(a_hash)
