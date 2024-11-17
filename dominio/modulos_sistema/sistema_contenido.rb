@@ -24,7 +24,8 @@ module SistemaContenido
 
   def crear_episodios(episodios, podcast)
     episodios.each do |episodio|
-      Episodio.new(podcast.id, episodio[:titulo], episodio[:participantes], episodio[:duracion])
+      episodio = Episodio.new(podcast.id, episodio[:titulo], episodio[:participantes], episodio[:duracion])
+      @administrador_de_contenido.repositorio_episodios.save(episodio)
     end
   end
 end
