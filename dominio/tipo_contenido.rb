@@ -18,17 +18,6 @@ class TipoContenido
     new(EPISODIO, id)
   end
 
-  def self.para(tipo, id = nil)
-    case tipo
-    when CANCION
-      cancion(id)
-    when PODCAST
-      podcast(id)
-    when EPISODIO
-      episodio(id)
-    end
-  end
-
   def initialize(tipo, id = nil)
     @id = id
     @tipo = tipo

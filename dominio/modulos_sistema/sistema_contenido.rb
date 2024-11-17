@@ -16,10 +16,7 @@ module SistemaContenido
   end
 
   def crear_podcast(titulo, creador, anio, _episodios)
-    contenido = Contenido.new(TipoContenido.Podcast)
-    @administrador_de_contenido.repositorio_contenidos.save(contenido)
-
-    podcast = Podcast.new(titulo, creador, anio, contenido.id)
+    podcast = Podcast.new(titulo, creador, anio)
     @administrador_de_contenido.repositorio_podcasts.save(podcast)
   end
 end

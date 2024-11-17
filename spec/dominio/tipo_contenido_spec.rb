@@ -3,9 +3,9 @@ require 'spec_helper'
 require_relative '../../dominio/tipo_contenido'
 
 describe TipoContenido do
-  let(:contenido_cancion) { described_class.para(TipoContenido::CANCION) }
-  let(:contenido_podcast) { described_class.para(TipoContenido::PODCAST) }
-  let(:contenido_episodio) { described_class.para(TipoContenido::EPISODIO) }
+  let(:contenido_cancion) { described_class.cancion }
+  let(:contenido_podcast) { described_class.podcast }
+  let(:contenido_episodio) { described_class.episodio }
 
   it 'deberia poder crearse para una cancion' do
     expect(contenido_cancion.tipo).to eq(TipoContenido::CANCION)

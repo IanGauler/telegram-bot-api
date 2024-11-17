@@ -4,6 +4,11 @@ class RepositorioCanciones < AbstractRepository
   self.table_name = :canciones
   self.model_class = 'Cancion'
 
+  def save(cancion)
+    cancion.id = RepositorioContenido.new.save(TipoContenido.cancion).id if cancion.id.nil?
+    super(cancion)
+  end
+
   def ultimas_canciones(cantidad)
     canciones = dataset.order(Sequel.desc(:id)).limit(cantidad).all
     load_collection(canciones.reverse)
@@ -26,7 +31,8 @@ class RepositorioCanciones < AbstractRepository
       titulo: cancion.titulo,
       artistas: cancion.artistas,
       anio: cancion.anio,
-      duracion: cancion.duracion
+      duracion: cancion.duracion,
+      id: cancion.id
     }
   end
 end

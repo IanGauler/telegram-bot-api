@@ -4,6 +4,11 @@ class RepositorioPodcasts < AbstractRepository
   self.table_name = :podcasts
   self.model_class = 'Podcast'
 
+  def save(podcast)
+    podcast.id = RepositorioContenido.new.save(TipoContenido.podcast).id if podcast.id.nil?
+    super(podcast)
+  end
+
   protected
 
   def load_object(a_hash)

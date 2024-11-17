@@ -7,7 +7,15 @@ class RepositorioContenido < AbstractRepository
   protected
 
   def load_object(a_hash)
-    TipoContenido.para(a_hash[:tipo], a_hash[:id])
+    id = a_hash[:id]
+    tipo = a_hash[:tipo].to_sym
+
+    case tipo
+    when :cancion
+      RepositorioCanciones.new.obtener_cancion_por_id(id)
+    when :podcast
+      RepositorioPodcasts.new.obtener_podcast_por_id(id)
+    end
   end
 
   def changeset(contenido)

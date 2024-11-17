@@ -14,7 +14,6 @@ RSpec.configure do |config|
 
   config.after :each do
     RepositorioUsuarios.new.delete_all
-    RepositorioCanciones.new.delete_all
     RepositorioContenido.new.delete_all
   end
 end
