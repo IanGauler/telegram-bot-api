@@ -25,4 +25,9 @@ class Sistema
   def obtener_novedades
     @administrador_de_contenido.repositorio_canciones.ultimas_canciones(CANTIDAD_NOVEDADES)
   end
+
+  def recomendaciones_de_la_semana
+    contenido_popular = @repositorio_reproducciones.contenido_popular_de_la_semana(Date.today)
+    contenido_popular.map { |id| @administrador_de_contenido.repositorio_canciones.obtener_cancion_por_id(id) }
+  end
 end

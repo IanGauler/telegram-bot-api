@@ -146,3 +146,13 @@ get '/podcasts' do
   status 200
   json(respuesta)
 end
+
+get '/recomendaciones' do
+  recomendaciones = sistema.recomendaciones_de_la_semana
+  respuesta = []
+  recomendaciones.map do |r|
+    respuesta << { titulo: r.titulo, artistas: r.artistas, anio: r.anio, duracion: r.duracion, id: r.id }
+  end
+  status 200
+  json(respuesta)
+end

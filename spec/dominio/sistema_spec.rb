@@ -120,10 +120,35 @@ describe Sistema do
       expect(megusta.id_cancion).to eq sistema.canciones.first.id
     end
   end
+
+  describe 'recomendaciones_de_la_semana' do
+    it 'deberia devolver las 5 canciones mas escuchadas de la semana' do
+      allow(Date).to receive(:today).and_return(Date.new(2024, 11, 14))
+      crear_canciones(10, sistema)
+      canciones_reproducidas = reproducir_canciones(5, sistema)
+
+      recomendaciones = sistema.recomendaciones_de_la_semana
+      expect(recomendaciones.size).to eq 5
+      canciones_reproducidas.each do |c|
+        expect(recomendaciones.any? { |r| r.titulo == c.titulo }).to be true
+      end
+    end
+  end
 end
 
 def crear_canciones(cantidad, sistema)
   (1..cantidad).each do |i|
     sistema.crear_cancion("Cancion#{i}", "Artista#{i}", 2020, '2:00')
   end
+end
+
+def reproducir_canciones(cantidad, sistema)
+  mail = 'mail@mail.com'
+  sistema.crear_usuario('1', mail) unless sistema.usuarios.any? { |u| u.email == mail }
+
+  canciones_a_reproducir = sistema.canciones.first(cantidad)
+  canciones_a_reproducir.each do |c|
+    sistema.registrar_reproduccion(mail, c.id)
+  end
+  canciones_a_reproducir
 end
