@@ -12,7 +12,7 @@ class RepositorioEpisodios < AbstractRepository
   def obtener_episodios_por_podcast(id_podcast)
     episodios = []
     all.each do |episodio|
-      episodios << episodio if episodio.id_podcast == id_podcast
+      episodios << episodio if episodio.podcast.id == id_podcast
     end
     episodios
   end
@@ -20,12 +20,13 @@ class RepositorioEpisodios < AbstractRepository
   protected
 
   def load_object(a_hash)
-    Episodio.new(a_hash[:id_podcast], a_hash[:titulo], a_hash[:participantes], a_hash[:duracion], a_hash[:id])
+    podcast = RepositorioPodcasts.new.find(a_hash[:id_podcast])
+    Episodio.new(podcast, a_hash[:titulo], a_hash[:participantes], a_hash[:duracion], a_hash[:id])
   end
 
   def changeset(episodio)
     {
-      id_podcast: episodio.id_podcast,
+      id_podcast: episodio.podcast.id,
       titulo: episodio.titulo,
       participantes: episodio.participantes,
       duracion: episodio.duracion,

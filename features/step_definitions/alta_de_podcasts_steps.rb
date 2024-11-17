@@ -21,11 +21,9 @@ Entonces('el podcast {string} es dado de alta') do |titulo|
   response = Faraday.get('/podcasts')
   response_body = JSON.parse(response.body)
   podcast = response_body.find { |c| c['titulo'] == titulo }
-
   expect(podcast['titulo']).not_to be_nil
   expect(podcast['creador']).not_to be_nil
   expect(podcast['anio']).not_to be_nil
-  expect(podcast['id']).not_to be_nil
-
   expect(podcast['episodios'].first['id']).not_to be_nil
+  expect(podcast['id']).to be > 0
 end
