@@ -53,6 +53,9 @@ post '/usuarios' do
 rescue UsuarioYaRegistrado, MailYaRegistrado => e
   status 409
   { error: e.message }.to_json
+rescue StandardError => e
+  status 500
+  { error: "Error inesperado: #{e.message}" }.to_json
 end
 
 post '/agregar_canciones' do
