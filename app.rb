@@ -142,7 +142,11 @@ get '/podcasts' do
   podcasts = sistema.podcasts
   respuesta = []
   podcasts.map do |podcast|
-    respuesta << { id: podcast.id, titulo: podcast.titulo, creador: podcast.creador, anio: podcast.anio, episodios: podcast.episodios }
+    episodios = []
+    podcast.episodios.map do |episodio|
+      episodios << { id: episodio.id, titulo: episodio.titulo, participantes: episodio.participantes, duracion: episodio.duracion }
+    end
+    respuesta << { id: podcast.id, titulo: podcast.titulo, creador: podcast.creador, anio: podcast.anio, episodios: }
   end
   status 200
   json(respuesta)
