@@ -8,14 +8,15 @@ Escenario: US11-01 Recibir recomendaciones un dia de la semana laboral
 Dado que hoy es un dia de la semana laboral
 Y que en la plataforma existen "7" canciones
 Y que las primeras "5" son las mas escuchadas de las semana laboral
+Y que las otras "2" fueron escuchadas el fin de semana
 Cuando envío el comando "/recomendaciones"
 Entonces el bot muestra las primeras "5" canciones
 
-@wip
 Escenario: US11-02 Recibir recomendaciones un dia del fin de semana
 Dado que hoy es un dia del fin de semana
 Y que en la plataforma existen "7" canciones
 Y que las primeras "5" son las mas escuchadas de los fines de semana
+Y que las otras "2" fueron escuchadas en la semana laboral
 Cuando envío el comando "/recomendaciones"
 Entonces el bot muestra las primeras "5" canciones
 

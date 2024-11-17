@@ -4,6 +4,7 @@ Dado('que en la plataforma no hay canciones') do
 end
 
 Cuando('envío el comando {string}') do |comando|
+  @mock_dia_semana&.call
   @response = Faraday.get(comando)
 end
 
