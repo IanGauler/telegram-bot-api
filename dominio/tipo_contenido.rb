@@ -14,7 +14,7 @@ class TipoContenido
     new(PODCAST)
   end
 
-  def self.pisodio
+  def self.episodio
     new(EPISODIO)
   end
 
