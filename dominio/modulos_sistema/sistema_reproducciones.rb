@@ -7,7 +7,7 @@ module SistemaReproducciones
     usuario = @repositorio_usuarios.obtener_usuario_por_email(email)
     raise UsuarioNoRegistrado if usuario.nil?
 
-    cancion = @repositorio_canciones.obtener_cancion_por_id(id_cancion)
+    cancion = @administrador_de_contenido.repositorio_canciones.obtener_cancion_por_id(id_cancion)
     raise CancionNoEncontrada if cancion.nil?
 
     reproduccion = Reproduccion.new(usuario.id, id_cancion)

@@ -14,7 +14,8 @@ configure do
   set :logger, customer_logger
   set :default_content_type, :json
   set :environment, ENV['APP_MODE'].to_sym
-  set :sistema, Sistema.new(RepositorioUsuarios.new, RepositorioCanciones.new, RepositorioReproducciones.new, RepositorioMegustas.new)
+  administrador_de_contenido = AdministradorDeContenido.new(RepositorioCanciones.new)
+  set :sistema, Sistema.new(RepositorioUsuarios.new, administrador_de_contenido, RepositorioReproducciones.new, RepositorioMegustas.new)
 end
 
 before do

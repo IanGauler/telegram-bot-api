@@ -6,15 +6,16 @@ require_relative '../../persistencia/repositorio_canciones'
 require_relative '../../persistencia/abstract_repository'
 require_relative '../../persistencia/repositorio_reproducciones'
 require_relative '../../persistencia/repositorio_megustas'
+require_relative '../../persistencia/administrador_de_contenido'
 
 describe Sistema do
   juan_email = 'juan@test.com'
   juan_id = '1'
   repositorio_usuarios = RepositorioUsuarios.new
-  repositorio_canciones = RepositorioCanciones.new
   repositorio_reproducciones = RepositorioReproducciones.new
   repositorio_megustas = RepositorioMegustas.new
-  sistema = described_class.new(repositorio_usuarios, repositorio_canciones, repositorio_reproducciones, repositorio_megustas)
+  administrador_de_contenido = AdministradorDeContenido.new(RepositorioCanciones.new)
+  sistema = described_class.new(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas)
 
   describe 'resetear' do
     it 'deberia vaciar el repositorio de usuarios y canciones' do

@@ -1,15 +1,15 @@
-module SistemaCanciones
+module SistemaContenido
   def canciones
-    @repositorio_canciones.all
+    @administrador_de_contenido.repositorio_canciones.all
   end
 
   def crear_cancion(titulo, artista, anio, duracion)
     cancion = Cancion.new(titulo, artista, anio, duracion)
-    @repositorio_canciones.save(cancion)
+    @administrador_de_contenido.repositorio_canciones.save(cancion)
   end
 
   def obtener_datos_cancion_por_id(id)
-    cancion = @repositorio_canciones.obtener_cancion_por_id(id)
+    cancion = @administrador_de_contenido.repositorio_canciones.obtener_cancion_por_id(id)
     raise CancionNoEncontrada if cancion.nil?
 
     cancion
