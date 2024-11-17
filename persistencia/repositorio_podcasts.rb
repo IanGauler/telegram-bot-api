@@ -12,7 +12,7 @@ class RepositorioPodcasts < AbstractRepository
   protected
 
   def load_object(a_hash)
-    Podcast.new(a_hash[:titulo], a_hash[:autor], a_hash[:anio], a_hash[:id])
+    Podcast.new(a_hash[:titulo], a_hash[:creador], a_hash[:anio], a_hash[:id])
   end
 
   def changeset(podcast)
