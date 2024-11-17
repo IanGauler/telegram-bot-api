@@ -130,3 +130,8 @@ get '/megustas' do
   status 200
   json(respuesta)
 end
+
+post '/podcasts' do
+  sistema.crear_podcast(@params[:titulo], @params[:anio].to_i, @params[:creador], @params[:episodios])
+  status 201
+end

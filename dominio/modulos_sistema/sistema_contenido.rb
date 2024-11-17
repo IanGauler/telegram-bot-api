@@ -14,6 +14,11 @@ module SistemaContenido
 
     cancion
   end
+
+  def crear_podcast(_titulo, _creador, _anio, _episodios)
+    contenido = Contenido.new(TipoContenido.Podcast)
+    @administrador_de_contenido.repositorio_contenidos.save(contenido)
+  end
 end
 
 class ErrorCancion < StandardError
