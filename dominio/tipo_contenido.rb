@@ -6,26 +6,26 @@ class TipoContenido
   PODCAST = 'podcast'.freeze
   EPISODIO = 'episodio'.freeze
 
-  def self.cancion
-    new(CANCION)
+  def self.cancion(id = nil)
+    new(CANCION, id)
   end
 
-  def self.podcast
-    new(PODCAST)
+  def self.podcast(id = nil)
+    new(PODCAST, id)
   end
 
-  def self.episodio
-    new(EPISODIO)
+  def self.episodio(id = nil)
+    new(EPISODIO, id)
   end
 
-  def self.para(tipo)
+  def self.para(tipo, id = nil)
     case tipo
     when CANCION
-      cancion
+      cancion(id)
     when PODCAST
-      podcast
+      podcast(id)
     when EPISODIO
-      episodio
+      episodio(id)
     end
   end
 

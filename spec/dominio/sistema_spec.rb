@@ -1,12 +1,7 @@
 require 'integration_helper'
 require 'spec_helper'
 require_relative '../../dominio/sistema'
-require_relative '../../persistencia/repositorio_usuarios'
-require_relative '../../persistencia/repositorio_canciones'
-require_relative '../../persistencia/abstract_repository'
-require_relative '../../persistencia/repositorio_reproducciones'
-require_relative '../../persistencia/repositorio_megustas'
-require_relative '../../persistencia/administrador_de_contenido'
+Dir[File.join(__dir__, '../../persistencia', '*.rb')].each { |file| require file }
 
 describe Sistema do
   juan_email = 'juan@test.com'
@@ -14,7 +9,7 @@ describe Sistema do
   repositorio_usuarios = RepositorioUsuarios.new
   repositorio_reproducciones = RepositorioReproducciones.new
   repositorio_megustas = RepositorioMegustas.new
-  administrador_de_contenido = AdministradorDeContenido.new(RepositorioCanciones.new)
+  administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new)
   sistema = described_class.new(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas)
 
   describe 'resetear' do
