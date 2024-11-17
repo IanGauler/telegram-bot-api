@@ -20,7 +20,6 @@ Y que las otras "2" fueron escuchadas en la semana laboral
 Cuando envío el comando "/recomendaciones"
 Entonces el bot muestra las primeras "5" canciones
 
-@wip
 Escenario: US11-03 Recibir recomendaciones cuando no hay canciones reproducidas
 Dado que hoy es un dia de la semana laboral
 Y que en la plataforma existen "7" canciones

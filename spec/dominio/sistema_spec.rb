@@ -11,6 +11,8 @@ describe Sistema do
   repositorio_megustas = RepositorioMegustas.new
   administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new)
   sistema = described_class.new(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas)
+  dia_de_semana = Date.new(2024, 11, 14)
+  dia_fin_de_semana = Date.new(2024, 11, 17)
 
   describe 'resetear' do
     it 'deberia vaciar el repositorio de usuarios y canciones' do
@@ -123,15 +125,36 @@ describe Sistema do
 
   describe 'recomendaciones_de_la_semana' do
     it 'deberia devolver las 5 canciones mas escuchadas de la semana' do
-      allow(Date).to receive(:today).and_return(Date.new(2024, 11, 14))
       crear_canciones(10, sistema)
-      canciones_reproducidas = reproducir_canciones(5, sistema)
+      canciones_reproducidas = reproducir_canciones(5, sistema, dia_de_semana)
 
+      allow(Date).to receive(:today).and_return(dia_de_semana)
       recomendaciones = sistema.recomendaciones_de_la_semana
       expect(recomendaciones.size).to eq 5
       canciones_reproducidas.each do |c|
         expect(recomendaciones.any? { |r| r.titulo == c.titulo }).to be true
       end
+    end
+
+    it 'deberia devolver las 5 canciones mas escuchadas del fin de semana' do
+      crear_canciones(10, sistema)
+      canciones_reproducidas_finde = reproducir_canciones(5, sistema, dia_fin_de_semana)
+
+      allow(Date).to receive(:today).and_return(dia_fin_de_semana)
+      recomendaciones = sistema.recomendaciones_de_la_semana
+      expect(recomendaciones.size).to eq 5
+      recomendaciones.each do |r|
+        expect(canciones_reproducidas_finde.any? { |c| r.titulo == c.titulo }).to be true
+      end
+    end
+
+    it 'deberia devolver nada si no hay canciones escuchadas' do
+      crear_canciones(5, sistema)
+      reproducir_canciones(5, sistema, dia_de_semana)
+
+      allow(Date).to receive(:today).and_return(dia_fin_de_semana)
+      recomendaciones = sistema.recomendaciones_de_la_semana
+      expect(recomendaciones.size).to eq 0
     end
   end
 end
@@ -142,11 +165,12 @@ def crear_canciones(cantidad, sistema)
   end
 end
 
-def reproducir_canciones(cantidad, sistema)
+def reproducir_canciones(cantidad, sistema, fecha = Date.today, offset = 0)
+  allow(Date).to receive(:today).and_return(fecha)
   mail = 'mail@mail.com'
   sistema.crear_usuario('1', mail) unless sistema.usuarios.any? { |u| u.email == mail }
 
-  canciones_a_reproducir = sistema.canciones.first(cantidad)
+  canciones_a_reproducir = sistema.canciones[offset, cantidad]
   canciones_a_reproducir.each do |c|
     sistema.registrar_reproduccion(mail, c.id)
   end

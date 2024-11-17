@@ -60,3 +60,7 @@ Dado('que las otras {string} fueron escuchadas en la semana laboral') do |cantid
     @repositorio_reproducciones.save(reproduccion)
   end
 end
+
+Dado('que no hay canciones escuchadas durante la semana laboral') do
+  RepositorioReproducciones.new.delete_all
+end
