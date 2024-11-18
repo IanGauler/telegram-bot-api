@@ -53,11 +53,11 @@ describe Sistema do
     end
   end
 
-  describe 'obtener_datos_cancion_por_id' do
+  describe 'obtener_contenido_por_id' do
     it 'deberia devolver los detalles de una cancion a partir de su id' do
       crear_canciones(1, sistema)
       id = sistema.canciones.first.id
-      cancion = sistema.obtener_datos_cancion_por_id(id)
+      cancion = sistema.obtener_contenido_por_id(id)
 
       expect(cancion.titulo).to eq 'Cancion1'
       expect(cancion.artistas).to eq 'Artista1'
@@ -65,7 +65,7 @@ describe Sistema do
     end
 
     it 'deberia lanzar error de CancionNoEncontrada si la cancion no existe' do
-      expect { sistema.obtener_datos_cancion_por_id(1) }.to raise_error(CancionNoEncontrada)
+      expect { sistema.obtener_contenido_por_id(1) }.to raise_error(CancionNoEncontrada)
     end
   end
 

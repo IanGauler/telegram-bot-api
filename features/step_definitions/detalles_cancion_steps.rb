@@ -6,7 +6,7 @@ end
 
 Cuando('envío el comando {string} con el id de la cancion WakaWaka') do |_comando|
   id_cancion = RepositorioCanciones.new.all.first.id
-  @response = Faraday.get("datos/#{id_cancion}")
+  @response = Faraday.get("contenidos/#{id_cancion}")
 end
 
 Entonces('el bot muestra los detalles') do |_doc_string|
@@ -19,7 +19,7 @@ Entonces('el bot muestra los detalles') do |_doc_string|
 end
 
 Cuando('envio el comando {string} con el id de una cancion inexistente') do |_string|
-  @response = Faraday.get('datos/-1')
+  @response = Faraday.get('contenidos/-1')
 end
 
 Entonces('el bot muestra el mensaje de error {string}') do |mensaje_error|

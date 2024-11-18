@@ -8,7 +8,7 @@ module SistemaContenido
     @administrador_de_contenido.repositorio_canciones.save(cancion)
   end
 
-  def obtener_datos_cancion_por_id(id)
+  def obtener_contenido_por_id(id)
     cancion = @administrador_de_contenido.repositorio_canciones.obtener_cancion_por_id(id)
     raise CancionNoEncontrada if cancion.nil?
 
