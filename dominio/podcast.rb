@@ -21,7 +21,9 @@ class Podcast
   end
 
   def representacion_hash
-    { titulo: @titulo, autor: @creador, anio: @anio, id: @id }
+    hash = { titulo: @titulo, autor: @creador, anio: @anio, id: @id }
+    hash[:episodios] = @episodios.map(&:representacion_hash) if @episodios.any?
+    hash
   end
 
   private

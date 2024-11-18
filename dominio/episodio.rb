@@ -11,7 +11,7 @@ class Episodio
   end
 
   def representacion_hash
-    hash = { titulo: @titulo, creador: @participantes, duracion: @duracion }
+    hash = { titulo: @titulo, participantes: @participantes, duracion: @duracion }
     hash[:id] = @id unless @id.nil?
     hash
   end
