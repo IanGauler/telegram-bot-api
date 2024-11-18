@@ -12,9 +12,9 @@ class RepositorioContenido < AbstractRepository
 
     case tipo
     when :cancion
-      RepositorioCanciones.new.obtener_cancion_por_id(id)
+      RepositorioCanciones.new.find(id)
     when :podcast
-      RepositorioPodcasts.new.obtener_podcast_por_id(id)
+      RepositorioPodcasts.new.find(id)
     end
   end
 

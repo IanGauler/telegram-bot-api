@@ -10,7 +10,7 @@ describe Podcast do
 
   it 'deberia agregarle episodios a un podcast' do
     podcast = described_class.new('Caja Negra', 'Filo.news', 2020, 1)
-    podcast.agregar_episodios(Episodio.new(podcast.id, 'Caja Negra - Ep1', 'Filo.news', '45:20'))
+    podcast.agregar_episodios(Episodio.new(podcast, 'Caja Negra - Ep1', 'Filo.news', '45:20'))
     expect(podcast.episodios.size).to be 1
   end
 end
