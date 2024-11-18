@@ -12,7 +12,6 @@ Característica:
       Cuando envío el comando "/novedades"
       Entonces el bot muestra el mensaje "No se ha podido encontrar contenido"
 
-    @wip
     Escenario: US10-02 Recomenadaciones de canciones y podcasts
       Dado que existe la canción "wakawaka"
       Y que existe el podcast "wanshow" con "1" episodios

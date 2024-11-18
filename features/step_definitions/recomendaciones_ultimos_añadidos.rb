@@ -3,7 +3,7 @@ Dado('que no hay contenido en el sistema') do
 end
 
 Dado('que existe la canción {string}') do |titulo|
-  @cancion = Cancion.new(titulo, 'Shakira', 2010, '3:31')
+  cancion = Cancion.new(titulo, 'Shakira', 2010, '3:31')
   RepositorioCanciones.new.save(cancion)
 end
 

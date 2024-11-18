@@ -2,6 +2,7 @@ require_relative './modulos_sistema/sistema_usuario'
 require_relative './modulos_sistema/sistema_contenido'
 require_relative './modulos_sistema/sistema_reproducciones'
 require_relative './modulos_sistema/sistema_me_gusta'
+require_relative './novedades'
 
 class Sistema
   include SistemaUsuarios
@@ -23,7 +24,8 @@ class Sistema
   end
 
   def obtener_novedades
-    @administrador_de_contenido.repositorio_canciones.ultimas_canciones(CANTIDAD_NOVEDADES)
+    novedades = Novedades.new(CANTIDAD_NOVEDADES)
+    novedades.listar(@administrador_de_contenido.repositorio_contenidos)
   end
 
   def recomendaciones_de_la_semana

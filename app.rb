@@ -76,10 +76,10 @@ get '/canciones' do
 end
 
 get '/novedades' do
-  canciones = sistema.obtener_novedades
+  contenidos = sistema.obtener_novedades
   respuesta = []
-  canciones.map do |c|
-    respuesta << { titulo: c.titulo, artistas: c.artistas, anio: c.anio, duracion: c.duracion, id: c.id }
+  contenidos.map do |c|
+    respuesta << c.representacion_hash
   end
   status 200
   json(respuesta)
