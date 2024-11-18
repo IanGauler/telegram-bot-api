@@ -4,6 +4,6 @@ class Novedades
   end
 
   def listar(repositorio_contenido)
-    repositorio_contenido.ultimos_contenidos(@cantidad)
+    repositorio_contenido.ultimas_novedades(@cantidad)
   end
 end

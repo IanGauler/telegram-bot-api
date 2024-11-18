@@ -18,6 +18,16 @@ describe Novedades do
     expect(podcast_obtenido.id).to eq(podcast.id)
   end
 
+  it 'deberia no incluir episodios' do
+    podcast = crear_podcast
+    RepositorioEpisodios.new.save(Episodio.new(podcast, 'Episodio 1', 'Participante 1', '1:00'))
+
+    novedades = described_class.new(5)
+    lista_de_novedades = novedades.listar(RepositorioContenido.new)
+
+    expect(lista_de_novedades.size).to eq(1)
+  end
+
   def crear_cancion
     cancion = Cancion.new('Waka-Waka', 'Shakira', 2010, '3:31')
     RepositorioCanciones.new.save(cancion)
