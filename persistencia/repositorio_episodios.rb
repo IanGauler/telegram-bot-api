@@ -10,11 +10,7 @@ class RepositorioEpisodios < AbstractRepository
   end
 
   def obtener_episodios_por_podcast(id_podcast)
-    episodios = []
-    all.each do |episodio|
-      episodios << episodio if episodio.podcast.id == id_podcast
-    end
-    episodios
+    load_collection dataset.where(id_podcast:).all
   end
 
   protected
