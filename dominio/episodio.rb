@@ -9,4 +9,10 @@ class Episodio
     @podcast = podcast
     @id = id
   end
+
+  def representacion_hash
+    hash = { titulo: @titulo, creador: @participantes, duracion: @duracion }
+    hash[:id] = @id unless @id.nil?
+    hash
+  end
 end

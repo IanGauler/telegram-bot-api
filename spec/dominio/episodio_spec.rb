@@ -8,4 +8,10 @@ describe Episodio do
     episodio = described_class.new(podcast, 'Caja Negra - Ep1', 'Filo.news', '45:20')
     expect(episodio).to be_a(described_class)
   end
+
+  it 'deberia representarse como hash' do
+    podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
+    episodio = described_class.new(podcast, 'Caja Negra - Ep1', 'Filo.news', '45:20', 1)
+    expect(episodio.representacion_hash).to eq({ id: 1, titulo: 'Caja Negra - Ep1', creador: 'Filo.news', duracion: '45:20' })
+  end
 end
