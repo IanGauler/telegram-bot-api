@@ -87,10 +87,11 @@ end
 
 get '/contenidos/:id' do
   cancion = sistema.obtener_contenido_por_id(params[:id].to_i)
+
   respuesta = { titulo: cancion.titulo, artistas: cancion.artistas, anio: cancion.anio, duracion: cancion.duracion }
   status 200
   json(respuesta)
-rescue CancionNoEncontrada => e
+rescue ContenidoNoEncontrado => e
   status 404
   { error: e.message }.to_json
 end
@@ -98,7 +99,7 @@ end
 post '/reproduccion' do
   sistema.registrar_reproduccion(@params[:email], @params[:id_cancion].to_i)
   status 201
-rescue UsuarioNoRegistrado, CancionNoEncontrada => e
+rescue UsuarioNoRegistrado, ContenidoNoEncontrado => e
   status 404
   { error: e.message }.to_json
 end

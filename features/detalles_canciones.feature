@@ -20,4 +20,4 @@ Característica:
 
   Escenario: US5-02 Consulta de una cancion inexistente
     Cuando envio el comando "/detalles" con el id de una cancion inexistente
-    Entonces el bot muestra el mensaje de error "La cancion no fue encontrada."
+    Entonces el bot muestra el mensaje de error "El contenido no fue encontrado."

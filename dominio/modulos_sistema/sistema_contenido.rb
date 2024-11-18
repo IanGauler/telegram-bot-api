@@ -9,10 +9,9 @@ module SistemaContenido
   end
 
   def obtener_contenido_por_id(id)
-    cancion = @administrador_de_contenido.repositorio_canciones.obtener_cancion_por_id(id)
-    raise CancionNoEncontrada if cancion.nil?
-
-    cancion
+    @administrador_de_contenido.repositorio_contenidos.find(id)
+  rescue ObjectNotFound
+    raise ContenidoNoEncontrado
   end
 
   def crear_podcast(titulo, creador, anio, episodios)
@@ -45,8 +44,8 @@ end
 class ErrorCancion < StandardError
 end
 
-class CancionNoEncontrada < ErrorCancion
-  def initialize(msg = 'La cancion no fue encontrada.')
+class ContenidoNoEncontrado < ErrorCancion
+  def initialize(msg = 'El contenido no fue encontrado.')
     super(msg)
   end
 end

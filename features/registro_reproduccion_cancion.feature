@@ -19,5 +19,5 @@ Y no actualiza el historial de escucha del usuario
 
 Escenario: US6-03 Registro de reproduccion de una cancion inexistente
 Dado que el sistema recibe una solicitud de registro con mail "juan@gmail.com" y el id de una cancion inexistente
-Entonces el sistema devuelve un mensaje de error "La cancion no fue encontrada."
+Entonces el sistema devuelve un mensaje de error "El contenido no fue encontrado."
 Y no actualiza el historial de escucha del usuario

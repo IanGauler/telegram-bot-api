@@ -8,7 +8,7 @@ module SistemaReproducciones
     raise UsuarioNoRegistrado if usuario.nil?
 
     cancion = @administrador_de_contenido.repositorio_canciones.obtener_cancion_por_id(id_cancion)
-    raise CancionNoEncontrada if cancion.nil?
+    raise ContenidoNoEncontrado if cancion.nil?
 
     reproduccion = Reproduccion.new(usuario.id, id_cancion)
     @repositorio_reproducciones.save(reproduccion)

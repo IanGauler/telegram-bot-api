@@ -64,8 +64,8 @@ describe Sistema do
       expect(cancion.anio).to eq 2020
     end
 
-    it 'deberia lanzar error de CancionNoEncontrada si la cancion no existe' do
-      expect { sistema.obtener_contenido_por_id(1) }.to raise_error(CancionNoEncontrada)
+    it 'deberia lanzar error de ContenidoNoEncontrado si la cancion no existe' do
+      expect { sistema.obtener_contenido_por_id(1) }.to raise_error(ContenidoNoEncontrado)
     end
   end
 
@@ -91,7 +91,7 @@ describe Sistema do
 
     it 'deberia lanzar error si el id de la cancion no existe en el sistema' do
       sistema.crear_usuario(juan_id, juan_email)
-      expect { sistema.registrar_reproduccion(juan_email, 1) }.to raise_error(CancionNoEncontrada)
+      expect { sistema.registrar_reproduccion(juan_email, 1) }.to raise_error(ContenidoNoEncontrado)
     end
   end
 
