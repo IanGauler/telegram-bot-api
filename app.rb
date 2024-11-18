@@ -86,11 +86,10 @@ get '/novedades' do
 end
 
 get '/contenidos/:id' do
-  cancion = sistema.obtener_contenido_por_id(params[:id].to_i)
-
-  respuesta = { titulo: cancion.titulo, artistas: cancion.artistas, anio: cancion.anio, duracion: cancion.duracion }
+  contenido = sistema.obtener_contenido_por_id(params[:id].to_i)
+  representacion_hash_contenido = contenido.representacion_hash
   status 200
-  json(respuesta)
+  json(representacion_hash_contenido)
 rescue ContenidoNoEncontrado => e
   status 404
   { error: e.message }.to_json

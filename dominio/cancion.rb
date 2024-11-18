@@ -9,4 +9,10 @@ class Cancion
     @duracion = duracion
     @id = id
   end
+
+  def representacion_hash
+    hash = { titulo: @titulo, artistas: @artistas, anio: @anio, duracion: @duracion }
+    hash[:id] = @id unless @id.nil?
+    hash
+  end
 end
