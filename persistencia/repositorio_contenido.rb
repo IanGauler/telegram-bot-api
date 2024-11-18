@@ -4,6 +4,11 @@ class RepositorioContenido < AbstractRepository
   self.table_name = :contenidos
   self.model_class = 'TipoContenido'
 
+  def ultimos_contenidos(cantidad)
+    contenidos = dataset.order(Sequel.desc(:id)).limit(cantidad).all
+    load_collection(contenidos.reverse)
+  end
+
   protected
 
   def load_object(a_hash)
