@@ -20,6 +20,10 @@ class Podcast
     end
   end
 
+  def representacion_hash
+    { titulo: @titulo, autor: @creador, anio: @anio, id: @id }
+  end
+
   private
 
   def agregar_episodio(episodio)
