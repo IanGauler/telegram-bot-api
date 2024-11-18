@@ -19,3 +19,15 @@ Cuando('consulto los detalles del contenido inexistente') do
   expect(@response.status).to eq(404)
   expect(@response.body).to eq('{"error":"El contenido no fue encontrado."}')
 end
+
+Entonces('el bot muestra los detalles del podcast') do |_detalles_podcast|
+  expect(@response.status).to eq(200)
+
+  body = JSON.parse(@response.body)
+  puts "el body es: #{body}"
+  expect(body['titulo']).to eq(@podcast.titulo)
+  expect(body['creador']).to eq(@podcast.creador)
+  expect(body['anio']).to eq(@podcast.anio)
+
+  expect(body['episodios'].size).to eq(2)
+end

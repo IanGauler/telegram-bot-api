@@ -8,7 +8,6 @@ Característica:
     Dado que mi usuario es "juan" con id "1" y mail "juan@gmail.com", y estoy registrado
     Y que existe el podcast "Caja Negra" con "2" episodios
 
-  @wip
   Escenario: US12-1 Consulta de detalles de un podcast existente
     Cuando consulto los detalles de "Caja Negra"
     Entonces el bot muestra los detalles del podcast
