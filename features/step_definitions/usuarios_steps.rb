@@ -34,6 +34,7 @@ end
 
 Entonces('el bot muestra el mensaje {string}') do |mensaje_esperado|
   codigos_esperados = {
+    'No se ha podido encontrar contenido' => 200,
     'Usuario registrado' => 201,
     'Bienvenido, juan' => 201,
     'Calificacion registrada' => 201,
