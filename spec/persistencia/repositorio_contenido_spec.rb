@@ -26,4 +26,14 @@ describe RepositorioContenido do
     expect(contenido.id).not_to be nil
     expect(contenido).to be_a Podcast
   end
+
+  it 'deberia guardar un episodio' do
+    podcast = Podcast.new('titulo', 'autor', 2020)
+    RepositorioPodcasts.new.save(podcast)
+    episodio = RepositorioEpisodios.new.save(Episodio.new(podcast, 'titulo', 'participante', '2:00'))
+    contenido = respositorio_contenido.find(episodio.id)
+
+    expect(contenido.id).not_to be nil
+    expect(contenido).to be_a Episodio
+  end
 end

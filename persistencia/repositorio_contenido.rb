@@ -18,6 +18,8 @@ class RepositorioContenido < AbstractRepository
       episodios = RepositorioEpisodios.new.obtener_episodios_por_podcast(podcast.id)
       podcast.agregar_episodios(episodios)
       podcast
+    when :episodio
+      RepositorioEpisodios.new.find(id)
     end
   end
 
