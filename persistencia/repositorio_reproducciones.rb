@@ -13,13 +13,16 @@ class RepositorioReproducciones < AbstractRepository
   protected
 
   def load_object(a_hash)
-    Reproduccion.new(a_hash[:id_usuario], a_hash[:id_cancion])
+    usuario = RepositorioUsuarios.new.find(a_hash[:id_usuario])
+    cancion = RepositorioCanciones.new.find(a_hash[:id_cancion])
+
+    Reproduccion.new(usuario, cancion, a_hash[:id])
   end
 
   def changeset(reproduccion)
     {
-      id_usuario: reproduccion.id_usuario,
-      id_cancion: reproduccion.id_cancion
+      id_usuario: reproduccion.usuario.id,
+      id_cancion: reproduccion.cancion.id
     }
   end
 end

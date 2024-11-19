@@ -107,7 +107,7 @@ get '/reproducciones' do
   reproducciones = sistema.reproducciones
   respuesta = []
   reproducciones.map do |r|
-    respuesta << { id_usuario: r.id_usuario, id_cancion: r.id_cancion }
+    respuesta << { id_usuario: r.usuario.id, id_cancion: r.cancion.id }
   end
   status 200
   json(respuesta)

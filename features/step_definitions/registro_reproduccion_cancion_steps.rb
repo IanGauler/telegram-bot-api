@@ -13,8 +13,8 @@ Entonces('el sistema actualiza el historial de escucha del usuario') do
   repositorio_reproducciones = RepositorioReproducciones.new
   reproduccion = repositorio_reproducciones.all.first
 
-  expect(reproduccion.id_usuario).to eq(@usuario.id)
-  expect(reproduccion.id_cancion).to eq(@cancion.id)
+  expect(reproduccion.usuario.id).to eq(@usuario.id)
+  expect(reproduccion.cancion.id).to eq(@cancion.id)
   expect(@response.status).to eq(201)
 end
 

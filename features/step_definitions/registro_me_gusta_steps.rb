@@ -1,7 +1,11 @@
 Dado('que he reproducido la cancion {string}') do |_cancion|
   @id_cancion = RepositorioCanciones.new.all.first.id
   @id_usuario = RepositorioUsuarios.new.all.first.id
-  reproduccion = Reproduccion.new(@id_usuario, @id_cancion)
+
+  usuario = RepositorioUsuarios.new.find(@id_usuario)
+  cancion = RepositorioCanciones.new.find(@id_cancion)
+
+  reproduccion = Reproduccion.new(usuario, cancion)
   RepositorioReproducciones.new.save(reproduccion)
 end
 

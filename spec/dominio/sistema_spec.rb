@@ -79,8 +79,8 @@ describe Sistema do
       expect(sistema.reproducciones.size).to eq 1
 
       reproduccion = sistema.reproducciones.first
-      expect(reproduccion.id_usuario).to eq juan_id
-      expect(reproduccion.id_cancion).to eq cancion.id
+      expect(reproduccion.usuario.id).to eq juan_id
+      expect(reproduccion.cancion.id).to eq cancion.id
     end
 
     it 'deberia lanzar error si el email no esta asociado a un usuario registrado' do
@@ -117,7 +117,7 @@ describe Sistema do
       sistema.registrar_megusta(juan_id, sistema.canciones.first.id)
       expect(sistema.megustas.size).to eq 1
 
-      megusta = sistema.reproducciones.first
+      megusta = sistema.megustas.first
       expect(megusta.id_usuario).to eq juan_id
       expect(megusta.id_cancion).to eq sistema.canciones.first.id
     end

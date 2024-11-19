@@ -8,12 +8,15 @@ end
 Dado('que las primeras {string} son las mas escuchadas de las semana laboral') do |cantidad_canciones|
   @repositorio_reproducciones = RepositorioReproducciones.new
   @repositorio_reproducciones.delete_all
+
   @usuario = Usuario.new('100', 'mail@mail.com')
   RepositorioUsuarios.new.save(@usuario)
+
   @id_usuario = RepositorioUsuarios.new.all.first.id
   @canciones_reproducidas = cantidad_canciones.to_i
+
   cantidad_canciones.to_i.times do |i|
-    reproduccion = Reproduccion.new(@id_usuario, @canciones[i].id)
+    reproduccion = Reproduccion.new(@usuario, @canciones[i])
     @repositorio_reproducciones.save(reproduccion)
   end
 end
@@ -22,7 +25,7 @@ Dado('que las otras {string} fueron escuchadas el fin de semana') do |cantidad_c
   allow(Date).to receive(:today).and_return(Date.new(2024, 11, 17))
 
   cantidad_canciones.to_i.times do |i|
-    reproduccion = Reproduccion.new(@id_usuario, @canciones[@canciones_reproducidas + i].id)
+    reproduccion = Reproduccion.new(@usuario, @canciones[@canciones_reproducidas + i])
     @repositorio_reproducciones.save(reproduccion)
   end
 end
@@ -42,12 +45,15 @@ end
 Dado('que las primeras {string} son las mas escuchadas de los fines de semana') do |cantidad_canciones|
   @repositorio_reproducciones = RepositorioReproducciones.new
   @repositorio_reproducciones.delete_all
+
   @usuario = Usuario.new('100', 'mail@mail.com')
   RepositorioUsuarios.new.save(@usuario)
+
   @id_usuario = RepositorioUsuarios.new.all.first.id
   @canciones_reproducidas = cantidad_canciones.to_i
+
   cantidad_canciones.to_i.times do |i|
-    reproduccion = Reproduccion.new(@id_usuario, @canciones[i].id)
+    reproduccion = Reproduccion.new(@usuario, @canciones[i])
     @repositorio_reproducciones.save(reproduccion)
   end
 end
@@ -56,7 +62,7 @@ Dado('que las otras {string} fueron escuchadas en la semana laboral') do |cantid
   allow(Date).to receive(:today).and_return(Date.new(2024, 11, 14))
 
   cantidad_canciones.to_i.times do |i|
-    reproduccion = Reproduccion.new(@id_usuario, @canciones[@canciones_reproducidas + i].id)
+    reproduccion = Reproduccion.new(@usuario, @canciones[@canciones_reproducidas + i])
     @repositorio_reproducciones.save(reproduccion)
   end
 end

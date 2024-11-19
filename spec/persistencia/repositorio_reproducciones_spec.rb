@@ -13,7 +13,7 @@ describe RepositorioReproducciones do
     cancion = RepositorioCanciones.new.save(cancion)
     RepositorioUsuarios.new.save(usuario)
 
-    reproduccion = Reproduccion.new(usuario.id, cancion.id)
+    reproduccion = Reproduccion.new(usuario, cancion)
 
     repositorio_reproducciones.save(reproduccion)
     reproducciones = repositorio_reproducciones.all
