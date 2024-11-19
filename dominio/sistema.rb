@@ -1,3 +1,4 @@
+Dir[File.join(__dir__, './errores', '*.rb')].each { |file| require file }
 require_relative './modulos_sistema/sistema_usuario'
 require_relative './modulos_sistema/sistema_contenido'
 require_relative './modulos_sistema/sistema_reproducciones'

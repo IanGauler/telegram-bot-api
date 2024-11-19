@@ -11,6 +11,8 @@ class Reproduccion
     validar_reproduccion!
   end
 
+  private
+
   def validar_reproduccion!
     raise UsuarioNoRegistrado if usuario.nil?
     raise ContenidoNoEncontrado if cancion.nil?
