@@ -114,7 +114,7 @@ get '/reproducciones' do
 end
 
 post '/megusta' do
-  sistema.registrar_megusta(@params[:id_usuario], @params[:id_cancion].to_i)
+  sistema.registrar_megusta(@params[:id_usuario].to_s, @params[:id_cancion].to_i)
   status 201
 rescue CancionNoEncontrada => e
   status 404
