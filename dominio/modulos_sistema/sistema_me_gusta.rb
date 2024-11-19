@@ -12,9 +12,3 @@ module SistemaMeGusta
     @repositorio_megustas.save(megusta)
   end
 end
-
-class CancionNoEncontrada < ErrorCancion
-  def initialize(msg = 'La canción no fue encontrada.')
-    super(msg)
-  end
-end
