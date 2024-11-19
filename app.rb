@@ -95,8 +95,8 @@ rescue ContenidoNoEncontrado => e
   { error: e.message }.to_json
 end
 
-post '/reproduccion' do
-  sistema.registrar_reproduccion(@params[:email], @params[:id_cancion].to_i)
+post '/canciones/:id/reproduccion' do
+  sistema.registrar_reproduccion(@params[:email], @params['id'].to_i || @params[:id].to_i)
   status 201
 rescue UsuarioNoRegistrado, ContenidoNoEncontrado => e
   status 404
