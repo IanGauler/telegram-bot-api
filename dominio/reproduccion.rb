@@ -11,6 +11,10 @@ class Reproduccion
     validar_reproduccion!
   end
 
+  def corresponde_a_usuario_y_cancion(usuario, cancion)
+    @usuario.id == usuario.id && @cancion.id == cancion.id
+  end
+
   private
 
   def validar_reproduccion!

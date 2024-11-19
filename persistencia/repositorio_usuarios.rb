@@ -8,6 +8,11 @@ class RepositorioUsuarios < AbstractRepository
     all.any? { |u| u.id == usuario.id }
   end
 
+  def obtener_usuario_por_id(id)
+    usuario = dataset.where(id:).first
+    load_object(usuario) unless usuario.nil?
+  end
+
   def obtener_usuario_por_email(email)
     usuario = dataset.where(email:).first
     load_object(usuario) unless usuario.nil?

@@ -118,8 +118,8 @@ describe Sistema do
       expect(sistema.megustas.size).to eq 1
 
       megusta = sistema.megustas.first
-      expect(megusta.id_usuario).to eq juan_id
-      expect(megusta.id_cancion).to eq sistema.canciones.first.id
+      expect(megusta.usuario.id).to eq juan_id
+      expect(megusta.cancion.id).to eq sistema.canciones.first.id
     end
   end
 

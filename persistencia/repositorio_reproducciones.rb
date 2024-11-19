@@ -4,10 +4,9 @@ class RepositorioReproducciones < AbstractRepository
   self.table_name = :reproducciones
   self.model_class = 'Reproduccion'
 
-  def existe_reproduccion?(id_usuario, id_cancion)
-    reproduccion = dataset.where(id_usuario:, id_cancion:).first
-
-    !reproduccion.nil?
+  def obtener_reproduccion(usuario, cancion)
+    reproduccion = dataset.where(id_usuario: usuario.id, id_cancion: cancion.id).first
+    load_object(reproduccion) unless reproduccion.nil?
   end
 
   protected

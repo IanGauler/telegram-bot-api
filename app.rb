@@ -128,7 +128,7 @@ get '/megustas' do
   megustas = sistema.megustas
   respuesta = []
   megustas.map do |me_gustas|
-    respuesta << { id_usuario: me_gustas.id_usuario, id_cancion: me_gustas.id_cancion }
+    respuesta << { id_usuario: me_gustas.usuario.id, id_cancion: me_gustas.cancion.id }
   end
   status 200
   json(respuesta)
