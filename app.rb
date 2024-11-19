@@ -58,7 +58,7 @@ rescue StandardError => e
   { error: "Error inesperado: #{e.message}" }.to_json
 end
 
-post '/agregar_canciones' do
+post '/canciones' do
   @params.each do |c|
     sistema.crear_cancion(c[:titulo], c[:artistas], c[:anio].to_i, c[:duracion])
   end
