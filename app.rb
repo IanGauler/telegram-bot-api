@@ -113,8 +113,8 @@ get '/reproducciones' do
   json(respuesta)
 end
 
-post '/megusta' do
-  sistema.registrar_megusta(@params[:id_usuario].to_s, @params[:id_cancion].to_i)
+post '/canciones/:id/megusta' do
+  sistema.registrar_megusta(@params[:id_usuario].to_s, @params['id'].to_i || @params[:id].to_i)
   status 201
 rescue CancionNoEncontrada => e
   status 404
