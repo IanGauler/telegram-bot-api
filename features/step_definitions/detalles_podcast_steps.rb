@@ -1,6 +1,7 @@
 Dado('que existe el podcast {string} con {string} episodios') do |titulo, cantidad_episodios|
-  @podcast = Podcast.new(titulo, 'Filo.news', 2020)
-  RepositorioPodcasts.new.save(@podcast)
+  podcast = Podcast.new(titulo, 'Filo.news', 2020)
+  RepositorioPodcasts.new.save(podcast)
+  @podcast = RepositorioPodcasts.new.all.first
   episodios = []
   cantidad_episodios.to_i.times do |i|
     episodio = Episodio.new(@podcast, "Ep#{i}", 'Participante1', '59:00')

@@ -164,3 +164,6 @@ get '/recomendaciones' do
   status 200
   json(respuesta)
 end
+
+post '/podcasts/:id_podcast/episodio/:id_episodio/reproduccion' do
+end

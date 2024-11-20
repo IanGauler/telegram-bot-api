@@ -12,9 +12,9 @@ end
 Entonces('el sistema actualiza el historial de escucha del usuario') do
   repositorio_reproducciones = RepositorioReproducciones.new
   reproduccion = repositorio_reproducciones.all.first
+  expect(@response.status).to eq(201)
   expect(reproduccion.usuario.id).to eq(@usuario.id)
   expect(reproduccion.cancion.id).to eq(@cancion.id)
-  expect(@response.status).to eq(201)
 end
 
 Entonces('el sistema devuelve un mensaje de error {string}') do |mensaje_de_error|
