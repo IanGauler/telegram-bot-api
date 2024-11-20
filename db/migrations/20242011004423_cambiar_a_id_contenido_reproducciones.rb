@@ -9,7 +9,7 @@ Sequel.migration do
       SET id_contenido = (
         SELECT contenidos.id
         FROM contenidos
-        WHERE contenidos.id_cancion = reproducciones.id_cancion
+        WHERE contenidos.id = reproducciones.id_cancion
       )
     SQL
 
@@ -18,13 +18,16 @@ Sequel.migration do
     end
 
     alter_table(:reproducciones) do
-      drop_foreign_key :id_cancion
       drop_column :id_cancion
     end
 
-    alter_table(:reproducciones) do
-      add_foreign_key :id_contenido, :contenidos, null: false, type: Integer, on_delete: :cascade
-    end
+    run <<-SQL
+      ALTER TABLE reproducciones
+      ADD CONSTRAINT fk_id_contenido
+      FOREIGN KEY (id_contenido)
+      REFERENCES contenidos(id)
+      ON DELETE CASCADE;
+    SQL
   end
 
   down do
@@ -35,7 +38,7 @@ Sequel.migration do
     run <<-SQL
       UPDATE reproducciones
       SET id_cancion = (
-        SELECT contenidos.id_cancion
+        SELECT contenidos.id
         FROM contenidos
         WHERE contenidos.id = reproducciones.id_contenido
       )
@@ -46,12 +49,15 @@ Sequel.migration do
     end
 
     alter_table(:reproducciones) do
-      drop_foreign_key :id_contenido
       drop_column :id_contenido
     end
 
-    alter_table(:reproducciones) do
-      add_foreign_key :id_cancion, :canciones, null: false, type: Integer, on_delete: :cascade
-    end
+    run <<-SQL
+      ALTER TABLE reproducciones
+      ADD CONSTRAINT fk_id_cancion
+      FOREIGN KEY (id_cancion)
+      REFERENCES canciones(id)
+      ON DELETE CASCADE;
+    SQL
   end
 end
