@@ -85,8 +85,8 @@ get '/novedades' do
   json(respuesta)
 end
 
-get '/contenidos/:id' do
-  contenido = sistema.obtener_contenido_por_id(params[:id].to_i)
+get '/contenidos/:id_contenido' do
+  contenido = sistema.obtener_contenido_por_id(params['id_contenido'].to_i)
   representacion_hash_contenido = contenido.representacion_hash
   status 200
   json(representacion_hash_contenido)
@@ -95,9 +95,9 @@ rescue ContenidoNoEncontrado => e
   { error: e.message }.to_json
 end
 
-post '/canciones/:id/reproduccion' do
-  id = @params['id'].to_i || @params[:id].to_i
-  cancion = sistema.obtener_contenido_por_id(id)
+post '/canciones/:id_cancion/reproduccion' do
+  id_cancion = params['id_cancion'].to_i
+  cancion = sistema.obtener_contenido_por_id(id_cancion)
   sistema.registrar_reproduccion(@params[:email], cancion)
   status 201
 rescue UsuarioNoRegistrado, ContenidoNoEncontrado => e
@@ -115,8 +115,8 @@ get '/reproducciones' do
   json(respuesta)
 end
 
-post '/canciones/:id/megusta' do
-  sistema.registrar_megusta(@params[:id_usuario].to_s, @params['id'].to_i || @params[:id].to_i)
+post '/canciones/:id_cancion/megusta' do
+  sistema.registrar_megusta(@params[:id_usuario].to_s, params['id_cancion'].to_i)
   status 201
 rescue CancionNoEncontrada, UsuarioNoRegistrado => e
   status 404
@@ -168,12 +168,15 @@ get '/recomendaciones' do
 end
 
 post '/podcasts/:id_podcast/episodio/:id_episodio/reproduccion' do
-  id = @params['id_episodio'].to_i || @params[:id_episodio].to_i
-  id_podcast = @params['id_podcast'].to_i || @params[:id_podcast].to_i
+  id_podcast = params['id_podcast'].to_i
+  id_episodio = params['id_episodio'].to_i
+
   podcast = sistema.obtener_contenido_por_id(id_podcast)
-  episodio = sistema.obtener_contenido_por_id(id)
+  episodio = sistema.obtener_contenido_por_id(id_episodio)
+
   episodio.pertenece_a_podcast(podcast) # TODO: logica de negocio, sacar del controlador
   sistema.registrar_reproduccion(@params[:email], episodio)
+
   status 201
 rescue UsuarioNoRegistrado, ContenidoNoEncontrado, EpisodioNoPerteneceAPodcast => e
   status 404
