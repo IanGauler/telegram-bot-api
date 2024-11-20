@@ -109,7 +109,7 @@ get '/reproducciones' do
   reproducciones = sistema.reproducciones
   respuesta = []
   reproducciones.map do |r|
-    respuesta << { id_usuario: r.usuario.id, id_cancion: r.cancion.id }
+    respuesta << { id_usuario: r.usuario.id, id_contenido: r.contenido.id }
   end
   status 200
   json(respuesta)
@@ -170,8 +170,9 @@ end
 post '/podcasts/:id_podcast/episodio/:id_episodio/reproduccion' do
   id = @params['id_episodio'].to_i || @params[:id_episodio].to_i
   id_podcast = @params['id_podcast'].to_i || @params[:id_podcast].to_i
+  podcast = sistema.obtener_contenido_por_id(id_podcast)
   episodio = sistema.obtener_contenido_por_id(id)
-  episodio.pertenece_a_podcast(id_podcast) # TODO: logica de negocio, sacar del controlador
+  episodio.pertenece_a_podcast(podcast) # TODO: logica de negocio, sacar del controlador
   sistema.registrar_reproduccion(@params[:email], episodio)
   status 201
 rescue UsuarioNoRegistrado, ContenidoNoEncontrado, EpisodioNoPerteneceAPodcast => e

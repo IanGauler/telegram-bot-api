@@ -17,9 +17,10 @@ describe Episodio do
 
   describe 'pertenece_a_podcast' do
     it 'deberia lanzar un error si el episodio no pertenece al podcast' do
-      podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
-      episodio = described_class.new(podcast, 'Caja Negra - Ep1', 'Filo.news', '45:20', 1)
-      expect { episodio.pertenece_a_podcast(2) }.to raise_error(EpisodioNoPerteneceAPodcast)
+      podcast = Podcast.new('Caja Negra', 'Filo.news', 2021, 1)
+      episodio = described_class.new(podcast, 'Caja Negra - Ep1', 'Filo.news', '45:20', 2)
+      otro_podcast = Podcast.new('IS2', 'Alejoo', 2024, 3)
+      expect { episodio.pertenece_a_podcast(otro_podcast) }.to raise_error(EpisodioNoPerteneceAPodcast)
     end
   end
 end

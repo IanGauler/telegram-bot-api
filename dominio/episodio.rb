@@ -16,7 +16,7 @@ class Episodio
     hash
   end
 
-  def pertenece_a_podcast(id_podcast)
-    raise EpisodioNoPerteneceAPodcast unless @podcast.id == id_podcast
+  def pertenece_a_podcast(podcast)
+    raise EpisodioNoPerteneceAPodcast unless @podcast.id == podcast.id
   end
 end
