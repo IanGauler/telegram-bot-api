@@ -11,10 +11,10 @@ Y que existe el podcast "Caja Negra" con "2" episodios
 Escenario: US13-01 Registro exitoso de reproducción
 Cuando el sistema recibe una solicitud de registro con mail "juan@gmail.com" del primer episodio de "Caja Negra"
 Entonces el sistema actualiza el historial de escucha del usuario
-@wip
+
 Escenario: US13-02 Registro de reproducción con usuario no registrado
 Cuando el sistema recibe una solicitud de registro con mail "facundo@gmail.com" del primer episodio de "Caja Negra"
-Entonces el sistema devuelve un mensaje de error "Usuario no encontrado"
+Entonces el sistema devuelve un mensaje de error "El usuario no fue encontrado."
 Y no actualiza el historial de escucha del usuario
 @wip
 Escenario: US13-03 Registro de reproducción de un podcast inexistente
