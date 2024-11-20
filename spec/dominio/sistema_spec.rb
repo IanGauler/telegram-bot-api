@@ -75,7 +75,7 @@ describe Sistema do
       sistema.crear_cancion('Waka Waka', 'Shakira', 2010, '3:31')
       cancion = sistema.canciones.first
 
-      sistema.registrar_reproduccion(juan_email, cancion)
+      sistema.registrar_reproduccion(juan_email, cancion.id)
       expect(sistema.reproducciones.size).to eq 1
 
       reproduccion = sistema.reproducciones.first
@@ -86,7 +86,7 @@ describe Sistema do
     it 'deberia lanzar error si el email no esta asociado a un usuario registrado' do
       sistema.crear_cancion('Waka Waka', 'Shakira', 2010, '3:31')
       cancion = sistema.canciones.first
-      expect { sistema.registrar_reproduccion(juan_email, cancion) }.to raise_error(UsuarioNoRegistrado)
+      expect { sistema.registrar_reproduccion(juan_email, cancion.id) }.to raise_error(UsuarioNoRegistrado)
     end
   end
 
@@ -107,7 +107,7 @@ describe Sistema do
     it 'deberia registrar un me gusta' do
       sistema.crear_usuario(juan_id, juan_email)
       sistema.crear_cancion('Waka Waka', 'Shakira', 2010, '3:31')
-      sistema.registrar_reproduccion(juan_email, sistema.canciones.first)
+      sistema.registrar_reproduccion(juan_email, sistema.canciones.first.id)
 
       sistema.registrar_megusta(juan_id, sistema.canciones.first.id)
       expect(sistema.megustas.size).to eq 1
@@ -194,7 +194,7 @@ def reproducir_canciones(cantidad, sistema, fecha = Date.today, offset = 0)
 
   canciones_a_reproducir = sistema.canciones[offset, cantidad]
   canciones_a_reproducir.each do |c|
-    sistema.registrar_reproduccion(mail, c)
+    sistema.registrar_reproduccion(mail, c.id)
   end
   canciones_a_reproducir
 end

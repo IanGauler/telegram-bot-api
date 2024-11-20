@@ -74,7 +74,8 @@ class Sistema
     @repositorio_reproducciones.all
   end
 
-  def registrar_reproduccion(email, contenido)
+  def registrar_reproduccion(email, id_contenido)
+    contenido = obtener_contenido_por_id(id_contenido)
     usuario = @repositorio_usuarios.obtener_usuario_por_email(email)
 
     reproduccion = Reproduccion.new(usuario, contenido)
@@ -102,7 +103,7 @@ class Sistema
 
     episodio.pertenece_a_podcast(podcast)
 
-    registrar_reproduccion(email, episodio)
+    registrar_reproduccion(email, id_episodio)
   end
 
   private
