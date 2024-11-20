@@ -15,4 +15,8 @@ class Episodio
     hash[:id] = @id unless @id.nil?
     hash
   end
+
+  def pertenece_a_podcast(id_podcast)
+    raise EpisodioNoPerteneceAPodcast unless @podcast.id == id_podcast
+  end
 end
