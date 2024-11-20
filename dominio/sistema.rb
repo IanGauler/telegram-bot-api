@@ -54,6 +54,7 @@ class Sistema
 
   def crear_podcast(titulo, creador, anio, episodios)
     podcast = Podcast.new(titulo, creador, anio)
+    puts "Podcast: #{podcast.inspect}"
     @administrador_de_contenido.repositorio_podcasts.save(podcast)
     crear_episodios(episodios, podcast)
   end
@@ -93,6 +94,15 @@ class Sistema
     reproduccion = @repositorio_reproducciones.obtener_reproduccion(usuario, cancion)
     megusta = MeGusta.new(usuario, cancion, reproduccion)
     @repositorio_megustas.save(megusta)
+  end
+
+  def registrar_reproduccion_episodio(email, id_episodio, id_podcast)
+    episodio = obtener_contenido_por_id(id_episodio)
+    podcast = obtener_contenido_por_id(id_podcast)
+
+    episodio.pertenece_a_podcast(podcast)
+
+    registrar_reproduccion(email, episodio)
   end
 
   private

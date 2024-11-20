@@ -171,11 +171,7 @@ post '/podcasts/:id_podcast/episodio/:id_episodio/reproduccion' do
   id_podcast = params['id_podcast'].to_i
   id_episodio = params['id_episodio'].to_i
 
-  podcast = sistema.obtener_contenido_por_id(id_podcast)
-  episodio = sistema.obtener_contenido_por_id(id_episodio)
-
-  episodio.pertenece_a_podcast(podcast) # TODO: logica de negocio, sacar del controlador
-  sistema.registrar_reproduccion(@params[:email], episodio)
+  sistema.registrar_reproduccion_episodio(@params[:email], id_episodio, id_podcast)
 
   status 201
 rescue UsuarioNoRegistrado, ContenidoNoEncontrado, EpisodioNoPerteneceAPodcast => e

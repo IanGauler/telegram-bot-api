@@ -9,7 +9,7 @@ describe Sistema do
   repositorio_usuarios = RepositorioUsuarios.new
   repositorio_reproducciones = RepositorioReproducciones.new
   repositorio_megustas = RepositorioMegustas.new
-  administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new)
+  administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new, RepositorioPodcasts.new, RepositorioEpisodios.new)
   sistema = described_class.new(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas)
   dia_de_semana = Date.new(2024, 11, 14)
   dia_fin_de_semana = Date.new(2024, 11, 17)
@@ -162,6 +162,21 @@ describe Sistema do
       sistema.recomendaciones_de_la_semana.each do |r|
         expect(canciones_reproducidas_finde.any? { |c| r.titulo == c.titulo }).to be true
       end
+    end
+  end
+
+  describe 'reproducir_episodio' do
+    it 'deberia registrar una reproduccion de un episodio' do
+      sistema.crear_usuario(juan_id, juan_email)
+      episodios = [{ titulo: 'Ep1', participantes: 'Filo.news', duracion: '45:20' }]
+      sistema.crear_podcast('Caja Negra', 'Filo.news', 2022, episodios)
+      podcast = sistema.podcasts.first
+      sistema.registrar_reproduccion_episodio(juan_email, podcast.episodios.first.id, podcast.id)
+
+      expect(sistema.reproducciones.size).to eq 1
+      reproduccion = sistema.reproducciones.first
+      expect(reproduccion.usuario.id).to eq juan_id
+      expect(reproduccion.contenido.id).to eq podcast.episodios.first.id
     end
   end
 end
