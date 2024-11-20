@@ -169,10 +169,12 @@ end
 
 post '/podcasts/:id_podcast/episodio/:id_episodio/reproduccion' do
   id = @params['id_episodio'].to_i || @params[:id_episodio].to_i
+  id_podcast = @params['id_podcast'].to_i || @params[:id_podcast].to_i
   episodio = sistema.obtener_contenido_por_id(id)
+  episodio.pertenece_a_podcast(id_podcast) # TODO: logica de negocio, sacar del controlador
   sistema.registrar_reproduccion(@params[:email], episodio)
   status 201
-rescue UsuarioNoRegistrado, ContenidoNoEncontrado => e
+rescue UsuarioNoRegistrado, ContenidoNoEncontrado, EpisodioNoPerteneceAPodcast => e
   status 404
   { error: e.message }.to_json
 end
