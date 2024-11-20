@@ -172,7 +172,7 @@ post '/podcasts/:id_podcast/episodio/:id_episodio/reproduccion' do
   episodio = sistema.obtener_contenido_por_id(id)
   sistema.registrar_reproduccion(@params[:email], episodio)
   status 201
-rescue UsuarioNoRegistrado => e
+rescue UsuarioNoRegistrado, ContenidoNoEncontrado => e
   status 404
   { error: e.message }.to_json
 end

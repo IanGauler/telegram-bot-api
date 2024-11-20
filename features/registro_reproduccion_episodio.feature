@@ -16,15 +16,15 @@ Escenario: US13-02 Registro de reproducción con usuario no registrado
 Cuando el sistema recibe una solicitud de registro con mail "facundo@gmail.com" del primer episodio de "Caja Negra"
 Entonces el sistema devuelve un mensaje de error "El usuario no fue encontrado."
 Y no actualiza el historial de escucha del usuario
-@wip
+
 Escenario: US13-03 Registro de reproducción de un podcast inexistente
 Cuando el sistema recibe una solicitud de registro con mail "juan@gmail.com" de un podcast inexistente
-Entonces el sistema devuelve un mensaje de error "Podcast no encontrado"
+Entonces el sistema devuelve un mensaje de error "El contenido no fue encontrado."
 Y no actualiza el historial de escucha del usuario
 @wip
 Escenario: US13-04 Registro de reproducción de un podcast existente pero de un episodio inexistente
 Cuando el sistema recibe una solicitud de registro con mail "juan@gmail.com" de un episodio inexistente de "Caja Negra"
-Entonces el sistema devuelve un mensaje de error "Episodio no encontrado"
+Entonces el sistema devuelve un mensaje de error "El contenido no fue encontrado."
 Y no actualiza el historial de escucha del usuario
 @wip
 Escenario: US13-05 Registro de reproducción de un podcast y episodio existentes cuando el episodio no pertenece al podcast
