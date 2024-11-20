@@ -5,7 +5,7 @@ class RepositorioReproducciones < AbstractRepository
   self.model_class = 'Reproduccion'
 
   def obtener_reproduccion(usuario, contenido)
-    reproduccion = dataset.where(id_usuario: usuario.id, id_cancion: contenido.id).first
+    reproduccion = dataset.where(id_usuario: usuario.id, id_contenido: contenido.id).first
     load_object(reproduccion) unless reproduccion.nil?
   end
 
@@ -13,7 +13,7 @@ class RepositorioReproducciones < AbstractRepository
 
   def load_object(a_hash)
     usuario = RepositorioUsuarios.new.find(a_hash[:id_usuario])
-    contenido = RepositorioCanciones.new.find(a_hash[:id_cancion])
+    contenido = RepositorioContenido.new.find(a_hash[:id_contenido])
 
     Reproduccion.new(usuario, contenido, a_hash[:id])
   end
@@ -21,7 +21,7 @@ class RepositorioReproducciones < AbstractRepository
   def changeset(reproduccion)
     {
       id_usuario: reproduccion.usuario.id,
-      id_cancion: reproduccion.contenido.id
+      id_contenido: reproduccion.contenido.id
     }
   end
 end

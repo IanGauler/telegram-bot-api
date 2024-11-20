@@ -168,4 +168,8 @@ get '/recomendaciones' do
 end
 
 post '/podcasts/:id_podcast/episodio/:id_episodio/reproduccion' do
+  id = @params['id_episodio'].to_i || @params[:id_episodio].to_i
+  episodio = sistema.obtener_contenido_por_id(id)
+  sistema.registrar_reproduccion(@params[:email], episodio)
+  status 201
 end

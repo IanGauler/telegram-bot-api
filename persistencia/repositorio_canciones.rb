@@ -31,7 +31,7 @@ class RepositorioCanciones < AbstractRepository
   def query_top_semana(dow_condition)
     dataset
       .select_all(:canciones)
-      .join(:reproducciones, id_cancion: :id)
+      .join(:reproducciones, id_contenido: :id)
       .where(Sequel.lit("EXTRACT(DOW FROM reproducciones.created_on) #{dow_condition}"))
       .group(Sequel[:canciones][:id])
       .order(Sequel.desc(Sequel.function(:COUNT, Sequel[:reproducciones][:id])))

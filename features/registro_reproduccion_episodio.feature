@@ -7,7 +7,7 @@ para poder mejorar las recomendaciones futuras basadas en su historial de escuch
 Antecedentes:
 Dado que mi usuario es "juan" con id "1235" y mail "juan@gmail.com", y estoy registrado
 Y que existe el podcast "Caja Negra" con "2" episodios
-@wip @current
+
 Escenario: US13-01 Registro exitoso de reproducción
 Cuando el sistema recibe una solicitud de registro con mail "juan@gmail.com" del primer episodio de "Caja Negra"
 Entonces el sistema actualiza el historial de escucha del usuario
