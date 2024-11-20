@@ -11,6 +11,12 @@ Cuando('el sistema recibe una solicitud de registro con mail {string} de un podc
   @response = Faraday.post('/podcasts/0/episodio/0/reproduccion', request_body, { 'Content-Type' => 'application/json' })
 end
 
+Cuando('el sistema recibe una solicitud de registro con mail {string} de un episodio inexistente') do |email|
+  request_body = { email: }.to_json
+  id_podcast = RepositorioPodcasts.new.all.first.id
+  @response = Faraday.post("/podcasts/#{id_podcast}/episodio/0/reproduccion", request_body, { 'Content-Type' => 'application/json' })
+end
+
 Cuando('el sistema recibe una solicitud de registro con mail {string} del podcast de {string} y id del primer episodio de {string}') do |email, _nombre_podcast, _nombre_podcast_episodio|
   request_body = { email: }.to_json
   podcasts = RepositorioPodcasts.new.all

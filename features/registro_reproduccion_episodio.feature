@@ -21,9 +21,9 @@ Escenario: US13-03 Registro de reproducción de un podcast inexistente
 Cuando el sistema recibe una solicitud de registro con mail "juan@gmail.com" de un podcast inexistente
 Entonces el sistema devuelve un mensaje de error "El contenido no fue encontrado."
 Y no actualiza el historial de escucha del usuario
-@wip
+
 Escenario: US13-04 Registro de reproducción de un podcast existente pero de un episodio inexistente
-Cuando el sistema recibe una solicitud de registro con mail "juan@gmail.com" de un episodio inexistente de "Caja Negra"
+Cuando el sistema recibe una solicitud de registro con mail "juan@gmail.com" de un episodio inexistente
 Entonces el sistema devuelve un mensaje de error "El contenido no fue encontrado."
 Y no actualiza el historial de escucha del usuario
 
