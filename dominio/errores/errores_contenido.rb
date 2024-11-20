@@ -1,19 +1,19 @@
-class ErrorCancion < StandardError
+class ErrorContenido < StandardError
 end
 
-class ContenidoNoEncontrado < ErrorCancion
+class ContenidoNoEncontrado < ErrorContenido
   def initialize(msg = 'El contenido no fue encontrado.')
     super(msg)
   end
 end
 
-class CancionNoEscuchada < ErrorCancion
+class CancionNoEscuchada < ErrorContenido
   def initialize(msg = 'El usuario aún no ha escuchado esta cancion.')
     super(msg)
   end
 end
 
-class CancionNoEncontrada < ErrorCancion
+class CancionNoEncontrada < ErrorContenido
   def initialize(msg = 'La canción no fue encontrada.')
     super(msg)
   end
