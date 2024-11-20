@@ -1,6 +1,6 @@
 class Version
-  MAJOR = 0
-  MINOR = 12
+  MAJOR = 1
+  MINOR = 0
   PATCH = 0
 
   def self.current
