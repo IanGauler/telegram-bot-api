@@ -1,5 +1,5 @@
 Dado('que el sistema recibe una solicitud de registro con mail {string} y el id de la cancion {string}') do |email, _titulo|
-  @cancion = RepositorioCanciones.new.all.first
+  @cancion = RepositorioContenido.new.all.first
   request_body = { email: }.to_json
   @response = Faraday.post("/canciones/#{@cancion.id}/reproduccion", request_body, { 'Content-Type' => 'application/json' })
 end
@@ -14,7 +14,7 @@ Entonces('el sistema actualiza el historial de escucha del usuario') do
   reproduccion = repositorio_reproducciones.all.first
   expect(@response.status).to eq(201)
   expect(reproduccion.usuario.id).to eq(@usuario.id)
-  expect(reproduccion.cancion.id).to eq(@cancion.id)
+  expect(reproduccion.contenido.id).to eq(@cancion.id)
 end
 
 Entonces('el sistema devuelve un mensaje de error {string}') do |mensaje_de_error|

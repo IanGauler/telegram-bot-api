@@ -14,6 +14,6 @@ class MeGusta
   def validar_me_gusta!(reproduccion)
     raise UsuarioNoRegistrado if usuario.nil?
     raise CancionNoEncontrada if cancion.nil?
-    raise CancionNoEscuchada if reproduccion.nil? || !reproduccion.corresponde_a_usuario_y_cancion(usuario, cancion)
+    raise CancionNoEscuchada if reproduccion.nil? || !reproduccion.corresponde_a_usuario_y_contenido(usuario, cancion)
   end
 end

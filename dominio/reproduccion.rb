@@ -2,23 +2,23 @@ require_relative './errores/errores_contenido'
 
 class Reproduccion
   attr_accessor :id
-  attr_reader :cancion, :usuario, :updated_on, :created_on
+  attr_reader :contenido, :usuario, :updated_on, :created_on
 
-  def initialize(usuario, cancion, id = nil)
+  def initialize(usuario, contenido, id = nil)
     @usuario = usuario
-    @cancion = cancion
+    @contenido = contenido
     @id = id
     validar_reproduccion!
   end
 
-  def corresponde_a_usuario_y_cancion(usuario, cancion)
-    @usuario.id == usuario.id && @cancion.id == cancion.id
+  def corresponde_a_usuario_y_contenido(usuario, contenido)
+    @usuario.id == usuario.id && @contenido.id == contenido.id
   end
 
   private
 
   def validar_reproduccion!
     raise UsuarioNoRegistrado if usuario.nil?
-    raise ContenidoNoEncontrado if cancion.nil?
+    raise ContenidoNoEncontrado if contenido.nil?
   end
 end

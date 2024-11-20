@@ -96,7 +96,9 @@ rescue ContenidoNoEncontrado => e
 end
 
 post '/canciones/:id/reproduccion' do
-  sistema.registrar_reproduccion(@params[:email], @params['id'].to_i || @params[:id].to_i)
+  id = @params['id'].to_i || @params[:id].to_i
+  cancion = sistema.obtener_contenido_por_id(id)
+  sistema.registrar_reproduccion(@params[:email], cancion)
   status 201
 rescue UsuarioNoRegistrado, ContenidoNoEncontrado => e
   status 404
