@@ -32,3 +32,11 @@ Dado que existe el podcast "Manuelita" con "2" episodios
 Cuando el sistema recibe una solicitud de registro con mail "juan@gmail.com" del podcast de "Caja Negra" y id del primer episodio de "Manuelita"
 Entonces el sistema devuelve un mensaje de error "El episodio no pertenece al podcast."
 Y no actualiza el historial de escucha del usuario
+@wip
+Escenario: US13-06 Registro reproduccion de un episodio y podcast de igual id a un podcast existente
+Cuando el sistema recibe una solicitud de registro con el mail "juan@gmail.com" de id podcast de "Caja Negra" y id episodio de "Caja Negra"
+Entonces el sistema devuelve un mensaje de error "El episodio no existe."
+@wip
+Escenario: US13-07 Registro reproduccion de un episodio y podcast de igual id a un episodio existente
+Cuando el sistema recibe una solicitud de registro con el mail "juan@gmail.com" de id podcast del primer episodio "Caja Negra" y id episodio  del primer episodio
+Entonces el sistema devuelve un mensaje de error "El podcast no existe."
