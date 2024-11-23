@@ -4,9 +4,13 @@ class RepositorioReproducciones < AbstractRepository
   self.table_name = :reproducciones
   self.model_class = 'Reproduccion'
 
-  def obtener_reproduccion(usuario, contenido)
-    reproduccion = dataset.where(id_usuario: usuario.id, id_contenido: contenido.id).first
-    load_object(reproduccion) unless reproduccion.nil?
+  def obtener_reproducciones_de_usuario(usuario)
+    reproducciones = dataset.where(id_usuario: usuario.id).all
+
+    reproducciones.map do |a_hash|
+      contenido = RepositorioContenido.new.find(a_hash[:id_contenido])
+      Reproduccion.new(usuario, contenido, a_hash[:id])
+    end
   end
 
   protected

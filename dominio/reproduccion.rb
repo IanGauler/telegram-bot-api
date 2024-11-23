@@ -11,8 +11,8 @@ class Reproduccion
     validar_reproduccion!
   end
 
-  def corresponde_a_usuario_y_contenido(usuario, contenido)
-    @usuario.id == usuario.id && @contenido.id == contenido.id
+  def corresponde_a_contenido(contenido)
+    @contenido.id == contenido.id
   end
 
   private

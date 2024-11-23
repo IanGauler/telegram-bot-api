@@ -15,7 +15,7 @@ configure do
   set :default_content_type, :json
   set :environment, ENV['APP_MODE'].to_sym
   administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new, RepositorioPodcasts.new, RepositorioEpisodios.new)
-  set :sistema, Sistema.new(RepositorioUsuarios.new, administrador_de_contenido, RepositorioReproducciones.new, RepositorioMegustas.new)
+  set :sistema, Sistema.new(RepositorioUsuarios.new, administrador_de_contenido, RepositorioReproducciones.new, RepositorioMeGustas.new)
 end
 
 before do

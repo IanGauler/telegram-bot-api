@@ -1,6 +1,6 @@
 require_relative './abstract_repository'
 
-class RepositorioMegustas < AbstractRepository
+class RepositorioMeGustas < AbstractRepository
   self.table_name = :megustas
   self.model_class = 'MeGusta'
 
@@ -9,14 +9,14 @@ class RepositorioMegustas < AbstractRepository
   def load_object(a_hash)
     usuario = RepositorioUsuarios.new.find(a_hash[:id_usuario])
     cancion = RepositorioCanciones.new.find(a_hash[:id_cancion])
-    reproduccion = Reproduccion.new(usuario, cancion)
-    MeGusta.new(usuario, cancion, reproduccion, a_hash[:id])
+
+    MeGusta.new(usuario, cancion, a_hash[:id])
   end
 
-  def changeset(reproduccion)
+  def changeset(me_gusta)
     {
-      id_usuario: reproduccion.usuario.id,
-      id_cancion: reproduccion.cancion.id
+      id_usuario: me_gusta.usuario.id,
+      id_cancion: me_gusta.cancion.id
     }
   end
 end

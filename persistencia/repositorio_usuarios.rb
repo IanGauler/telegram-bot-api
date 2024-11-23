@@ -14,7 +14,12 @@ class RepositorioUsuarios < AbstractRepository
 
   def obtener_usuario_por_id(id)
     usuario = dataset.where(id:).first
-    load_object(usuario) unless usuario.nil?
+    usuario = load_object(usuario) unless usuario.nil?
+
+    return nil if usuario.nil?
+
+    usuario.reproducciones = RepositorioReproducciones.new.obtener_reproducciones_de_usuario(usuario)
+    usuario
   end
 
   def obtener_usuario_por_email(email)
@@ -26,6 +31,7 @@ class RepositorioUsuarios < AbstractRepository
     super(usuario)
 
     guardar_interacciones(usuario.reproducciones, RepositorioReproducciones.new)
+    guardar_interacciones(usuario.me_gustas, RepositorioMeGustas.new)
 
     usuario
   end

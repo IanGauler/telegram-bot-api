@@ -8,7 +8,7 @@ describe Sistema do
   juan_id = '1'
   repositorio_usuarios = RepositorioUsuarios.new
   repositorio_reproducciones = RepositorioReproducciones.new
-  repositorio_megustas = RepositorioMegustas.new
+  repositorio_megustas = RepositorioMeGustas.new
   administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new, RepositorioPodcasts.new, RepositorioEpisodios.new)
   sistema = described_class.new(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas)
   dia_de_semana = Date.new(2024, 11, 14)

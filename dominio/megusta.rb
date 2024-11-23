@@ -2,18 +2,17 @@ class MeGusta
   attr_accessor :id
   attr_reader :cancion, :usuario, :updated_on, :created_on
 
-  def initialize(usuario, cancion, reproduccion, id = nil)
+  def initialize(usuario, cancion, id = nil)
     @usuario = usuario
     @cancion = cancion
     @id = id
-    validar_me_gusta!(reproduccion)
+    validar_me_gusta!
   end
 
   private
 
-  def validar_me_gusta!(reproduccion)
+  def validar_me_gusta!
     raise UsuarioNoRegistrado if usuario.nil?
     raise CancionNoEncontrada if cancion.nil?
-    raise CancionNoEscuchada if reproduccion.nil? || !reproduccion.corresponde_a_usuario_y_contenido(usuario, cancion)
   end
 end
