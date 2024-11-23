@@ -4,7 +4,7 @@ class RepositorioContenido < AbstractRepository
   self.table_name = :contenidos
   self.model_class = 'TipoContenido'
 
-  def ultimas_novedades(cantidad)
+  def ultimos_contenidos(cantidad)
     contenidos = dataset
                  .where(tipo: %w[cancion podcast])
                  .order(Sequel.desc(:id))
