@@ -9,11 +9,6 @@ class RepositorioCanciones < AbstractRepository
     super(cancion)
   end
 
-  def ultimas_canciones(cantidad)
-    canciones = dataset.order(Sequel.desc(:id)).limit(cantidad).all
-    load_collection(canciones.reverse)
-  end
-
   def obtener_cancion_por_id(id)
     cancion = dataset.where(id:).first
 
