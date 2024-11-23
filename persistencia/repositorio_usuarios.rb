@@ -22,6 +22,22 @@ class RepositorioUsuarios < AbstractRepository
     load_object(usuario) unless usuario.nil?
   end
 
+  def save(usuario)
+    super(usuario)
+
+    guardar_interacciones(usuario.reproducciones, RepositorioReproducciones.new)
+
+    usuario
+  end
+
+  private
+
+  def guardar_interacciones(iteracciones, repositorio)
+    iteracciones.each do |iteraccion|
+      repositorio.save(iteraccion)
+    end
+  end
+
   protected
 
   def load_object(a_hash)

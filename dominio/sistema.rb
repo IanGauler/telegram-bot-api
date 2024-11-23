@@ -70,14 +70,6 @@ class Sistema
     @repositorio_reproducciones.all
   end
 
-  def registrar_reproduccion(email, id_contenido)
-    contenido = obtener_contenido_por_id(id_contenido)
-    usuario = @repositorio_usuarios.obtener_usuario_por_email(email)
-
-    reproduccion = Reproduccion.new(usuario, contenido)
-    @repositorio_reproducciones.save(reproduccion)
-  end
-
   def megustas
     @repositorio_megustas.all
   end
@@ -93,11 +85,21 @@ class Sistema
     @repositorio_megustas.save(megusta)
   end
 
+  def registrar_reproduccion(email, id_contenido)
+    contenido = obtener_contenido_por_id(id_contenido)
+    usuario = @repositorio_usuarios.obtener_usuario_por_email(email)
+
+    raise UsuarioNoRegistrado if usuario.nil?
+
+    usuario.reproducir(contenido)
+    @repositorio_usuarios.save(usuario)
+  end
+
   def registrar_reproduccion_episodio(email, id_episodio, id_podcast)
     episodio = obtener_contenido_por_id(id_episodio)
-    podcast = obtener_contenido_por_id(id_podcast)
 
-    episodio.pertenece_a_podcast(podcast)
+    podcast = obtener_contenido_por_id(id_podcast)
+    podcast.tiene_episodio(episodio)
 
     registrar_reproduccion(email, id_episodio)
   end

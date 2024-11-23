@@ -26,6 +26,10 @@ class Podcast
     hash
   end
 
+  def tiene_episodio(episodio)
+    raise EpisodioNoPerteneceAPodcast unless @episodios.any? { |e| e.id == episodio.id }
+  end
+
   private
 
   def agregar_episodio(episodio)
