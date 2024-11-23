@@ -52,9 +52,13 @@ class Sistema
 
   def crear_podcast(titulo, creador, anio, episodios)
     podcast = Podcast.new(titulo, creador, anio)
-    puts "Podcast: #{podcast.inspect}"
+
+    episodios.map do |episodio|
+      episodio = Episodio.new(podcast, episodio[:titulo], episodio[:participantes], episodio[:duracion])
+      podcast.agregar_episodios(episodio)
+    end
+
     @administrador_de_contenido.repositorio_podcasts.save(podcast)
-    crear_episodios(episodios, podcast)
   end
 
   def podcasts
@@ -102,14 +106,5 @@ class Sistema
     episodio.pertenece_a_podcast(podcast)
 
     registrar_reproduccion(email, id_episodio)
-  end
-
-  private
-
-  def crear_episodios(episodios, podcast)
-    episodios.each do |episodio|
-      episodio = Episodio.new(podcast, episodio[:titulo], episodio[:participantes], episodio[:duracion])
-      @administrador_de_contenido.repositorio_episodios.save(episodio)
-    end
   end
 end

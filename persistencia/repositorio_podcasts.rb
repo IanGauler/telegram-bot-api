@@ -7,6 +7,12 @@ class RepositorioPodcasts < AbstractRepository
   def save(podcast)
     podcast.id = RepositorioContenido.new.save(TipoContenido.podcast).id if podcast.id.nil?
     super(podcast)
+
+    podcast.episodios.each do |episodio|
+      RepositorioEpisodios.new.save(episodio)
+    end
+
+    podcast
   end
 
   protected
