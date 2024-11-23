@@ -31,3 +31,10 @@ Cuando('el sistema recibe una solicitud de registro con el mail {string} de id p
   podcast = RepositorioPodcasts.new.all.find { |p| p.titulo == nombre_podcast }
   @response = Faraday.post("/podcasts/#{podcast.id}/episodio/#{podcast.id}/reproduccion", request_body, { 'Content-Type' => 'application/json' })
 end
+
+Cuando('el sistema recibe una solicitud de registro con el mail {string} de id episodio del primer episodio de {string} y id podcast igual al id del episodio') do |email, nombre_podcast|
+  request_body = { email: }.to_json
+  podcast = RepositorioPodcasts.new.all.find { |p| p.titulo == nombre_podcast }
+  episodio = RepositorioEpisodios.new.obtener_episodios_por_podcast(podcast).first
+  @response = Faraday.post("/podcasts/#{episodio.id}/episodio/#{podcast.id}/reproduccion", request_body, { 'Content-Type' => 'application/json' })
+end

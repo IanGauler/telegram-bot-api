@@ -97,7 +97,7 @@ class Sistema
 
   def registrar_reproduccion_episodio(email, id_episodio, id_podcast)
     episodio = obtener_contenido_por_id_repositorio(@administrador_de_contenido.repositorio_episodios, id_episodio)
-    podcast = obtener_contenido_por_id(id_podcast)
+    podcast = obtener_contenido_por_id_repositorio(@administrador_de_contenido.repositorio_podcasts, id_podcast)
     podcast.tiene_episodio(episodio)
 
     registrar_reproduccion(email, id_episodio)

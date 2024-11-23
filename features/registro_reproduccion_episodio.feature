@@ -36,7 +36,7 @@ Y no actualiza el historial de escucha del usuario
 Escenario: US13-06 Registro reproduccion de un episodio y podcast de igual id a un podcast existente
 Cuando el sistema recibe una solicitud de registro con el mail "juan@gmail.com" de id podcast del podcast "Caja Negra" y id episodio igual al id del podcast
 Entonces el sistema devuelve un mensaje de error "El contenido no fue encontrado."
-@wip
+
 Escenario: US13-07 Registro reproduccion de un episodio y podcast de igual id a un episodio existente
-Cuando el sistema recibe una solicitud de registro con el mail "juan@gmail.com" de id episodio del primer episodio de Caja Negra y id podcast igual al id del episodio
-Entonces el sistema devuelve un mensaje de error "El podcast no existe."
+Cuando el sistema recibe una solicitud de registro con el mail "juan@gmail.com" de id episodio del primer episodio de "Caja Negra" y id podcast igual al id del episodio
+Entonces el sistema devuelve un mensaje de error "El contenido no fue encontrado."
