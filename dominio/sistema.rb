@@ -1,5 +1,6 @@
 Dir[File.join(__dir__, './errores', '*.rb')].each { |file| require file }
 require_relative './novedades'
+require_relative './recomendaciones'
 
 class Sistema
   CANTIDAD_NOVEDADES = 5
@@ -32,7 +33,7 @@ class Sistema
   end
 
   def recomendaciones_de_la_semana
-    @administrador_de_contenido.repositorio_canciones.canciones_top_semana(Date.today)
+    Recomendaciones.new.de_la_semana(Date.today, @administrador_de_contenido.repositorio_canciones)
   end
 
   def canciones

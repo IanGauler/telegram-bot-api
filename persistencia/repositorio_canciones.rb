@@ -20,22 +20,16 @@ class RepositorioCanciones < AbstractRepository
     load_object(cancion) unless cancion.nil?
   end
 
-  def canciones_top_semana(fecha)
-    dow_condition = fecha.saturday? || fecha.sunday? ? 'IN (0, 6)' : 'NOT IN (0, 6)'
+  def top_escuchadas_para_dias(dow_condicion, cantidad)
+    canciones = dataset
+                .select_all(:canciones)
+                .join(:reproducciones, id_contenido: :id)
+                .where(Sequel.lit("EXTRACT(DOW FROM reproducciones.created_on) #{dow_condicion}"))
+                .group(Sequel[:canciones][:id])
+                .order(Sequel.desc(Sequel.function(:COUNT, Sequel[:reproducciones][:id])))
+                .limit(cantidad)
 
-    query_top_semana(dow_condition).map { |cancion| load_object(cancion) }
-  end
-
-  private
-
-  def query_top_semana(dow_condition)
-    dataset
-      .select_all(:canciones)
-      .join(:reproducciones, id_contenido: :id)
-      .where(Sequel.lit("EXTRACT(DOW FROM reproducciones.created_on) #{dow_condition}"))
-      .group(Sequel[:canciones][:id])
-      .order(Sequel.desc(Sequel.function(:COUNT, Sequel[:reproducciones][:id])))
-      .limit(5)
+    canciones.map { |cancion| load_object(cancion) }
   end
 
   protected
