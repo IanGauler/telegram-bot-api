@@ -62,14 +62,7 @@ class Sistema
   end
 
   def podcasts
-    podcasts = @administrador_de_contenido.repositorio_podcasts.all
-
-    podcasts.map do |podcast|
-      episodios = @administrador_de_contenido.repositorio_episodios.obtener_episodios_por_podcast(podcast.id)
-      podcast.agregar_episodios(episodios)
-    end
-
-    podcasts
+    @administrador_de_contenido.repositorio_podcasts.all
   end
 
   def reproducciones

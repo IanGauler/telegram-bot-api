@@ -9,8 +9,19 @@ class RepositorioEpisodios < AbstractRepository
     super(episodio)
   end
 
-  def obtener_episodios_por_podcast(id_podcast)
-    load_collection dataset.where(id_podcast:).all
+  def obtener_episodios_por_podcast(podcast)
+    hash_episodios = dataset.where(id_podcast: podcast.id).all
+    cargar_episodios(hash_episodios, podcast)
+  end
+
+  private
+
+  def cargar_episodios(hash_episodios, podcast)
+    episodios = []
+    hash_episodios.each do |hash|
+      episodios << Episodio.new(podcast, hash[:titulo], hash[:participantes], hash[:duracion], hash[:id])
+    end
+    episodios
   end
 
   protected

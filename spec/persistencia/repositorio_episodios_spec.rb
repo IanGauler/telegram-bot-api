@@ -27,7 +27,7 @@ describe RepositorioEpisodios do
     episodio = Episodio.new(podcast, 'Episodio1', 'Participante1', '59:00')
     respositorio_episodios.save(episodio)
 
-    episodios = respositorio_episodios.obtener_episodios_por_podcast(podcast.id)
+    episodios = respositorio_episodios.obtener_episodios_por_podcast(podcast)
     expect(episodios.size).to be 1
     expect(episodios.first.id).not_to be nil
   end

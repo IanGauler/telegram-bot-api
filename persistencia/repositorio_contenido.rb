@@ -23,10 +23,7 @@ class RepositorioContenido < AbstractRepository
     when :cancion
       RepositorioCanciones.new.find(id)
     when :podcast
-      podcast = RepositorioPodcasts.new.find(id)
-      episodios = RepositorioEpisodios.new.obtener_episodios_por_podcast(podcast.id)
-      podcast.agregar_episodios(episodios)
-      podcast
+      RepositorioPodcasts.new.find(id)
     when :episodio
       RepositorioEpisodios.new.find(id)
     end
