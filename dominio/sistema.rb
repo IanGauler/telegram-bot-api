@@ -96,11 +96,18 @@ class Sistema
   end
 
   def registrar_reproduccion_episodio(email, id_episodio, id_podcast)
-    episodio = obtener_contenido_por_id(id_episodio)
-
+    episodio = obtener_contenido_por_id_repositorio(@administrador_de_contenido.repositorio_episodios, id_episodio)
     podcast = obtener_contenido_por_id(id_podcast)
     podcast.tiene_episodio(episodio)
 
     registrar_reproduccion(email, id_episodio)
+  end
+
+  private
+
+  def obtener_contenido_por_id_repositorio(repositorio, id)
+    repositorio.find(id)
+  rescue ObjectNotFound
+    raise ContenidoNoEncontrado
   end
 end
