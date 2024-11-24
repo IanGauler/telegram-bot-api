@@ -192,7 +192,7 @@ post '/contenidos/:id_contenido/playlist' do
 rescue ContenidoNoEncontrado => e
   @status = 404
   @respuesta = { error: e.message }.to_json
-rescue AgregarPodcastAPlaylist => e
+rescue AgregarPodcastAPlaylist, ContenidoDuplicadoPlaylist => e
   @status = 409
   @respuesta = { error: e.message }.to_json
 end

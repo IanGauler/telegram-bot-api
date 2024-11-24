@@ -45,11 +45,9 @@ Entonces('el bot muestra el mensaje {string}') do |mensaje_esperado|
     'No hay recomendaciones de canciones disponibles en este momento. Escucha una para ayudar a la comunidad' => 200,
     'El contenido no fue encontrado.' => 404,
     'No se puede dar me gusta a episodios.' => 404,
-    'No se puede agregar podcast a una playlist. Deberías agregar los episodios individualmente.' => 409
+    'No se puede agregar podcast a una playlist. Deberías agregar los episodios individualmente.' => 409,
+    'Este contenido ya se encuentra en tu playlist.' => 409
   }
-
-  puts "el codigo esperado es #{codigos_esperados[mensaje_esperado]}"
-  puts "el codigo obtenido es #{@response.status}"
   expect(@response.status).to eq(codigos_esperados[mensaje_esperado])
 end
 

@@ -28,8 +28,8 @@ Característica:
 	  Cuando intento agregar a la playlist "Caja Negra"
 	  Entonces el bot muestra el mensaje "No se puede agregar podcast a una playlist. Deberías agregar los episodios individualmente."
 	
-	@wip
+  @wip
   Escenario: US14-05 - Intentar agregar un contenido duplicado a la playlist
 	  Cuando intento agregar a la playlist "Ep1"
-	  Y que intento agregar a la playlist "Ep1" 
+	  Y intento agregar a la playlist "Ep1" 
 	  Entonces el bot muestra el mensaje "Este contenido ya se encuentra en tu playlist."

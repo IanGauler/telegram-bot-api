@@ -1,12 +1,13 @@
 class Usuario
   attr_reader :email, :updated_on, :created_on
-  attr_accessor :id, :reproducciones, :me_gustas
+  attr_accessor :id, :reproducciones, :me_gustas, :playlist
 
   def initialize(id, email)
     @email = email
     @id = id
     @reproducciones = []
     @me_gustas = []
+    @playlist = []
   end
 
   def esta_registradado?(repositorio_usuarios)
@@ -26,8 +27,10 @@ class Usuario
   end
 
   def agregar_contenido_a_playlist(contenido)
-    puts 'se llamo a lo que queremos'
     raise ContenidoNoEncontrado if contenido.nil?
     raise AgregarPodcastAPlaylist if contenido.is_a?(Podcast)
+    raise ContenidoDuplicadoPlaylist if @playlist.any? { |c| c.id = contenido.id }
+
+    @playlist << contenido
   end
 end

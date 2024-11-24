@@ -30,3 +30,9 @@ class AgregarPodcastAPlaylist < ErrorContenido
     super(msg)
   end
 end
+
+class ContenidoDuplicadoPlaylist < ErrorContenido
+  def initialize(msg = 'Este contenido ya se encuentra en tu playlist.')
+    super(msg)
+  end
+end
