@@ -102,6 +102,17 @@ rescue ContenidoNoEncontrado => e
   @respuesta = { error: e.message }.to_json
 end
 
+post '/contenidos/:id_contenido/megusta' do
+  sistema.registrar_megusta(@params[:id_usuario].to_s, params['id_contenido'].to_i)
+  @status = 201
+rescue CancionNoEncontrada, UsuarioNoRegistrado => e
+  @status = 404
+  @respuesta = { error: e.message }.to_json
+rescue CancionNoEscuchada => e
+  @status = 409
+  @respuesta = { error: e.message }.to_json
+end
+
 post '/canciones/:id_cancion/reproduccion' do
   id_cancion = params['id_cancion'].to_i
   sistema.registrar_reproduccion(@params[:email], id_cancion)
@@ -119,17 +130,6 @@ get '/reproducciones' do
   end
   @status = 200
   @respuesta = json(respuesta)
-end
-
-post '/canciones/:id_cancion/megusta' do
-  sistema.registrar_megusta(@params[:id_usuario].to_s, params['id_cancion'].to_i)
-  @status = 201
-rescue CancionNoEncontrada, UsuarioNoRegistrado => e
-  @status = 404
-  @respuesta = { error: e.message }.to_json
-rescue CancionNoEscuchada => e
-  @status = 409
-  @respuesta = { error: e.message }.to_json
 end
 
 get '/megustas' do
