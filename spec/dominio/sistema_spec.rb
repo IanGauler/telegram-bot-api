@@ -114,7 +114,7 @@ describe Sistema do
 
       megusta = sistema.megustas.first
       expect(megusta.usuario.id).to eq juan_id
-      expect(megusta.cancion.id).to eq sistema.canciones.first.id
+      expect(megusta.contenido.id).to eq sistema.canciones.first.id
     end
   end
 
