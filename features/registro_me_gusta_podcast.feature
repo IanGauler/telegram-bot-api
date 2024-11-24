@@ -20,7 +20,8 @@ Característica:
   Escenario: US24-03 Dar me gusta a un contenido inexistente
     Cuando envio el comando "/megusta" con el id de "Podcast Inexistente"
     Entonces el bot muestra el mensaje "El contenido no fue encontrado."
-  @wip
+
   Escenario: US24-04 Dar me gusta a un episodio
+    Dado que he reproducido el episodio "Ep1"
     Cuando envio el comando "/megusta" con el id de "Ep1"
-    Entonces el bot muestra el mensaje "No se puede dar me gusta a episodios. Podes darle me gusta al podcast."
+    Entonces el bot muestra el mensaje "No se puede dar me gusta a episodios."

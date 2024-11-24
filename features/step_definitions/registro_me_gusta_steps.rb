@@ -34,6 +34,7 @@ end
 Cuando('envio el comando {string} con el id de {string}') do |_comando, nombre_podcast|
   @id_contenido = RepositorioPodcasts.new.all.first.id
   @id_contenido = 0 if nombre_podcast == 'Podcast Inexistente'
+  @id_contenido = RepositorioEpisodios.new.all.first.id if nombre_podcast == 'Ep1'
   request_body = { id_usuario: @id_usuario }.to_json
   @response = Faraday.post("/contenidos/#{@id_contenido}/megusta", request_body, { 'Content-Type' => 'application/json' })
 end

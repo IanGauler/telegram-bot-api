@@ -15,4 +15,8 @@ class Episodio
     hash[:id] = @id unless @id.nil?
     hash
   end
+
+  def reproduccion_pertenece_a_contenido(_contenido)
+    raise NoSePuedeDarMeGustaAEpisodios
+  end
 end
