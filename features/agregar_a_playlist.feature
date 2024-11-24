@@ -10,10 +10,9 @@ Característica:
 	  Y que existe la cancion "That's so true"
 	  Y que mi playlist esta vacia
 
-	@wip
   Escenario: US14-01 - Agregar una canción a la playlist
 	  Cuando intento agregar a la playlist "That's so true"
-	  Entonces el bot muestra el mensaje "\"That's so true\" agregado a tu playlist."
+	  Entonces el "That's so true" se agrega a mi playlist
 	
 	@wip
   Escenario: US14-02 - Agregar un episodio a la playlist

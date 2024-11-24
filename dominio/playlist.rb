@@ -1,5 +1,5 @@
 class Playlist
-  attr_reader :contenido
+  attr_accessor :contenidos
 
   def initialize
     @contenidos = []

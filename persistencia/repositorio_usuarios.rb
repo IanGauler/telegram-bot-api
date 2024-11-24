@@ -32,6 +32,7 @@ class RepositorioUsuarios < AbstractRepository
 
     guardar_interacciones(usuario.reproducciones, RepositorioReproducciones.new)
     guardar_interacciones(usuario.me_gustas, RepositorioMeGustas.new)
+    guardar_playlist(usuario)
 
     usuario
   end
@@ -41,7 +42,7 @@ class RepositorioUsuarios < AbstractRepository
   def guardar_playlist(usuario)
     playlist = usuario.playlist
     playlist.contenidos.each do |contenido|
-      Sequel[:playlist].insert(usuario_id: usuario.id, contenido_id: contenido.id)
+      DB[:playlists].insert(id_usuario: usuario.id, id_contenido: contenido.id)
     end
   end
 
@@ -54,7 +55,15 @@ class RepositorioUsuarios < AbstractRepository
   protected
 
   def load_object(a_hash)
-    Usuario.new(a_hash[:id], a_hash[:email])
+    usuario = Usuario.new(a_hash[:id], a_hash[:email])
+
+    contenidos = DB[:playlists]
+                 .where(id_usuario: usuario.id)
+                 .map { |row| RepositorioContenido.new.find(row[:id_contenido]) }
+
+    contenidos.each { |contenido| usuario.agregar_contenido_a_playlist(contenido) }
+
+    usuario
   end
 
   def changeset(usuario)

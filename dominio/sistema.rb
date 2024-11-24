@@ -107,6 +107,7 @@ class Sistema
     usuario = @repositorio_usuarios.obtener_usuario_por_id(id_usuario)
 
     usuario.agregar_contenido_a_playlist(contenido)
+    @repositorio_usuarios.save(usuario)
   end
 
   private
