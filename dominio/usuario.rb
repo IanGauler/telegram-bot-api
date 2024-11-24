@@ -24,4 +24,8 @@ class Usuario
 
     @me_gustas << MeGusta.new(self, contenido)
   end
+
+  def agregar_contenido_a_playlist(contenido)
+    raise ContenidoNoEncontrado if contenido.nil?
+  end
 end

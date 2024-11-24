@@ -184,3 +184,11 @@ rescue UsuarioNoRegistrado, ContenidoNoEncontrado, EpisodioNoPerteneceAPodcast =
   @status = 404
   @respuesta = { error: e.message }.to_json
 end
+
+post '/contenidos/:id_contenido/playlist' do
+  sistema.agregar_contenido_a_playlist(@params[:id_usuario].to_s, params['id_contenido'].to_i)
+  @status = 201
+rescue ContenidoNoEncontrado => e
+  @status = 404
+  @respuesta = { error: e.message }.to_json
+end

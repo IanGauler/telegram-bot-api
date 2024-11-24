@@ -102,6 +102,13 @@ class Sistema
     registrar_reproduccion(email, id_episodio)
   end
 
+  def agregar_contenido_a_playlist(id_usuario, id_contenido)
+    contenido = obtener_contenido_por_id(id_contenido)
+    usuario = @repositorio_usuarios.obtener_usuario_por_id(id_usuario)
+
+    usuario.agregar_contenido_a_playlist(contenido)
+  end
+
   private
 
   def obtener_contenido_por_id_repositorio(repositorio, id)
