@@ -7,7 +7,7 @@ Característica:
   Antecedentes:
     Dado que mi usuario es "juan" con id "1" y mail "juan@gmail.com", y estoy registrado
     Y que existe el podcast "Caja Negra" con el episodio "Ep1"
-  @wip
+
   Escenario: US24-01 Dar me gusta a un podcast reproducido
     Dado que he reproducido el episodio "Ep1"
     Cuando envio el comando "/megusta" con el id de "Caja Negra"
