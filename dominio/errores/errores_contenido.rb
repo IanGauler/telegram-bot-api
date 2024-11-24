@@ -24,3 +24,9 @@ class EpisodioNoPerteneceAPodcast < ErrorContenido
     super(msg)
   end
 end
+
+class AgregarPodcastAPlaylist < ErrorContenido
+  def initialize(msg = 'No se puede agregar un podcast a la playlist.')
+    super(msg)
+  end
+end

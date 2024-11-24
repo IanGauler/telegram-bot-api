@@ -103,8 +103,11 @@ class Sistema
   end
 
   def agregar_contenido_a_playlist(id_usuario, id_contenido)
+    puts 'tratando de llamar a lo que queremos'
     contenido = obtener_contenido_por_id(id_contenido)
+    puts 'tratando de llamar a lo que queremos2'
     usuario = @repositorio_usuarios.obtener_usuario_por_id(id_usuario)
+    puts 'tratando de llamar a lo que queremo3'
 
     usuario.agregar_contenido_a_playlist(contenido)
   end

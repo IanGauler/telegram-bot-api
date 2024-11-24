@@ -186,9 +186,13 @@ rescue UsuarioNoRegistrado, ContenidoNoEncontrado, EpisodioNoPerteneceAPodcast =
 end
 
 post '/contenidos/:id_contenido/playlist' do
-  sistema.agregar_contenido_a_playlist(@params[:id_usuario].to_s, params['id_contenido'].to_i)
+  id_contenido = params['id_contenido'].to_i
+  sistema.agregar_contenido_a_playlist(@params[:id_usuario].to_s, id_contenido)
   @status = 201
 rescue ContenidoNoEncontrado => e
   @status = 404
+  @respuesta = { error: e.message }.to_json
+rescue AgregarPodcastAPlaylist => e
+  @status = 409
   @respuesta = { error: e.message }.to_json
 end

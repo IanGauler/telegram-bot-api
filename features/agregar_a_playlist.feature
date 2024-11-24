@@ -12,25 +12,24 @@ Característica:
 
 	@wip
   Escenario: US14-01 - Agregar una canción a la playlist
-	  Cuando envio el comando "/agregar_a_playlist" con el id de "That's so true"
+	  Cuando intento agregar a la playlist "That's so true"
 	  Entonces el bot muestra el mensaje "\"That's so true\" agregado a tu playlist."
 	
 	@wip
   Escenario: US14-02 - Agregar un episodio a la playlist
-	  Cuando envio el comando "/agregar_a_playlist" con el id de "Ep1"
+	  Cuando intento agregar a la playlist "Ep1"
 	  Entonces el bot muestra el mensaje "\"Ep1\" agregado a tu playlist."
 	
   Escenario: US14-03 - El ID de contenido no existe
 	  Cuando envio el comando "/agregar_a_playlist" con id inexistente
 	 Entonces el bot muestra el mensaje "El contenido no fue encontrado."
 	
-	@wip
   Escenario: US14-04 - Intentar agregar un podcast completo a la playlist
-	  Cuando envio el comando "/agregar_a_playlist" con el id de "Caja Negra"
+	  Cuando intento agregar a la playlist "Caja Negra"
 	  Entonces el bot muestra el mensaje "No se puede agregar podcast a una playlist. Deberías agregar los episodios individualmente."
 	
 	@wip
   Escenario: US14-05 - Intentar agregar un contenido duplicado a la playlist
-	  Cuando envio el comando "/agregar_a_playlist" con el id de "Ep1"
-	  Y que envio el comando "/agregar_a_playlist" con el id de "Ep1" 
+	  Cuando intento agregar a la playlist "Ep1"
+	  Y que intento agregar a la playlist "Ep1" 
 	  Entonces el bot muestra el mensaje "Este contenido ya se encuentra en tu playlist."

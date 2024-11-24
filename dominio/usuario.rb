@@ -26,6 +26,8 @@ class Usuario
   end
 
   def agregar_contenido_a_playlist(contenido)
+    puts 'se llamo a lo que queremos'
     raise ContenidoNoEncontrado if contenido.nil?
+    raise AgregarPodcastAPlaylist if contenido.is_a?(Podcast)
   end
 end
