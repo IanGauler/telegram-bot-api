@@ -30,6 +30,10 @@ class Podcast
     raise EpisodioNoPerteneceAPodcast unless @episodios.any? { |e| e.id == episodio.id }
   end
 
+  def reproduccion_pertenece_a_contenido(contenido)
+    @episodios.any? { |episodio| episodio.id == contenido.id }
+  end
+
   private
 
   def agregar_episodio(episodio)

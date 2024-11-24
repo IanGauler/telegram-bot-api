@@ -15,4 +15,8 @@ class Cancion
     hash[:id] = @id unless @id.nil?
     hash
   end
+
+  def reproduccion_pertenece_a_contenido(contenido)
+    @id == contenido.id
+  end
 end

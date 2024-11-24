@@ -105,7 +105,7 @@ end
 post '/contenidos/:id_contenido/megusta' do
   sistema.registrar_megusta(@params[:id_usuario].to_s, params['id_contenido'].to_i)
   @status = 201
-rescue CancionNoEncontrada, UsuarioNoRegistrado => e
+rescue ContenidoNoEncontrado, UsuarioNoRegistrado => e
   @status = 404
   @respuesta = { error: e.message }.to_json
 rescue CancionNoEscuchada => e

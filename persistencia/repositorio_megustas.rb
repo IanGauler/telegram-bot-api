@@ -8,9 +8,9 @@ class RepositorioMeGustas < AbstractRepository
 
   def load_object(a_hash)
     usuario = RepositorioUsuarios.new.find(a_hash[:id_usuario])
-    cancion = RepositorioCanciones.new.find(a_hash[:id_contenido])
+    contenido = RepositorioContenido.new.find(a_hash[:id_contenido])
 
-    MeGusta.new(usuario, cancion, a_hash[:id])
+    MeGusta.new(usuario, contenido, a_hash[:id])
   end
 
   def changeset(me_gusta)

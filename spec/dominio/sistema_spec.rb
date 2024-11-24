@@ -93,7 +93,7 @@ describe Sistema do
   describe 'registrar_megusta' do
     it 'deberia devolver error si el id de la cancion no existe en el sistema' do
       sistema.crear_usuario(juan_id, juan_email)
-      expect { sistema.registrar_megusta(juan_id, 1) }.to raise_error(CancionNoEncontrada)
+      expect { sistema.registrar_megusta(juan_id, 1) }.to raise_error(ContenidoNoEncontrado)
     end
 
     it 'deberia devolver error si el usuario no ha escuchado la cancion' do
@@ -115,6 +115,21 @@ describe Sistema do
       megusta = sistema.megustas.first
       expect(megusta.usuario.id).to eq juan_id
       expect(megusta.contenido.id).to eq sistema.canciones.first.id
+    end
+
+    it 'deberia registrar un me gusta a un podcast' do
+      sistema.crear_usuario(juan_id, juan_email)
+      episodios = [{ titulo: 'Ep1', participantes: 'Filo.news', duracion: '45:20' }]
+      sistema.crear_podcast('Caja Negra', 'Filo.news', 2022, episodios)
+      podcast = sistema.podcasts.first
+      sistema.registrar_reproduccion_episodio(juan_email, podcast.episodios.first.id, podcast.id)
+
+      sistema.registrar_megusta(juan_id, podcast.id)
+      expect(sistema.megustas.size).to eq 1
+
+      megusta = sistema.megustas.first
+      expect(megusta.usuario.id).to eq juan_id
+      expect(megusta.contenido.id).to eq podcast.id
     end
   end
 

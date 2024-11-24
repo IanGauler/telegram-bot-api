@@ -12,7 +12,7 @@ class Reproduccion
   end
 
   def corresponde_a_contenido(contenido)
-    @contenido.id == contenido.id
+    contenido.reproduccion_pertenece_a_contenido(@contenido)
   end
 
   private
