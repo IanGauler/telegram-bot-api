@@ -108,6 +108,8 @@ class Sistema
 
     usuario.agregar_contenido_a_playlist(contenido)
     @repositorio_usuarios.save(usuario)
+
+    contenido
   end
 
   private

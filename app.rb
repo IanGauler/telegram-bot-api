@@ -189,8 +189,11 @@ post '/contenidos/:id_contenido/playlist' do
   id_contenido = params['id_contenido'].to_i
   id_usuario = @params[:id_usuario].to_s
 
-  sistema.agregar_contenido_a_playlist(id_usuario, id_contenido)
+  contenido = sistema.agregar_contenido_a_playlist(id_usuario, id_contenido)
+  representacion_hash_contenido = contenido.representacion_hash
+
   @status = 201
+  @respuesta = json(representacion_hash_contenido)
 rescue ContenidoNoEncontrado => e
   @status = 404
   @respuesta = { error: e.message }.to_json

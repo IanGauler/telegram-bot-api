@@ -19,7 +19,7 @@ class Playlist
   end
 
   def contenido_duplicado?(contenido)
-    raise ContenidoDuplicadoPlaylist if @contenidos.any? { |c| c.id = contenido.id }
+    raise ContenidoDuplicadoPlaylist if @contenidos.any? { |c| c.id == contenido.id }
   end
 
   def contenido_es_podcast?(contenido)

@@ -42,7 +42,7 @@ class RepositorioUsuarios < AbstractRepository
   def guardar_playlist(usuario)
     playlist = usuario.playlist
     playlist.contenidos.each do |contenido|
-      DB[:playlists].insert(id_usuario: usuario.id, id_contenido: contenido.id)
+      DB[:playlists].insert(id_usuario: usuario.id, id_contenido: contenido.id) unless DB[:playlists].where(id_usuario: usuario.id, id_contenido: contenido.id).any?
     end
   end
 
