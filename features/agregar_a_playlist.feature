@@ -22,7 +22,7 @@ Característica:
 	
   Escenario: US14-03 - El ID de contenido no existe
 	  Cuando envio el comando "/agregar_a_playlist" con id inexistente
-	 Entonces el bot muestra el mensaje "El contenido no fue encontrado."
+	  Entonces el bot muestra el mensaje "El contenido no fue encontrado."
 	
   Escenario: US14-04 - Intentar agregar un podcast completo a la playlist
 	  Cuando intento agregar a la playlist "Caja Negra"

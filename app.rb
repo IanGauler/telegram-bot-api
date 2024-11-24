@@ -187,7 +187,9 @@ end
 
 post '/contenidos/:id_contenido/playlist' do
   id_contenido = params['id_contenido'].to_i
-  sistema.agregar_contenido_a_playlist(@params[:id_usuario].to_s, id_contenido)
+  id_usuario = @params[:id_usuario].to_s
+
+  sistema.agregar_contenido_a_playlist(id_usuario, id_contenido)
   @status = 201
 rescue ContenidoNoEncontrado => e
   @status = 404
