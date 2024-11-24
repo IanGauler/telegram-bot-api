@@ -15,7 +15,7 @@ Escenario: US7-01 Dar me gusta a una cancion escuchada
 
 Escenario: US7-02 Dar me gusta a una cancion no escuchada
   Cuando envio el comando "/megusta" con la id de "Waka Waka"
-  Entonces el bot muestra el mensaje "Aún no has escuchado esta cancion."
+  Entonces el bot muestra el mensaje "Aún no has escuchado este contenido."
 
 Escenario: US7-03 Dar me gusta a una cancion inexistente
   Cuando envio el comando "/megusta" con la id de "Cancion Inexistente"

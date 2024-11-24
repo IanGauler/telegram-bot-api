@@ -108,7 +108,7 @@ post '/contenidos/:id_contenido/megusta' do
 rescue ContenidoNoEncontrado, UsuarioNoRegistrado => e
   @status = 404
   @respuesta = { error: e.message }.to_json
-rescue CancionNoEscuchada => e
+rescue ContenidoNoEscuchado => e
   @status = 409
   @respuesta = { error: e.message }.to_json
 end

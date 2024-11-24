@@ -12,10 +12,10 @@ Característica:
     Dado que he reproducido el episodio "Ep1"
     Cuando envio el comando "/megusta" con el id de "Caja Negra"
     Entonces el bot muestra el mensaje "Calificacion registrada"
-  @wip
+
   Escenario: US24-02 Dar me gusta a un podcast no escuchado
     Cuando envio el comando "/megusta" con el id de "Caja Negra"
-    Entonces el bot muestra el mensaje "Aún no has escuchado el contenido."
+    Entonces el bot muestra el mensaje "Aún no has escuchado este contenido."
   @wip
   Escenario: US24-03 Dar me gusta a un contenido inexistente
     Cuando envio el comando "/megusta" con el id de "Podcast Inexistente"

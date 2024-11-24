@@ -20,7 +20,7 @@ class Usuario
 
   def dar_megusta_a(cancion)
     raise CancionNoEncontrada if cancion.nil?
-    raise CancionNoEscuchada unless @reproducciones.any? { |r| r.corresponde_a_contenido(cancion) }
+    raise ContenidoNoEscuchado unless @reproducciones.any? { |r| r.corresponde_a_contenido(cancion) }
 
     @me_gustas << MeGusta.new(self, cancion)
   end

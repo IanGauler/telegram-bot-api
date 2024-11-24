@@ -101,7 +101,7 @@ describe Sistema do
       sistema.crear_cancion('Waka Waka', 'Shakira', 2010, '3:31')
       cancion = sistema.canciones.first
 
-      expect { sistema.registrar_megusta(juan_id, cancion.id) }.to raise_error(CancionNoEscuchada)
+      expect { sistema.registrar_megusta(juan_id, cancion.id) }.to raise_error(ContenidoNoEscuchado)
     end
 
     it 'deberia registrar un me gusta' do

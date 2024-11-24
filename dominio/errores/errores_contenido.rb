@@ -7,8 +7,8 @@ class ContenidoNoEncontrado < ErrorContenido
   end
 end
 
-class CancionNoEscuchada < ErrorContenido
-  def initialize(msg = 'El usuario aún no ha escuchado esta cancion.')
+class ContenidoNoEscuchado < ErrorContenido
+  def initialize(msg = 'Aún no has escuchado este contenido.')
     super(msg)
   end
 end
