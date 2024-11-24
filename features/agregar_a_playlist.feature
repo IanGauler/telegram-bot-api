@@ -14,10 +14,9 @@ Característica:
 	  Cuando intento agregar a la playlist "That's so true"
 	  Entonces el "That's so true" se agrega a mi playlist
 	
-	@wip
   Escenario: US14-02 - Agregar un episodio a la playlist
 	  Cuando intento agregar a la playlist "Ep1"
-	  Entonces el bot muestra el mensaje "\"Ep1\" agregado a tu playlist."
+	  Entonces el "Ep1" se agrega a mi playlist
 	
   Escenario: US14-03 - El ID de contenido no existe
 	  Cuando envio el comando "/agregar_a_playlist" con id inexistente
@@ -27,7 +26,6 @@ Característica:
 	  Cuando intento agregar a la playlist "Caja Negra"
 	  Entonces el bot muestra el mensaje "No se puede agregar podcast a una playlist. Deberías agregar los episodios individualmente."
 	
-  @wip
   Escenario: US14-05 - Intentar agregar un contenido duplicado a la playlist
 	  Cuando intento agregar a la playlist "Ep1"
 	  Y intento agregar a la playlist "Ep1" 
