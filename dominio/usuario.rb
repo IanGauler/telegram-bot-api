@@ -7,7 +7,7 @@ class Usuario
     @id = id
     @reproducciones = []
     @me_gustas = []
-    @playlist = []
+    @playlist = Playlist.new
   end
 
   def esta_registradado?(repositorio_usuarios)
@@ -27,10 +27,6 @@ class Usuario
   end
 
   def agregar_contenido_a_playlist(contenido)
-    raise ContenidoNoEncontrado if contenido.nil?
-    raise AgregarPodcastAPlaylist if contenido.is_a?(Podcast)
-    raise ContenidoDuplicadoPlaylist if @playlist.any? { |c| c.id = contenido.id }
-
-    @playlist << contenido
+    @playlist.agregar_contenido(contenido)
   end
 end

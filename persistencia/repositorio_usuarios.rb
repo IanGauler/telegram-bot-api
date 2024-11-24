@@ -38,6 +38,13 @@ class RepositorioUsuarios < AbstractRepository
 
   private
 
+  def guardar_playlist(usuario)
+    playlist = usuario.playlist
+    playlist.contenidos.each do |contenido|
+      Sequel[:playlist].insert(usuario_id: usuario.id, contenido_id: contenido.id)
+    end
+  end
+
   def guardar_interacciones(iteracciones, repositorio)
     iteracciones.each do |iteraccion|
       repositorio.save(iteraccion)

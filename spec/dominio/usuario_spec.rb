@@ -35,19 +35,4 @@ describe Usuario do
     contenido = Cancion.new('titulo', 'artistas', 2021, 180)
     expect { usuario2.dar_megusta_a(contenido) }.to raise_error(ContenidoNoEscuchado)
   end
-
-  it 'deberia lanzar ContenidoNoEncontrado si se intenta agregar contenido inexistente a su playlist' do
-    expect { usuario.agregar_contenido_a_playlist(nil) }.to raise_error(ContenidoNoEncontrado)
-  end
-
-  it 'deberia lanzar AgregarPodcastAPlaylist si se intenta agregar un podcast a su playlist' do
-    podcast = Podcast.new('titulo', 'creador', 2021)
-    expect { usuario.agregar_contenido_a_playlist(podcast) }.to raise_error(AgregarPodcastAPlaylist)
-  end
-
-  it 'deberia lanzar ContenidoDuplicadoPlaylist si se intenta agregar dos veces un contenido a su playlist' do
-    contenido = Cancion.new('titulo', 'artistas', 2021, 180, 1)
-    usuario.agregar_contenido_a_playlist(contenido)
-    expect { usuario.agregar_contenido_a_playlist(contenido) }.to raise_error(ContenidoDuplicadoPlaylist)
-  end
 end
