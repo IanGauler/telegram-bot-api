@@ -16,10 +16,10 @@ Característica:
   Escenario: US24-02 Dar me gusta a un podcast no escuchado
     Cuando envio el comando "/megusta" con el id de "Caja Negra"
     Entonces el bot muestra el mensaje "Aún no has escuchado este contenido."
-  @wip
+
   Escenario: US24-03 Dar me gusta a un contenido inexistente
     Cuando envio el comando "/megusta" con el id de "Podcast Inexistente"
-    Entonces el bot muestra el mensaje "No se ha podido encontrar el contenido."
+    Entonces el bot muestra el mensaje "El contenido no fue encontrado."
   @wip
   Escenario: US24-04 Dar me gusta a un episodio
     Cuando envio el comando "/megusta" con el id de "Ep1"

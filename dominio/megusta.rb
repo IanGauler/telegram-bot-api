@@ -13,6 +13,6 @@ class MeGusta
 
   def validar_me_gusta!
     raise UsuarioNoRegistrado if usuario.nil?
-    raise CancionNoEncontrada if contenido.nil?
+    raise ContenidoNoEncontrado if contenido.nil?
   end
 end

@@ -18,10 +18,10 @@ class Usuario
     @reproducciones << Reproduccion.new(self, contenido)
   end
 
-  def dar_megusta_a(cancion)
-    raise CancionNoEncontrada if cancion.nil?
-    raise ContenidoNoEscuchado unless @reproducciones.any? { |r| r.corresponde_a_contenido(cancion) }
+  def dar_megusta_a(contenido)
+    raise ContenidoNoEncontrado if contenido.nil?
+    raise ContenidoNoEscuchado unless @reproducciones.any? { |r| r.corresponde_a_contenido(contenido) }
 
-    @me_gustas << MeGusta.new(self, cancion)
+    @me_gustas << MeGusta.new(self, contenido)
   end
 end

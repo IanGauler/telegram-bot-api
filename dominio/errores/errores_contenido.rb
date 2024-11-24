@@ -13,12 +13,6 @@ class ContenidoNoEscuchado < ErrorContenido
   end
 end
 
-class CancionNoEncontrada < ErrorContenido
-  def initialize(msg = 'La canción no fue encontrada.')
-    super(msg)
-  end
-end
-
 class EpisodioNoPerteneceAPodcast < ErrorContenido
   def initialize(msg = 'El episodio no pertenece al podcast.')
     super(msg)
