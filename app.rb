@@ -3,6 +3,7 @@ require 'sinatra/json'
 require 'sequel'
 require 'sinatra/custom_logger'
 require_relative './config/configuration'
+require_relative './config/log_middleware'
 require_relative './lib/version'
 Dir[File.join(__dir__, 'dominio', '*.rb')].each { |file| require file }
 Dir[File.join(__dir__, 'persistencia', '*.rb')].each { |file| require file }
@@ -16,6 +17,8 @@ configure do
   set :environment, ENV['APP_MODE'].to_sym
   administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new, RepositorioPodcasts.new, RepositorioEpisodios.new)
   set :sistema, Sistema.new(RepositorioUsuarios.new, administrador_de_contenido, RepositorioReproducciones.new, RepositorioMeGustas.new)
+  use LogMiddleware
+  customer_logger.info("Aplicación iniciada en modo #{settings.environment}")
 end
 
 before do
@@ -37,6 +40,7 @@ def sistema
 end
 
 get '/version' do
+  @status = 200
   @respuesta = json({ version: Version.current })
 end
 
