@@ -201,3 +201,15 @@ rescue AgregarPodcastAPlaylist, ContenidoDuplicadoPlaylist => e
   @status = 409
   @respuesta = { error: e.message }.to_json
 end
+
+get '/usuarios/:id_usuario/playlist' do
+  id_usuario = params[:id_usuario].to_s
+
+  playlist = sistema.obtener_playlist(id_usuario)
+  contenidos = playlist.contenidos.map(&:representacion_hash)
+  @status = 201
+  @respuesta = json(contenidos)
+rescue UsuarioNoRegistrado => e
+  @status = 404
+  @respuesta = { error: e.message }.to_json
+end

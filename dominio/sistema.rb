@@ -112,6 +112,13 @@ class Sistema
     contenido
   end
 
+  def obtener_playlist(id_usuario)
+    usuario = @repositorio_usuarios.obtener_usuario_por_id(id_usuario)
+    raise UsuarioNoRegistrado if usuario.nil?
+
+    usuario.playlist
+  end
+
   private
 
   def obtener_contenido_por_id_repositorio(repositorio, id)

@@ -16,7 +16,6 @@ end
 
 Entonces('el {string} se agrega a mi playlist') do |titulo|
   usuario = RepositorioUsuarios.new.all.first
-  puts "que tiene la playlist: #{usuario.playlist.contenidos}"
   contenido = usuario.playlist.contenidos.first
 
   expect(@response.status).to eq(201)
