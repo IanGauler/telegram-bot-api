@@ -19,8 +19,7 @@ Característica:
 			Ep1 (<id>)
 			"""
 
-  @wip
 	Escenario: US23-02 - Ver contenido de playlist vacia
-		Dado que mi playlista esta vacia
+		Dado que mi playlist esta vacia
 		Cuando envio el comando "/playlist"
-		Entonces el bot muestra el mensaje "No tienes contenido en tu playlist."
+		Entonces no obtengo contenidos de mi playlist

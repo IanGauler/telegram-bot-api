@@ -21,3 +21,8 @@ Entonces('el {string} se agrega a mi playlist') do |titulo|
   expect(@response.status).to eq(201)
   expect(contenido.titulo).to eq(titulo)
 end
+
+Entonces('no obtengo contenidos de mi playlist') do
+  expect(@response.status).to eq(200)
+  expect(JSON.parse(@response.body)).to eq([])
+end

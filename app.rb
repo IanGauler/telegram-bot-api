@@ -207,7 +207,7 @@ get '/usuarios/:id_usuario/playlist' do
 
   playlist = sistema.obtener_playlist(id_usuario)
   contenidos = playlist.contenidos.map(&:representacion_hash)
-  @status = 201
+  @status = 200
   @respuesta = json(contenidos)
 rescue UsuarioNoRegistrado => e
   @status = 404
