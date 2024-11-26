@@ -43,6 +43,7 @@ class Podcast
 
   def validar_anio(anio)
     raise AnioVacio if anio.is_a?(String) && anio.empty?
+    raise AnioInvalido if anio.is_a?(String) && !anio.to_s.match?(/^\d+$/)
 
     anio.to_i
   end

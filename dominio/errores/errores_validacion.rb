@@ -15,3 +15,9 @@ class AnioVacio < StandardError
     super(msg)
   end
 end
+
+class AnioInvalido < StandardError
+  def initialize(msg = 'Formato de año inválido. Debe ser un número menor al año actual')
+    super(msg)
+  end
+end
