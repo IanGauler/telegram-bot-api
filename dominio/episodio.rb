@@ -26,26 +26,26 @@ class Episodio
   private
 
   def validar
-    raise ErrorEpisodioInvalido if @titulo.nil? || @participantes.nil? || @duracion.nil?
-
     validar_titulo
     validar_participantes
     validar_duracion
   end
 
   def validar_titulo
-    raise ErrorEpisodioInvalido unless @titulo.is_a?(String)
-    raise TituloVacioEpisodio if @titulo.empty?
+    validar_parametro(@titulo, TituloVacioEpisodio)
   end
 
   def validar_participantes
-    raise ErrorEpisodioInvalido unless @participantes.is_a?(String)
-    raise ParticipantesVacioEpisodio if @participantes.empty?
+    validar_parametro(@participantes, ParticipantesVacioEpisodio)
   end
 
   def validar_duracion
-    raise ErrorEpisodioInvalido unless @duracion.is_a?(String)
-    raise DuracionVaciaEpisodio if @duracion.empty?
+    validar_parametro(@duracion, DuracionVaciaEpisodio)
     raise FormatoInvalidoDuracionEpisodio unless @duracion.match?(FORMATO_DURACION)
+  end
+
+  def validar_parametro(parametro, error_parametro_vacio)
+    raise ErrorEpisodioInvalido unless parametro.is_a?(String)
+    raise error_parametro_vacio if parametro.empty?
   end
 end
