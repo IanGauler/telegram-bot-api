@@ -15,7 +15,6 @@ Y que el episodio tiene por "duracion" a "40:23"
 Cuando publico en la API con "/podcasts"
 Entonces obtengo el error "Episodio inválido: El título no puede ser vacío"
 
-@wip
 Escenario: US19-02 Participantes vacío
 Dado que el episodio tiene por "titulo" a "Numberphile"
 Y que el episodio tiene "participantes" vacio
