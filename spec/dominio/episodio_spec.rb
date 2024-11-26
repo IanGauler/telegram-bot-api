@@ -14,4 +14,9 @@ describe Episodio do
     episodio = described_class.new(podcast, 'Caja Negra - Ep1', 'Filo.news', '45:20', 1)
     expect(episodio.representacion_hash).to eq({ id: 1, titulo: 'Caja Negra - Ep1', participantes: 'Filo.news', duracion: '45:20' })
   end
+
+  it 'deberia lanzar error TituloVacioEpisodios si el titulo es vacio' do
+    podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
+    expect { described_class.new(podcast, '', 'Filo.news', '45:20') }.to raise_error(TituloVacioEpisodios)
+  end
 end

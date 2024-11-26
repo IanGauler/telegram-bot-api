@@ -8,6 +8,7 @@ class Episodio
     @duracion = duracion
     @podcast = podcast
     @id = id
+    validar
   end
 
   def representacion_hash
@@ -18,5 +19,15 @@ class Episodio
 
   def reproduccion_pertenece_a_contenido(_contenido)
     raise NoSePuedeDarMeGustaAEpisodios
+  end
+
+  private
+
+  def validar
+    validar_titulo
+  end
+
+  def validar_titulo
+    raise TituloVacioEpisodios if @titulo.empty?
   end
 end

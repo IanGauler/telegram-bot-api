@@ -36,3 +36,9 @@ class ContenidoDuplicadoPlaylist < ErrorContenido
     super(msg)
   end
 end
+
+class TituloVacioEpisodios < ErrorContenido
+  def initialize(msg = 'Episodio inválido: El título no puede ser vacío')
+    super(msg)
+  end
+end

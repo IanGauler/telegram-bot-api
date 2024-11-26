@@ -30,3 +30,20 @@ Entonces('obtengo el error {string}') do |error|
   response_body = JSON.parse(@response.body)
   expect(response_body['error']).to eq(error)
 end
+
+Dado('que quiero agregar un podcast válido con un episodio a la plataforma') do
+  @podcasts = [{
+    titulo: 'Podcast de prueba',
+    creador: 'Creador de un podcast de prueba',
+    anio: 2024,
+    episodios: [{}]
+  }]
+end
+
+Dado('que el episodio tiene {string} vacio') do |parametro|
+  @podcasts.first[:episodios].first[parametro] = ''
+end
+
+Dado('que el episodio tiene por {string} a {string}') do |parametro, valor|
+  @podcasts.first[:episodios].first[parametro] = valor
+end

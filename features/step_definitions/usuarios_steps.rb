@@ -47,7 +47,8 @@ Entonces('el bot muestra el mensaje {string}') do |mensaje_esperado|
     'No se puede dar me gusta a episodios.' => 404,
     'No se puede agregar podcast a una playlist. Deberías agregar los episodios individualmente.' => 409,
     'Este contenido ya se encuentra en tu playlist.' => 409,
-    'No se pudo obtener artistas recomendados' => 404
+    'No se pudo obtener artistas recomendados' => 404,
+    'Episodio inválido: El título no puede ser vacío' => 400
   }
   expect(@response.status).to eq(codigos_esperados[mensaje_esperado])
 end
