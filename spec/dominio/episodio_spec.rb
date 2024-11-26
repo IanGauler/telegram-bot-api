@@ -4,9 +4,9 @@ require_relative '../../dominio/episodio'
 require_relative '../../dominio/errores/errores_contenido'
 
 describe Episodio do
-  it 'deberia crear un episodio' do
+  it 'deberia crear un episodio si todos sus parametros son validos' do
     podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
-    episodio = described_class.new(podcast, 'Caja Negra - Ep1', 'Filo.news', '45:20')
+    episodio = described_class.new(podcast, 'Caja Negra - Ep1', 'Filo.news', '145:20')
     expect(episodio).to be_a(described_class)
   end
 

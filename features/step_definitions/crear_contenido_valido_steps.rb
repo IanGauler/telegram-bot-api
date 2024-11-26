@@ -53,3 +53,7 @@ end
 Dado('que el episodio tiene por {string} a {string}') do |parametro, valor|
   @podcasts.first[:episodios].first[parametro.to_sym] = valor
 end
+
+Entonces('el podcast es dado de alta') do
+  expect(@response.status).to eq(201)
+end

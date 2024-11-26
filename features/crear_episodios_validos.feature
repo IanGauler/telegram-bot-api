@@ -50,7 +50,6 @@ Y que el episodio tiene por "duracion" a "3:91"
 Cuando publico en la API con "/podcasts"
 Entonces obtengo el error "Episodio inválido: Formato de duración inválido. Debe ser MM:SS"
 
-@wip
 Escenario: US19-07 Episodio válido
 Dado que el episodio tiene por "titulo" a "Numberphile"
 Y que el episodio tiene por "participantes" a "Brady Haran"
