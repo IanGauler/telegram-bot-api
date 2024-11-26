@@ -2,8 +2,10 @@ Dir[File.join(__dir__, './errores', '*.rb')].each { |file| require file }
 require_relative './novedades'
 require_relative './recomendaciones'
 
-class Sistema
+# TODO: sacar el ignore y arreglar el warning
+class Sistema # rubocop:disable Metrics/ClassLength
   CANTIDAD_NOVEDADES = 5
+  CANTIDAD_RECOMENDACIONES = 5
   def initialize(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas, proveedor_de_artistas)
     @repositorio_usuarios = repositorio_usuarios
     @administrador_de_contenido = administrador_de_contenido
@@ -119,11 +121,32 @@ class Sistema
     usuario.playlist
   end
 
-  def recomendar_artistas(_id_usuario)
-    []
+  def recomendar_artistas(id_usuario)
+    usuario = @repositorio_usuarios.obtener_usuario_por_id(id_usuario)
+    raise UsuarioNoRegistrado if usuario.nil?
+
+    reproducciones = @repositorio_reproducciones.obtener_reproducciones_de_usuario(usuario)
+    artistas_escuchados = obtener_escuchas_por_artista(reproducciones)
+    raise ContenidoNoEscuchado, 'No hay reproducciones sobre las cuales recomendar' if artistas_escuchados.empty?
+
+    top_artista = artistas_escuchados.max_by { |_k, v| v }
+    @proveedor_de_artistas.artistas_similares(top_artista, CANTIDAD_RECOMENDACIONES)
   end
 
   private
+
+  def obtener_escuchas_por_artista(reproducciones)
+    artistas_escuchados = {}
+    canciones = reproducciones.select { |reproduccion| reproduccion.contenido.is_a?(Cancion) }
+    canciones.each do |reproduccion|
+      artistas = reproduccion.contenido.artistas_participantes
+      artistas.each do |autor|
+        artistas_escuchados[autor] ||= 0
+        artistas_escuchados[autor] += 1
+      end
+    end
+    artistas_escuchados
+  end
 
   def obtener_contenido_por_id_repositorio(repositorio, id)
     repositorio.find(id)

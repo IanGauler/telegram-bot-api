@@ -200,10 +200,11 @@ describe Sistema do
   describe 'recomendar_artistas' do
     it 'no recomienda si no hay reproducciones' do
       sistema.crear_usuario(juan_id, juan_email)
-      expect(sistema.recomendar_artistas(juan_id)).to eq []
+      expect { sistema.recomendar_artistas(juan_id) }.to raise_error(ContenidoNoEscuchado)
     end
 
-    xit 'deberia recomendar artistas similares a los escuchados' do
+    it 'deberia recomendar artistas similares a los escuchados' do
+      mock_spotify
       sistema.crear_usuario(juan_id, juan_email)
       crear_canciones(10, sistema, 'Beyonce')
       reproducir_canciones(5, sistema, dia_de_semana)
@@ -223,12 +224,17 @@ end
 
 def reproducir_canciones(cantidad, sistema, fecha = Date.today, offset = 0)
   allow(Date).to receive(:today).and_return(fecha)
-  mail = 'mail@mail.com'
-  sistema.crear_usuario('1', mail) unless sistema.usuarios.any? { |u| u.email == mail }
+  mail = 'juan@test.com'
+  id = '1'
+  sistema.crear_usuario(id, mail) unless sistema.usuarios.any? { |u| u.email == mail }
 
   canciones_a_reproducir = sistema.canciones[offset, cantidad]
   canciones_a_reproducir.each do |c|
     sistema.registrar_reproduccion(mail, c.id)
   end
   canciones_a_reproducir
+end
+
+def mock_spotify
+  allow_any_instance_of(ConectorSpotify).to receive(:artistas_similares).and_return(%w[Artista1 Artista2 Artista3 Artista4 Artista5])
 end

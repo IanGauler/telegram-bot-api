@@ -23,7 +23,7 @@ configure do
 end
 
 before do
-  logger.info("Recibida una request de #{request.request_method} en #{request.path_info}")
+  logger.info("Recibida una request de #{request.request_method} en #{request.path_info}. Body: #{request.body.read}")
   if !request.body.nil? && request.body.size.positive?
     request.body.rewind
     @params = JSON.parse(request.body.read, symbolize_names: true)
@@ -33,7 +33,7 @@ end
 after do
   logger.info("Respuesta enviada (#{@status || '<?>'}): #{@respuesta || '<vacío>'}")
   status @status
-  @respuesta
+  @respuesta || json({})
 end
 
 def sistema
@@ -75,6 +75,12 @@ post '/canciones' do
     sistema.crear_cancion(c[:titulo], c[:artistas], c[:anio].to_i, c[:duracion])
   end
   @status = 201
+rescue TituloVacio, ArtistaVacio, AnioVacio, AnioInvalido, AnioFueraDeRango, DuracionVacia, DuracionInvalida => e
+  @status = 400
+  @respuesta = { error: "Error al crear cancion: #{e.message}" }.to_json
+rescue StandardError => e
+  @status = 500
+  @respuesta = { error: "Error inesperado: #{e.message}" }.to_json
 end
 
 get '/canciones' do

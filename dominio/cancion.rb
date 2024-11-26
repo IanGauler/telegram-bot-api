@@ -19,4 +19,8 @@ class Cancion
   def reproduccion_pertenece_a_contenido(contenido)
     @id == contenido.id
   end
+
+  def artistas_participantes
+    @artistas.split(',').map(&:strip)
+  end
 end
