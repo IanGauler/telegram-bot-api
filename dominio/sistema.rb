@@ -131,6 +131,8 @@ class Sistema # rubocop:disable Metrics/ClassLength
 
     top_artista = artistas_escuchados.max_by { |_k, v| v }.first
     @proveedor_de_artistas.artistas_similares(top_artista, CANTIDAD_RECOMENDACIONES)
+  rescue ErrorConectorRecomendaciones
+    raise RecomendacionesNoDisponibles
   end
 
   private

@@ -239,4 +239,7 @@ rescue UsuarioNoRegistrado => e
 rescue ContenidoNoEscuchado => e
   @status = 409
   @respuesta = { error: e.message }.to_json
+rescue RecomendacionesNoDisponibles => e
+  @status = 503
+  @respuesta = { error: e.message }.to_json
 end

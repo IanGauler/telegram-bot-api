@@ -212,6 +212,15 @@ describe Sistema do
       recomendados = sistema.recomendar_artistas(juan_id)
       expect(recomendados.size).to eq 5
     end
+
+    it 'deberia manejar error de recomendaciones no disponibles' do
+      allow_any_instance_of(ConectorSpotify).to receive(:artistas_similares).and_raise(ErrorConectorRecomendaciones)
+      sistema.crear_usuario(juan_id, juan_email)
+      crear_canciones(10, sistema, 'Beyonce')
+      reproducir_canciones(5, sistema, dia_de_semana)
+
+      expect { sistema.recomendar_artistas(juan_id) }.to raise_error(RecomendacionesNoDisponibles)
+    end
   end
 end
 

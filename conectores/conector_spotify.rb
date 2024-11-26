@@ -22,6 +22,7 @@ class ConectorSpotify
     }
 
     response = Faraday.get(uri, nil, headers)
+    raise ErrorSpotify, 'Error al buscar artistas similares en Spotify' unless response.status == 200
 
     JSON.parse(response.body)['artists'].map { |artista_recomendado| artista_recomendado['name'] }.take(cantidad)
   end
@@ -35,6 +36,7 @@ class ConectorSpotify
     }
 
     response = Faraday.get(uri, nil, headers)
+    raise ErrorSpotify, 'Error al buscar artista en Spotify' unless response.status == 200
 
     JSON.parse(response.body)['artists']['items'].first['id']
   end
@@ -50,7 +52,10 @@ class ConectorSpotify
       'Content-Type' => 'application/x-www-form-urlencoded'
     }
 
-    Faraday.post(uri, body, headers)
+    response = Faraday.post(uri, body, headers)
+    raise ErrorSpotify, 'Error al obtener token de Spotify' unless response.status == 200
+
+    response
   end
 
   def regenrar_api_token
@@ -59,4 +64,7 @@ class ConectorSpotify
 
     @api_token = JSON.parse(response.body)['access_token']
   end
+end
+
+class ErrorConectorRecomendaciones < StandardError
 end

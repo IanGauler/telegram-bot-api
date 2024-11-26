@@ -11,6 +11,11 @@ Dado('que tengo acceso a Spotify') do
   @spotify_ok = true
 end
 
+Dado('que no tengo acceso a Spotify') do
+  @spotify_ok = false
+  allow_any_instance_of(ConectorSpotify).to receive(:artistas_similares).and_raise(ErrorConectorRecomendaciones)
+end
+
 Cuando('busco artistas recomendados') do
   @response = Faraday.get('/recomendaciones/artistas', { id: @usuario.id.to_s }, { 'Content-Type' => 'application/json' })
 end
