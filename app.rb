@@ -151,7 +151,7 @@ post '/podcasts' do
     sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio], podcast[:episodios])
   end
   @status = 201
-rescue TituloVacio, CreadorVacio, AnioVacio, AnioInvalido => e
+rescue TituloVacio, CreadorVacio, AnioVacio, AnioInvalido, AnioFueraDeRango => e
   @status = 400
   @respuesta = { error: e.message }.to_json
 end

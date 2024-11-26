@@ -21,3 +21,9 @@ class AnioInvalido < StandardError
     super(msg)
   end
 end
+
+class AnioFueraDeRango < StandardError
+  def initialize(msg = 'Formato de año inválido. Debe ser un número menor al año actual')
+    super(msg)
+  end
+end
