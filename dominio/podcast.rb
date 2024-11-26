@@ -8,6 +8,7 @@ class Podcast
     @anio = anio
     @id = id
     @episodios = []
+    validar!
   end
 
   def agregar_episodios(episodios)
@@ -38,5 +39,9 @@ class Podcast
 
   def agregar_episodio(episodio)
     @episodios << episodio
+  end
+
+  def validar!
+    raise TituloVacio if titulo.empty?
   end
 end

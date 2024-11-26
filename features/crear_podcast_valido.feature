@@ -7,13 +7,14 @@ Característica:
 
   Antecedentes:
     Dado que el anio actual es "2024"
-  @wip
+    Y que no hay podcasts en la plataforma
+
   Escenario: US20-01 Título vacío
     Dado que el podcast tiene "titulo" vacio
     Y que el podcast tiene por "creador" a "LinusTechTips"
     Y que el podcast tiene por "anio" a "2018"
     Y que el podcast tiene "1" episodio valido
-    Cuando publico en la API con "/podcasts"
+    Cuando publico en la API con "/podcasts" el contenido
     Entonces obtengo el error "El titulo no puede ser vacio"
   @wip
   Escenario: US20-02 Creador vacío
@@ -21,7 +22,7 @@ Característica:
     Y que el podcast tiene "creador" vacio
     Y que el podcast tiene por "anio" a "2018"
     Y que el podcast tiene "1" episodio valido
-    Cuando publico en la API con "/podcasts"
+    Cuando publico en la API con "/podcasts" el contenido
     Entonces obtengo el error "El creador no puede ser vacio"
   @wip
   Escenario: US20-03 Año vacío
@@ -29,7 +30,7 @@ Característica:
     Y que el podcast tiene por "creador" a "LinusTechTips"
     Y que el podcast tiene "anio" vacio
     Y que el podcast tiene "1" episodio valido
-    Cuando publico en la API con "/podcasts"
+    Cuando publico en la API con "/podcasts" el contenido
     Entonces obtengo el error "El año no puede ser vacio"
   @wip
   Escenario: US20-04 Año no numérico
@@ -37,7 +38,7 @@ Característica:
     Y que el podcast tiene por "creador" a "LinusTechTips"
     Y que el podcast tiene por "anio" a "Nvidia"
     Y que el podcast tiene "1" episodio valido
-    Cuando publico en la API con "/podcasts"
+    Cuando publico en la API con "/podcasts" el contenido
     Entonces obtengo el error "Formato de año inválido. Debe ser un número menor al año actual"
   @wip
   Escenario: US20-05 Año en el futuro
@@ -45,7 +46,7 @@ Característica:
     Y que el podcast tiene por "creador" a "LinusTechTips"
     Y que el podcast tiene por "anio" a "2033"
     Y que el podcast tiene "1" episodio valido
-    Cuando publico en la API con "/podcasts"
+    Cuando publico en la API con "/podcasts" el contenido
     Entonces obtengo el error "Formato de año inválido. Debe ser un número menor al año actual"
   @wip
   Escenario: US20-06 Episodios vacío
