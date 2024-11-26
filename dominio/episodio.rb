@@ -39,6 +39,7 @@ class Episodio
   end
 
   def validar_participantes
+    raise ErrorEpisodioInvalido unless @participantes.is_a?(String)
     raise ParticipantesVacioEpisodio if @participantes.empty?
   end
 

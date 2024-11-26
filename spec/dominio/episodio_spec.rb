@@ -60,4 +60,9 @@ describe Episodio do
     podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
     expect { described_class.new(podcast, 5, 'Filo.news', '20:31') }.to raise_error(ErrorEpisodioInvalido)
   end
+
+  it 'deberia lanzar error ErrorEpisodioInvalido si el Participantes no es string' do
+    podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
+    expect { described_class.new(podcast, 'Caja negra', 5, '20:31') }.to raise_error(ErrorEpisodioInvalido)
+  end
 end
