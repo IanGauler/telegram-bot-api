@@ -26,6 +26,8 @@ class Episodio
   private
 
   def validar
+    raise ErrorEpisodioInvalido if @titulo.nil? || @participantes.nil? || @duracion.nil?
+
     validar_titulo
     validar_participantes
     validar_duracion
@@ -40,7 +42,7 @@ class Episodio
   end
 
   def validar_duracion
-    raise FormatoInvalidoDuracionEpisodio unless @duracion.is_a?(String)
+    raise ErrorEpisodioInvalido unless @duracion.is_a?(String)
     raise DuracionVaciaEpisodio if @duracion.empty?
     raise FormatoInvalidoDuracionEpisodio unless @duracion.match?(FORMATO_DURACION)
   end

@@ -38,6 +38,9 @@ class ContenidoDuplicadoPlaylist < ErrorContenido
 end
 
 class ErrorEpisodioInvalido < ErrorContenido
+  def initialize(msg = 'Episodio inválido.')
+    super(msg)
+  end
 end
 
 class TituloVacioEpisodio < ErrorEpisodioInvalido

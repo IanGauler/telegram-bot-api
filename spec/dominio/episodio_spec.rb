@@ -41,13 +41,18 @@ describe Episodio do
     expect { described_class.new(podcast, 'Caja Negra', 'Filo.news', '3:91') }.to raise_error(FormatoInvalidoDuracionEpisodio)
   end
 
-  it 'deberia lanzar error FormatoInvalidoDuracionEpisodio si la "duracion" no es un string' do
+  it 'deberia lanzar error ErrorEpisodioInvalido si la "duracion" no es un string' do
     podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
-    expect { described_class.new(podcast, 'Caja Negra', 'Filo.news', 5) }.to raise_error(FormatoInvalidoDuracionEpisodio)
+    expect { described_class.new(podcast, 'Caja Negra', 'Filo.news', 5) }.to raise_error(ErrorEpisodioInvalido)
   end
 
   it 'deberia lanzar error FormatoInvalidoDuracionEpisodio si la "duracion" tiene minutos que empiezan en 0' do
     podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
     expect { described_class.new(podcast, 'Caja Negra', 'Filo.news', '0:31') }.to raise_error(FormatoInvalidoDuracionEpisodio)
+  end
+
+  it 'deberia lanzar error ErrorEpisodioInvalido si alguno de los parametros es nil' do
+    podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
+    expect { described_class.new(podcast, 'Caja Negra', nil, '20:31') }.to raise_error(ErrorEpisodioInvalido)
   end
 end
