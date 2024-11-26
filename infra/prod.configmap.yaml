@@ -10,5 +10,6 @@ data:
   PORT: "3000"
   API_URL: https://api.9521.com.ar/numenor-prod
   SPOTIFY_API_URL: https://api.spotify.com/v1
+  SPOTIFY_ACCOUNT_API_URL: https://accounts.spotify.com/api
   SPOTIFY_CLIENT_ID: 0e21f67e4e5a42148beb264128260dd9
   SPOTIFY_CLIENT_SECRET: 417dea9a145a4948be664aa1a9266ebe
