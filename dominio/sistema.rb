@@ -75,12 +75,12 @@ class Sistema
   end
 
   def registrar_megusta(id_usuario, id_contenido)
-    cancion = obtener_contenido_por_id(id_contenido)
+    contenido = obtener_contenido_por_id(id_contenido)
     usuario = @repositorio_usuarios.obtener_usuario_por_id(id_usuario)
 
     raise UsuarioNoRegistrado if usuario.nil?
 
-    usuario.dar_megusta_a(cancion)
+    usuario.dar_megusta_a(contenido)
     @repositorio_usuarios.save(usuario)
   end
 
