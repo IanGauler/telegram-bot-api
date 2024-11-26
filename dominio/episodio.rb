@@ -39,6 +39,6 @@ class Episodio
 
   def validar_duracion
     raise DuracionVaciaEpisodio if @duracion.empty?
-    raise FormatoInvalidoDuracionEpisodio unless @duracion.match?(/\A\d+:\d{2}\z/)
+    raise FormatoInvalidoDuracionEpisodio unless @duracion.match?(/\A\d+:(?:[0-5]\d)\z/)
   end
 end
