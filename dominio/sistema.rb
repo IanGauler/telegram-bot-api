@@ -129,7 +129,7 @@ class Sistema # rubocop:disable Metrics/ClassLength
     artistas_escuchados = obtener_escuchas_por_artista(reproducciones)
     raise ContenidoNoEscuchado, 'No hay reproducciones sobre las cuales recomendar' if artistas_escuchados.empty?
 
-    top_artista = artistas_escuchados.max_by { |_k, v| v }
+    top_artista = artistas_escuchados.max_by { |_k, v| v }.first
     @proveedor_de_artistas.artistas_similares(top_artista, CANTIDAD_RECOMENDACIONES)
   end
 

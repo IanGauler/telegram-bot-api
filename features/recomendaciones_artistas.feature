@@ -16,22 +16,26 @@ Escenario: US22-01 No hay recomendaciones
 Cuando busco artistas recomendados
 Entonces el bot muestra el mensaje "No se pudo obtener artistas recomendados"
 
-@wip @current
 Escenario: US22-02 Artistas relacionados al que escuché
 Dado que escuché "1" veces a "Metallica"
 Cuando busco artistas recomendados
-Entonces me recomiendan "5" de artistas parecidos a "Metallica"
+Entonces me recomiendan "5" artistas parecidos a "Metallica"
 
-@wip
 Escenario: US22-03 Artistas relacionados al más escuchado
 Dado que escuché "1" veces a "Metallica"
 Y que escuché "2" veces a "Taylor Swift"
 Cuando busco artistas recomendados
-Entonces me recomiendan "5" artistas de artistas parecidos a "Taylor Swift"
+Entonces me recomiendan "5" artistas parecidos a "Taylor Swift"
 
 @wip
 Escenario: US22-04 Spotify caído
 Dado que no tengo acceso a Spotify
 Y que escuché "1" canciones de "Metallica"
+Cuando busco artistas recomendados
+Entonces el bot muestra el mensaje "No se pudo obtener artistas recomendados"
+
+Escenario: US22-05 No se recomienda por podcast
+Dado que existe el podcast "Caja Negra" con el episodio "Ep1"
+Y que he reproducido el episodio "Ep1"
 Cuando busco artistas recomendados
 Entonces el bot muestra el mensaje "No se pudo obtener artistas recomendados"

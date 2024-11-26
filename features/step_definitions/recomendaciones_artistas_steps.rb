@@ -8,11 +8,11 @@ Dado('que existe una canción de {string} en la plataforma') do |artista|
 end
 
 Dado('que tengo acceso a Spotify') do
+  @spotify_ok = true
 end
 
 Cuando('busco artistas recomendados') do
-  request_body = { id: @usuario.id.to_s }.to_json
-  @response = Faraday.get('/recomendaciones/artistas', request_body, { 'Content-Type' => 'application/json' })
+  @response = Faraday.get('/recomendaciones/artistas', { id: @usuario.id.to_s }, { 'Content-Type' => 'application/json' })
 end
 
 Dado('que escuché {string} veces a {string}') do |cantidad, artista|
@@ -21,11 +21,22 @@ Dado('que escuché {string} veces a {string}') do |cantidad, artista|
   cantidad.to_i.times do
     repositorio_reproducciones.save(Reproduccion.new(@usuario, cancion))
   end
+  mock_spotify_para_devolver(artista, 5)
 end
 
-Entonces('me recomiendan {string} de artistas parecidos a {string}') do |cantidad, artista|
+Entonces('me recomiendan {string} artistas parecidos a {string}') do |cantidad, artista|
   response = @response.body
   recomendaciones = JSON.parse(response)
-  expect(recomendaciones['top_escuchado']).to eq(artista)
-  expect(recomendaciones['artistas_recomendados'].size).to eq(cantidad.to_i)
+  expect(recomendaciones.size).to eq(cantidad.to_i)
+  cantidad.to_i.times do |i|
+    expect(recomendaciones[i]).to eq("#{artista}-#{i}")
+  end
+end
+
+def mock_spotify_para_devolver(artista, cantidad)
+  artistas = []
+  cantidad.times do |i|
+    artistas << "#{artista}-#{i}"
+  end
+  allow_any_instance_of(ConectorSpotify).to receive(:artistas_similares).with(artista, cantidad).and_return(artistas) if @spotify_ok
 end

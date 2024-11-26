@@ -231,9 +231,12 @@ end
 get '/recomendaciones/artistas' do
   id_usuario = @params[:id].to_s
   recomendaciones = sistema.recomendar_artistas(id_usuario)
-  @status = 404
+  @status = 200
   @respuesta = json(recomendaciones)
 rescue UsuarioNoRegistrado => e
   @status = 404
+  @respuesta = { error: e.message }.to_json
+rescue ContenidoNoEscuchado => e
+  @status = 409
   @respuesta = { error: e.message }.to_json
 end
