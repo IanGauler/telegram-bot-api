@@ -45,4 +45,9 @@ describe Episodio do
     podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
     expect { described_class.new(podcast, 'Caja Negra', 'Filo.news', 5) }.to raise_error(FormatoInvalidoDuracionEpisodio)
   end
+
+  it 'deberia lanzar error FormatoInvalidoDuracionEpisodio si la "duracion" tiene minutos que empiezan en 0' do
+    podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
+    expect { described_class.new(podcast, 'Caja Negra', 'Filo.news', '0:31') }.to raise_error(FormatoInvalidoDuracionEpisodio)
+  end
 end

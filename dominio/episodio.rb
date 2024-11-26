@@ -2,6 +2,8 @@ class Episodio
   attr_reader :titulo, :participantes, :duracion, :podcast, :updated_on, :created_on
   attr_accessor :id
 
+  FORMATO_DURACION = /\A[1-9]\d*:([0-5]\d)\z/
+
   def initialize(podcast, titulo, participantes, duracion, id = nil)
     @titulo = titulo
     @participantes = participantes
@@ -40,6 +42,6 @@ class Episodio
   def validar_duracion
     raise FormatoInvalidoDuracionEpisodio unless @duracion.is_a?(String)
     raise DuracionVaciaEpisodio if @duracion.empty?
-    raise FormatoInvalidoDuracionEpisodio unless @duracion.match?(/\A\d+:(?:[0-5]\d)\z/)
+    raise FormatoInvalidoDuracionEpisodio unless @duracion.match?(FORMATO_DURACION)
   end
 end
