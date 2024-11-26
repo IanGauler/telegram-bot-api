@@ -43,5 +43,6 @@ class Podcast
 
   def validar!
     raise TituloVacio if titulo.empty?
+    raise CreadorVacio if creador.empty?
   end
 end

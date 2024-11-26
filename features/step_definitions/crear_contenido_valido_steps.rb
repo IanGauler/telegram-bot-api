@@ -1,10 +1,10 @@
 Dado('que el anio actual es {string}') do |anio|
   @anio = anio
+  @podcast ||= {}
   allow(Time).to receive(:now).and_return(Time.new(anio.to_i))
 end
 
 Dado('que el podcast tiene {string} vacio') do |key|
-  @podcast ||= {}
   @podcast[key] = ''
 end
 

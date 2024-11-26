@@ -3,3 +3,9 @@ class TituloVacio < StandardError
     super(msg)
   end
 end
+
+class CreadorVacio < StandardError
+  def initialize(msg = 'El creador no puede ser vacio')
+    super(msg)
+  end
+end
