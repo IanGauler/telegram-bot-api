@@ -36,14 +36,20 @@ Dado('que quiero agregar un podcast válido con un episodio a la plataforma') do
     titulo: 'Podcast de prueba',
     creador: 'Creador de un podcast de prueba',
     anio: 2024,
-    episodios: [{}]
+    episodios: [
+      {
+        titulo: '',
+        participantes: '',
+        duracion: ''
+      }
+    ]
   }]
 end
 
 Dado('que el episodio tiene {string} vacio') do |parametro|
-  @podcasts.first[:episodios].first[parametro] = ''
+  @podcasts.first[:episodios].first[parametro.to_sym] = ''
 end
 
 Dado('que el episodio tiene por {string} a {string}') do |parametro, valor|
-  @podcasts.first[:episodios].first[parametro] = valor
+  @podcasts.first[:episodios].first[parametro.to_sym] = valor
 end

@@ -1,6 +1,7 @@
 require 'integration_helper'
 require 'spec_helper'
 require_relative '../../dominio/episodio'
+require_relative '../../dominio/errores/errores_contenido'
 
 describe Episodio do
   it 'deberia crear un episodio' do
@@ -15,8 +16,8 @@ describe Episodio do
     expect(episodio.representacion_hash).to eq({ id: 1, titulo: 'Caja Negra - Ep1', participantes: 'Filo.news', duracion: '45:20' })
   end
 
-  it 'deberia lanzar error TituloVacioEpisodios si el titulo es vacio' do
+  it 'deberia lanzar error TituloVacioEpisodio si el titulo es vacio' do
     podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
-    expect { described_class.new(podcast, '', 'Filo.news', '45:20') }.to raise_error(TituloVacioEpisodios)
+    expect { described_class.new(podcast, '', 'Filo.news', '45:20') }.to raise_error(TituloVacioEpisodio)
   end
 end

@@ -59,7 +59,6 @@ class Sistema
       episodio = Episodio.new(podcast, episodio[:titulo], episodio[:participantes], episodio[:duracion])
       podcast.agregar_episodios(episodio)
     end
-
     @administrador_de_contenido.repositorio_podcasts.save(podcast)
   end
 

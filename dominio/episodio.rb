@@ -28,6 +28,6 @@ class Episodio
   end
 
   def validar_titulo
-    raise TituloVacioEpisodios if @titulo.empty?
+    raise TituloVacioEpisodio if @titulo.empty?
   end
 end

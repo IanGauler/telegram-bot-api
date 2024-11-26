@@ -8,7 +8,6 @@ para tener siempre disponible el catálogo de episodios de podcasts actualizado 
 Antecedentes:
 Dado que quiero agregar un podcast válido con un episodio a la plataforma
 
-@wip
 Escenario: US19-01 Título vacío
 Dado que el episodio tiene "titulo" vacio
 Y que el episodio tiene por "participantes" a "Brady Haran"
