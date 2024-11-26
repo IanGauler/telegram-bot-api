@@ -22,13 +22,12 @@ Y que el episodio tiene por "duracion" a "40:23"
 Cuando publico en la API con "/podcasts"
 Entonces obtengo el error "Episodio inválido: Los participantes no puede ser vacío"
 
-@wip
 Escenario: US19-03 Duración vacía
 Dado que el episodio tiene por "titulo" a "Numberphile"
 Y que el episodio tiene por "participantes" a "Brady Haran"
 Y que el episodio tiene "duracion" vacio
 Cuando publico en la API con "/podcasts"
-Entonces obtengo el error "Episodio inválido: La duracion no puede ser vacia"
+Entonces obtengo el error "Episodio inválido: La duración no puede ser vacía"
 
 @wip
 Escenario: US19-04 Duración no numérica

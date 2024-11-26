@@ -25,4 +25,9 @@ describe Episodio do
     podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
     expect { described_class.new(podcast, 'Caja Negra', '', '45:20') }.to raise_error(ParticipantesVacioEpisodio)
   end
+
+  it 'deberia lanzar error DuracionVaciaEpisodio si la "duracion" es vacia' do
+    podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
+    expect { described_class.new(podcast, 'Caja Negra', 'Filo.news', '') }.to raise_error(DuracionVaciaEpisodio)
+  end
 end

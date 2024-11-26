@@ -51,3 +51,9 @@ class ParticipantesVacioEpisodio < ErrorEpisodioInvalido
     super(msg)
   end
 end
+
+class DuracionVaciaEpisodio < ErrorEpisodioInvalido
+  def initialize(msg = 'Episodio inválido: La duración no puede ser vacía')
+    super(msg)
+  end
+end
