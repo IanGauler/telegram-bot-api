@@ -34,6 +34,7 @@ class Episodio
   end
 
   def validar_titulo
+    raise ErrorEpisodioInvalido unless @titulo.is_a?(String)
     raise TituloVacioEpisodio if @titulo.empty?
   end
 
