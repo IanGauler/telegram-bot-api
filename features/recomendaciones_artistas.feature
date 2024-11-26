@@ -16,7 +16,7 @@ Escenario: US22-01 No hay recomendaciones
 Cuando busco artistas recomendados
 Entonces el bot muestra el mensaje "No se pudo obtener artistas recomendados"
 
-@wip
+@wip @current
 Escenario: US22-02 Artistas relacionados al que escuché
 Dado que escuché "1" veces a "Metallica"
 Cuando busco artistas recomendados

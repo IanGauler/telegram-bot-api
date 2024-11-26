@@ -5,6 +5,7 @@ require 'sinatra/custom_logger'
 require_relative './config/configuration'
 require_relative './config/log_middleware'
 require_relative './lib/version'
+require_relative './conectores/conector_spotify'
 Dir[File.join(__dir__, 'dominio', '*.rb')].each { |file| require file }
 Dir[File.join(__dir__, 'persistencia', '*.rb')].each { |file| require file }
 
@@ -16,7 +17,7 @@ configure do
   set :default_content_type, :json
   set :environment, ENV['APP_MODE'].to_sym
   administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new, RepositorioPodcasts.new, RepositorioEpisodios.new)
-  set :sistema, Sistema.new(RepositorioUsuarios.new, administrador_de_contenido, RepositorioReproducciones.new, RepositorioMeGustas.new)
+  set :sistema, Sistema.new(RepositorioUsuarios.new, administrador_de_contenido, RepositorioReproducciones.new, RepositorioMeGustas.new, ConectorSpotify.new)
   use LogMiddleware
   customer_logger.info("Aplicación iniciada en modo #{settings.environment}")
 end
@@ -216,6 +217,16 @@ get '/usuarios/:id_usuario/playlist' do
   contenidos = playlist.contenidos.map(&:representacion_hash)
   @status = 200
   @respuesta = json(contenidos)
+rescue UsuarioNoRegistrado => e
+  @status = 404
+  @respuesta = { error: e.message }.to_json
+end
+
+get '/recomendaciones/artistas' do
+  id_usuario = @params[:id].to_s
+  recomendaciones = sistema.recomendar_artistas(id_usuario)
+  @status = 404
+  @respuesta = json(recomendaciones)
 rescue UsuarioNoRegistrado => e
   @status = 404
   @respuesta = { error: e.message }.to_json

@@ -4,11 +4,12 @@ require_relative './recomendaciones'
 
 class Sistema
   CANTIDAD_NOVEDADES = 5
-  def initialize(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas)
+  def initialize(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas, proveedor_de_artistas)
     @repositorio_usuarios = repositorio_usuarios
     @administrador_de_contenido = administrador_de_contenido
     @repositorio_reproducciones = repositorio_reproducciones
     @repositorio_megustas = repositorio_megustas
+    @proveedor_de_artistas = proveedor_de_artistas
   end
 
   def resetear
@@ -117,6 +118,10 @@ class Sistema
     raise UsuarioNoRegistrado if usuario.nil?
 
     usuario.playlist
+  end
+
+  def recomendar_artistas(_id_usuario)
+    []
   end
 
   private

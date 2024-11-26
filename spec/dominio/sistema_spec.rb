@@ -1,6 +1,7 @@
 require 'integration_helper'
 require 'spec_helper'
 require_relative '../../dominio/sistema'
+require_relative '../../conectores/conector_spotify'
 Dir[File.join(__dir__, '../../persistencia', '*.rb')].each { |file| require file }
 
 describe Sistema do
@@ -10,7 +11,8 @@ describe Sistema do
   repositorio_reproducciones = RepositorioReproducciones.new
   repositorio_megustas = RepositorioMeGustas.new
   administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new, RepositorioPodcasts.new, RepositorioEpisodios.new)
-  sistema = described_class.new(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas)
+  proveedor_de_artistas = ConectorSpotify.new
+  sistema = described_class.new(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas, proveedor_de_artistas)
   dia_de_semana = Date.new(2024, 11, 14)
   dia_fin_de_semana = Date.new(2024, 11, 17)
 
@@ -194,11 +196,28 @@ describe Sistema do
       expect(reproduccion.contenido.id).to eq podcast.episodios.first.id
     end
   end
+
+  describe 'recomendar_artistas' do
+    it 'no recomienda si no hay reproducciones' do
+      sistema.crear_usuario(juan_id, juan_email)
+      expect(sistema.recomendar_artistas(juan_id)).to eq []
+    end
+
+    xit 'deberia recomendar artistas similares a los escuchados' do
+      sistema.crear_usuario(juan_id, juan_email)
+      crear_canciones(10, sistema, 'Beyonce')
+      reproducir_canciones(5, sistema, dia_de_semana)
+
+      recomendados = sistema.recomendar_artistas(juan_id)
+      expect(recomendados.size).to eq 5
+    end
+  end
 end
 
-def crear_canciones(cantidad, sistema)
+def crear_canciones(cantidad, sistema, artista = nil)
   (1..cantidad).each do |i|
-    sistema.crear_cancion("Cancion#{i}", "Artista#{i}", 2020, '2:00')
+    artista_acutal = artista || "Artista#{i}"
+    sistema.crear_cancion("Cancion#{i}", artista_acutal, 2020, '2:00')
   end
 end
 

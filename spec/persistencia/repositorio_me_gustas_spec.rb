@@ -3,6 +3,7 @@ require_relative '../../dominio/usuario'
 require_relative '../../dominio/megusta'
 require_relative '../../persistencia/repositorio_usuarios'
 require_relative '../../persistencia/repositorio_canciones'
+require_relative '../../persistencia/repositorio_megustas'
 
 describe RepositorioMeGustas do
   usuario = Usuario.new('1', 'test@test.com')
