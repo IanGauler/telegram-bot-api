@@ -148,10 +148,10 @@ end
 
 post '/podcasts' do
   @params.each do |podcast|
-    sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio].to_i, podcast[:episodios])
+    sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio], podcast[:episodios])
   end
   @status = 201
-rescue TituloVacio, CreadorVacio => e
+rescue TituloVacio, CreadorVacio, AnioVacio => e
   @status = 400
   @respuesta = { error: e.message }.to_json
 end
