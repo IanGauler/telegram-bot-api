@@ -30,4 +30,9 @@ describe Episodio do
     podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
     expect { described_class.new(podcast, 'Caja Negra', 'Filo.news', '') }.to raise_error(DuracionVaciaEpisodio)
   end
+
+  it 'deberia lanzar error FormatoInvalidoDuracionEpisodio si la "duracion" no tiene formato MM:SS' do
+    podcast = Podcast.new('Caja Negra', 'Filo.news', 2021)
+    expect { described_class.new(podcast, 'Caja Negra', 'Filo.news', ':33') }.to raise_error(FormatoInvalidoDuracionEpisodio)
+  end
 end
