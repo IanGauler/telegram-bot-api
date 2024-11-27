@@ -22,7 +22,6 @@ end
 
 Cuando('publico en la API con {string} el contenido') do |endpoint|
   contenido = [@contenido].to_json
-  puts contenido
   @response = Faraday.post(endpoint, contenido, { 'Content-Type' => 'application/json' })
 end
 

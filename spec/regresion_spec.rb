@@ -64,6 +64,29 @@ describe 'Test de Regresion', regression: true do
     expect(reproduccion).not_to be_nil
   end
 
+  it 'deberia dar me gusta a una cancion' do
+    usuario = crear_usuario(timestamp, api_url)
+    cancion = crear_cancion(timestamp, api_url)
+    reproducir_cancion(api_url, cancion, usuario)
+
+    body_enviado = { id_usuario: usuario['id'] }.to_json
+
+    respuesta = Faraday.post("#{api_url}/contenidos/#{cancion['id']}/megusta", body_enviado, { 'Content-Type' => 'application/json' })
+
+    expect(respuesta.status).to eq(201)
+
+    megustas = Faraday.get("#{api_url}/megustas")
+    me_gusta = JSON.parse(megustas.body).find { |m| m['id_contenido'] == cancion['id'] && m['id_usuario'] == usuario['id'] }
+
+    expect(me_gusta).not_to be_nil
+  end
+
+  def reproducir_cancion(api_url, cancion, usuario)
+    endpoint_reproduccion = "#{api_url}/canciones/#{cancion['id']}/reproduccion"
+
+    Faraday.post(endpoint_reproduccion, { email: usuario['email'] }.to_json, { 'Content-Type' => 'application/json' })
+  end
+
   def crear_usuario(timestamp, api_url)
     email = "#{timestamp}@test.com"
     endpoint = "#{api_url}/usuarios"
@@ -89,13 +112,4 @@ describe 'Test de Regresion', regression: true do
       expect(respuesta[atributo.to_s]).to eq(valor)
     end
   end
-end
-
-def me_gusta_cancion(cancion, usuario)
-  id_cancion = cancion[:id]
-  endpoint_me_gusta_cancion = "/canciones/#{id_cancion}/megustas"
-
-  response = Faraday.post(endpoint_me_gusta_cancion, { id_cancion:, email: usuario[:email] }.to_json, { 'Content-Type' => 'application/json' })
-
-  expect(response.status).to eq(201)
 end
