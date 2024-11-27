@@ -41,7 +41,7 @@ class Episodio
 
   def validar_duracion
     validar_parametro(@duracion, DuracionVaciaEpisodio)
-    raise FormatoInvalidoDuracionEpisodio unless @duracion.match?(FORMATO_DURACION)
+    raise FormatoInvalidoDuracion unless @duracion.match?(FORMATO_DURACION)
   end
 
   def validar_parametro(parametro, error_parametro_vacio)
