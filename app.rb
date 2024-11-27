@@ -73,10 +73,10 @@ end
 
 post '/canciones' do
   @params.each do |c|
-    sistema.crear_cancion(c[:titulo], c[:artistas], c[:anio].to_i, c[:duracion])
+    sistema.crear_cancion(c[:titulo], c[:artistas], c[:anio], c[:duracion])
   end
   @status = 201
-rescue TituloVacio, ArtistasVacios, DuracionVacia => e
+rescue TituloVacio, ArtistasVacios, DuracionVacia, AnioVacio => e
   @status = 400
   @respuesta = { error: e.message }.to_json
 rescue StandardError => e

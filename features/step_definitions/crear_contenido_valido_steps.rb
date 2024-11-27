@@ -21,8 +21,9 @@ Dado('que el podcast tiene {string} episodio valido') do |cantidad_episodios|
 end
 
 Cuando('publico en la API con {string} el contenido') do |endpoint|
-  podcasts = [@contenido].to_json
-  @response = Faraday.post(endpoint, podcasts, { 'Content-Type' => 'application/json' })
+  contenido = [@contenido].to_json
+  puts contenido
+  @response = Faraday.post(endpoint, contenido, { 'Content-Type' => 'application/json' })
 end
 
 Entonces('obtengo el error {string}') do |error|
