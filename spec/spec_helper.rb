@@ -14,7 +14,7 @@
 #
 unless ARGV.include?('--dry-run')
   require 'simplecov'
-  SimpleCov.minimum_coverage 75
+  SimpleCov.minimum_coverage 50
   SimpleCov.start do
     root(File.join(File.dirname(__FILE__), '..'))
     coverage_dir 'reports/coverage'

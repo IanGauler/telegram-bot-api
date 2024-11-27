@@ -30,7 +30,7 @@ regression_job:
   script:
     - gem install bundler --no-document
     - bundle install --without staging production
-    - APP_MODE=test bundle exec rake spec_regression
+    - APP_MODE=test bundle exec rake regression
   only:
     - tags
 
