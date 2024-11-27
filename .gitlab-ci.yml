@@ -17,13 +17,22 @@ stages:
   - build
   - package
   - deploy_test
-  - acceptance_test
+  - regression_test
   - deploy_prod
 
 code_quality:
   stage: build
   artifacts:
     paths: [gl-code-quality-report.json]
+
+regression_job:
+  stage: regression_test
+  script:
+    - gem install bundler --no-document
+    - bundle install --without staging production
+    - APP_MODE=test bundle exec rake spec_regression
+  only:
+    - tags
 
 build_job:
   stage: build
