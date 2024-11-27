@@ -48,13 +48,13 @@ Característica:
     Y que la cancion tiene por "anio": "2013"
     Cuando publico en la API con "/canciones" el contenido
     Entonces obtengo el error "Formato de duración inválido. Debe ser MM:SS"
-  @wip
+
   Escenario: US18-06 Año no numérico
     Dado que la cancion tiene por "titulo": "Africa"
     Y que la cancion tiene por "artistas": "Toto"
     Y que la cancion tiene por "duracion": "4:31"
     Y que la cancion tiene por "anio": "Serengeti"
-    Cuando intento registrar la cancion
+    Cuando publico en la API con "/canciones" el contenido
     Entonces obtengo el error "Formato de año inválido. Debe ser un número menor al año actual"
   @wip
   Escenario: US18-07 Duración inválida: formato

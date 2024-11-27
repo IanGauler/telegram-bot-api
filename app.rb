@@ -76,7 +76,7 @@ post '/canciones' do
     sistema.crear_cancion(c[:titulo], c[:artistas], c[:anio], c[:duracion])
   end
   @status = 201
-rescue TituloVacio, ArtistasVacios, DuracionVacia, AnioVacio, FormatoInvalidoDuracion => e
+rescue ErrorValidacion => e
   @status = 400
   @respuesta = { error: e.message }.to_json
 rescue StandardError => e
@@ -159,7 +159,7 @@ post '/podcasts' do
     sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio], podcast[:episodios])
   end
   @status = 201
-rescue TituloVacio, CreadorVacio, AnioVacio, AnioInvalido, AnioFueraDeRango, ErrorEpisodioInvalido, EpisodiosVacios => e
+rescue ErrorValidacion, ErrorEpisodioInvalido, EpisodiosVacios => e
   @status = 400
   @respuesta = { error: e.message }.to_json
 end

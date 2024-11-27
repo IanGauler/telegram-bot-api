@@ -1,6 +1,9 @@
 class ErrorContenido < StandardError
 end
 
+class ErrorValidacion < StandardError
+end
+
 class ContenidoNoEncontrado < ErrorContenido
   def initialize(msg = 'El contenido no fue encontrado.')
     super(msg)
@@ -61,7 +64,7 @@ class DuracionVaciaEpisodio < ErrorEpisodioInvalido
   end
 end
 
-class FormatoInvalidoDuracion < StandardError
+class FormatoInvalidoDuracion < ErrorValidacion
   def initialize(msg = 'Formato de duración inválido. Debe ser MM:SS')
     super(msg)
   end
@@ -73,49 +76,49 @@ class FormatoInvalidoDuracionEpisodio < ErrorEpisodioInvalido
   end
 end
 
-class TituloVacio < StandardError
+class TituloVacio < ErrorValidacion
   def initialize(msg = 'El titulo no puede ser vacio')
     super(msg)
   end
 end
 
-class CreadorVacio < StandardError
+class CreadorVacio < ErrorValidacion
   def initialize(msg = 'El creador no puede ser vacio')
     super(msg)
   end
 end
 
-class AnioVacio < StandardError
+class AnioVacio < ErrorValidacion
   def initialize(msg = 'El año no puede ser vacio')
     super(msg)
   end
 end
 
-class AnioInvalido < StandardError
+class AnioInvalido < ErrorValidacion
   def initialize(msg = 'Formato de año inválido. Debe ser un número menor al año actual')
     super(msg)
   end
 end
 
-class AnioFueraDeRango < StandardError
+class AnioFueraDeRango < ErrorValidacion
   def initialize(msg = 'Formato de año inválido. Debe ser un número menor al año actual')
     super(msg)
   end
 end
 
-class EpisodiosVacios < StandardError
+class EpisodiosVacios < ErrorValidacion
   def initialize(msg = 'Debe contener al menos 1 episodio')
     super(msg)
   end
 end
 
-class ArtistasVacios < StandardError
+class ArtistasVacios < ErrorValidacion
   def initialize(msg = 'Los artistas no pueden ser vacio')
     super(msg)
   end
 end
 
-class DuracionVacia < StandardError
+class DuracionVacia < ErrorValidacion
   def initialize(msg = 'La duración no puede ser vacía')
     super(msg)
   end
