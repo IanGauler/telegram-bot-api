@@ -14,7 +14,7 @@ describe Usuario do
   end
 
   it 'deberia poder reproducir contenido' do
-    contenido = Cancion.new('titulo', 'artistas', 2021, 180)
+    contenido = Cancion.new('titulo', 'artistas', 2021, '3:00')
     usuario.reproducir(contenido)
     expect(usuario.reproducciones).not_to be_empty
   end
@@ -24,7 +24,7 @@ describe Usuario do
   end
 
   it 'deberia poder dar me gusta a contenido reproducido' do
-    contenido = Cancion.new('titulo', 'artistas', 2021, 180)
+    contenido = Cancion.new('titulo', 'artistas', 2021, '3:00')
     usuario.reproducir(contenido)
     usuario.dar_megusta_a(contenido)
     expect(usuario.me_gustas).not_to be_empty
@@ -32,7 +32,7 @@ describe Usuario do
 
   it 'deberia lanzar ContenidoNoEscuchado si intenta dar me gusta a contenido no escuchado' do
     usuario2 = described_class.new(2, 'juan2@gmail.com')
-    contenido = Cancion.new('titulo', 'artistas', 2021, 180)
+    contenido = Cancion.new('titulo', 'artistas', 2021, '3:00')
     expect { usuario2.dar_megusta_a(contenido) }.to raise_error(ContenidoNoEscuchado)
   end
 end

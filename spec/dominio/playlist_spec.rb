@@ -16,7 +16,7 @@ describe Playlist do
   end
 
   it 'deberia lanzar ContenidoDuplicadoPlaylist si se intenta agregar dos veces un contenido a su playlist' do
-    contenido = Cancion.new('titulo', 'artistas', 2021, 180, 1)
+    contenido = Cancion.new('titulo', 'artistas', 2021, '2:20', 1)
     playlist.agregar_contenido(contenido)
     expect { playlist.agregar_contenido(contenido) }.to raise_error(ContenidoDuplicadoPlaylist)
   end

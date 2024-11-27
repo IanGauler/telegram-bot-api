@@ -30,7 +30,7 @@ Característica:
     Y que la cancion tiene por "artistas": "Toto"
     Y que la cancion tiene "duracion" vacio
     Y que la cancion tiene por "anio": "2013"
-    Cuando intento registrar la cancion
+    Cuando publico en la API con "/canciones" el contenido
     Entonces obtengo el error "La duracion no puede ser vacia"
   @wip
   Escenario: US18-04 Año vacío

@@ -30,5 +30,6 @@ class Cancion
   def validar!
     raise TituloVacio if titulo.empty?
     raise ArtistasVacios if artistas.empty?
+    raise DuracionVacia if duracion.empty?
   end
 end

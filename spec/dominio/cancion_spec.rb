@@ -20,4 +20,8 @@ describe Cancion do
   it 'debería lanzar error si los artistas son vacíos' do
     expect { described_class.new('Waka-Waka', '', 2010, '3:31') }.to raise_error(ArtistasVacios)
   end
+
+  it 'debería lanzar error si la duracion es vacía' do
+    expect { described_class.new('Waka-Waka', 'Shakira', 2010, '') }.to raise_error(DuracionVacia)
+  end
 end
