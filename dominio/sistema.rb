@@ -2,8 +2,7 @@ Dir[File.join(__dir__, './errores', '*.rb')].each { |file| require file }
 require_relative './novedades'
 require_relative './recomendaciones'
 
-# TODO: sacar el ignore y arreglar el warning
-class Sistema # rubocop:disable Metrics/ClassLength
+class Sistema
   CANTIDAD_NOVEDADES = 5
   CANTIDAD_RECOMENDACIONES = 5
   def initialize(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas, proveedor_de_artistas)
@@ -134,25 +133,23 @@ class Sistema # rubocop:disable Metrics/ClassLength
   rescue ErrorConectorRecomendaciones
     raise RecomendacionesNoDisponibles
   end
+end
 
-  private
-
-  def obtener_escuchas_por_artista(reproducciones)
-    artistas_escuchados = {}
-    reproducciones_canciones = reproducciones.select { |reproduccion| reproduccion.contenido.is_a?(Cancion) }
-    reproducciones_canciones.each do |reproduccion|
-      artistas = reproduccion.contenido.artistas_participantes
-      artistas.each do |autor|
-        artistas_escuchados[autor] ||= 0
-        artistas_escuchados[autor] += 1
-      end
+def obtener_escuchas_por_artista(reproducciones)
+  artistas_escuchados = {}
+  reproducciones_canciones = reproducciones.select { |reproduccion| reproduccion.contenido.is_a?(Cancion) }
+  reproducciones_canciones.each do |reproduccion|
+    artistas = reproduccion.contenido.artistas_participantes
+    artistas.each do |autor|
+      artistas_escuchados[autor] ||= 0
+      artistas_escuchados[autor] += 1
     end
-    artistas_escuchados
   end
+  artistas_escuchados
+end
 
-  def obtener_contenido_por_id_repositorio(repositorio, id)
-    repositorio.find(id)
-  rescue ObjectNotFound
-    raise ContenidoNoEncontrado
-  end
+def obtener_contenido_por_id_repositorio(repositorio, id)
+  repositorio.find(id)
+rescue ObjectNotFound
+  raise ContenidoNoEncontrado
 end
