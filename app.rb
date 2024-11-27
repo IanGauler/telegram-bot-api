@@ -6,6 +6,7 @@ require_relative './config/configuration'
 require_relative './config/log_middleware'
 require_relative './lib/version'
 require_relative './conectores/conector_spotify'
+require 'dotenv/load'
 Dir[File.join(__dir__, 'dominio', '*.rb')].each { |file| require file }
 Dir[File.join(__dir__, 'persistencia', '*.rb')].each { |file| require file }
 
@@ -229,8 +230,8 @@ rescue UsuarioNoRegistrado => e
   @respuesta = { error: e.message }.to_json
 end
 
-get '/recomendaciones/artistas' do
-  id_usuario = @params[:id].to_s
+get '/usuarios/:id_usuario/recomendaciones/artistas' do
+  id_usuario = params[:id_usuario].to_s
   recomendaciones = sistema.recomendar_artistas(id_usuario)
   @status = 200
   @respuesta = json(recomendaciones)

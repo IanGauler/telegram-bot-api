@@ -139,8 +139,8 @@ class Sistema # rubocop:disable Metrics/ClassLength
 
   def obtener_escuchas_por_artista(reproducciones)
     artistas_escuchados = {}
-    canciones = reproducciones.select { |reproduccion| reproduccion.contenido.is_a?(Cancion) }
-    canciones.each do |reproduccion|
+    reproducciones_canciones = reproducciones.select { |reproduccion| reproduccion.contenido.is_a?(Cancion) }
+    reproducciones_canciones.each do |reproduccion|
       artistas = reproduccion.contenido.artistas_participantes
       artistas.each do |autor|
         artistas_escuchados[autor] ||= 0

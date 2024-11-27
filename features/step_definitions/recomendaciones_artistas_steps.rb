@@ -17,7 +17,7 @@ Dado('que no tengo acceso a Spotify') do
 end
 
 Cuando('busco artistas recomendados') do
-  @response = Faraday.get('/recomendaciones/artistas', { id: @usuario.id.to_s }, { 'Content-Type' => 'application/json' })
+  @response = Faraday.get("usuarios/#{@usuario.id}/recomendaciones/artistas", '', { 'Content-Type' => 'application/json' })
 end
 
 Dado('que escuché {string} veces a {string}') do |cantidad, artista|
