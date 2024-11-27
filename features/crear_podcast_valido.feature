@@ -56,12 +56,12 @@ Característica:
     Y que el podcast tiene "0" episodio valido
     Cuando publico en la API con "/podcasts" el contenido
     Entonces obtengo el error "Debe contener al menos 1 episodio"
-  @wip
+
   Escenario: US20-07 Podcast válido
     Dado que el podcast tiene por "titulo" a "WANShow"
     Y que el podcast tiene por "creador" a "LinusTechTips"
     Y que el podcast tiene por "anio" a "2018"
-    Y que el podcast tiene "1" episodio válido
+    Y que el podcast tiene "1" episodio valido
     Cuando publico en la API con "/podcasts" el contenido
     Entonces el podcast "WANShow" es dado de alta
 
