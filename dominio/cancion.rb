@@ -6,7 +6,7 @@ class Cancion
   def initialize(titulo, artistas, anio, duracion, id = nil)
     @titulo = titulo
     @artistas = artistas
-    @anio = validar_anio(anio)
+    @anio = validar_anio(anio, ErrorCancionInvalida)
     @duracion = duracion
     @id = id
     validar!

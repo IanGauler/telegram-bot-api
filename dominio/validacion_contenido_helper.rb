@@ -7,7 +7,8 @@ end
 
 FORMATO_ANIO_VALIDO = /\A\d+\z/
 
-def validar_anio(anio)
+def validar_anio(anio, error_invalido)
+  raise error_invalido if anio.nil?
   raise AnioVacio if anio.is_a?(String) && anio.empty?
   raise AnioInvalido if anio.is_a?(String) && !anio.match?(FORMATO_ANIO_VALIDO)
   raise AnioFueraDeRango if anio.to_i > Time.now.year

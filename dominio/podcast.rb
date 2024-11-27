@@ -6,7 +6,7 @@ class Podcast
   def initialize(titulo, creador, anio, episodios, id = nil)
     @titulo = titulo
     @creador = creador
-    @anio = validar_anio(anio)
+    @anio = validar_anio(anio, ErrorPodcastInvalido)
     @id = id
     @episodios = inicializar_episodios(episodios)
     validar!
@@ -56,6 +56,6 @@ class Podcast
   def validar!
     validar_parametro(@titulo, TituloVacio, ErrorPodcastInvalido)
     validar_parametro(@creador, CreadorVacio, ErrorPodcastInvalido)
-    raise EpisodiosVacios if episodios.empty?
+    raise EpisodiosVacios if @episodios.empty?
   end
 end
