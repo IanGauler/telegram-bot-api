@@ -1,3 +1,4 @@
+require_relative 'validacion_contenido_helper'
 class Cancion
   attr_reader :titulo, :artistas, :anio, :duracion, :updated_on, :created_on
   attr_accessor :id
@@ -34,7 +35,6 @@ class Cancion
     validar_titulo
     validar_artistas
     validar_duracion
-    validar_formato_duracion
   end
 
   def validar_titulo
@@ -46,7 +46,7 @@ class Cancion
   end
 
   def validar_duracion
-    raise DuracionVacia if duracion.empty?
+    validar_formato_duracion(duracion, FormatoInvalidoDuracion, DuracionVacia, ErrorCancionInvalida)
   end
 
   def validar_anio(anio)
@@ -55,9 +55,5 @@ class Cancion
     raise AnioFueraDeRango if anio.to_i > Time.now.year
 
     anio.to_i
-  end
-
-  def validar_formato_duracion
-    raise FormatoInvalidoDuracion unless duracion.match?(FORMATO_DURACION)
   end
 end

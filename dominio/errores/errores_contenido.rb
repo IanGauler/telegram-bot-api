@@ -123,3 +123,9 @@ class DuracionVacia < ErrorValidacion
     super(msg)
   end
 end
+
+class ErrorCancionInvalida < ErrorContenido
+  def initialize(msg = 'Canción Inválida.')
+    super(msg)
+  end
+end

@@ -1,8 +1,7 @@
+require_relative 'validacion_contenido_helper'
 class Episodio
   attr_accessor :podcast, :id
   attr_reader :titulo, :participantes, :duracion, :updated_on, :created_on
-
-  FORMATO_DURACION = /\A[1-9]\d*:[0-5]\d\z/
 
   def initialize(titulo, participantes, duracion, id = nil, podcast = nil)
     @titulo = titulo
@@ -40,8 +39,7 @@ class Episodio
   end
 
   def validar_duracion
-    validar_parametro(@duracion, DuracionVaciaEpisodio)
-    raise FormatoInvalidoDuracionEpisodio unless @duracion.match?(FORMATO_DURACION)
+    validar_formato_duracion(@duracion, FormatoInvalidoDuracionEpisodio, DuracionVaciaEpisodio, ErrorEpisodioInvalido)
   end
 
   def validar_parametro(parametro, error_parametro_vacio)
