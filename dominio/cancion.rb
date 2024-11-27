@@ -3,6 +3,7 @@ class Cancion
   attr_accessor :id
 
   FORMATO_DURACION = /\A[1-9]\d*:[0-5]\d\z/
+  FORMATO_ANIO_VALIDO = /\A\d+\z/
 
   def initialize(titulo, artistas, anio, duracion, id = nil)
     @titulo = titulo
@@ -51,6 +52,7 @@ class Cancion
 
   def validar_anio
     raise AnioVacio if anio.is_a?(String) && anio.empty?
+    raise AnioInvalido if anio.is_a?(String) && !anio.match?(FORMATO_ANIO_VALIDO)
   end
 
   def validar_formato_duracion

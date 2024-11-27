@@ -32,4 +32,8 @@ describe Cancion do
   it 'deberia lanzar FormatoInvalidoDuracion si la duracion no tiene el formato MM:SS' do
     expect { described_class.new('Waka-Waka', 'Shakira', 2010, '3:3') }.to raise_error(FormatoInvalidoDuracion)
   end
+
+  it 'deberia lanzar AnioInvalido si el anio es una cadena de texto no numerica' do
+    expect { described_class.new('Waka-Waka', 'Shakira', 'Spaaaguetti', '3:31') }.to raise_error(AnioInvalido)
+  end
 end
