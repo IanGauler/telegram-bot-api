@@ -36,4 +36,9 @@ describe Cancion do
   it 'deberia lanzar AnioInvalido si el anio es una cadena de texto no numerica' do
     expect { described_class.new('Waka-Waka', 'Shakira', 'Spaaaguetti', '3:31') }.to raise_error(AnioInvalido)
   end
+
+  it 'deberia lanzar AnioInvalido si el anio es mayor al año actual' do
+    allow(Time).to receive(:now).and_return(Time.new(2023, 1, 1))
+    expect { described_class.new('Waka-Waka', 'Shakira', 2024, '3:31') }.to raise_error(AnioFueraDeRango)
+  end
 end

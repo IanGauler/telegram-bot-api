@@ -8,7 +8,7 @@ class Cancion
   def initialize(titulo, artistas, anio, duracion, id = nil)
     @titulo = titulo
     @artistas = artistas
-    @anio = anio
+    @anio = validar_anio(anio)
     @duracion = duracion
     @id = id
     validar!
@@ -34,7 +34,6 @@ class Cancion
     validar_titulo
     validar_artistas
     validar_duracion
-    validar_anio
     validar_formato_duracion
   end
 
@@ -50,9 +49,12 @@ class Cancion
     raise DuracionVacia if duracion.empty?
   end
 
-  def validar_anio
+  def validar_anio(anio)
     raise AnioVacio if anio.is_a?(String) && anio.empty?
     raise AnioInvalido if anio.is_a?(String) && !anio.match?(FORMATO_ANIO_VALIDO)
+    raise AnioFueraDeRango if anio.to_i > Time.now.year
+
+    anio.to_i
   end
 
   def validar_formato_duracion
