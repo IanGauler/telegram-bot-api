@@ -1,3 +1,4 @@
+require_relative 'validacion_contenido_helper'
 class Podcast
   attr_reader :titulo, :creador, :anio, :updated_on, :created_on, :episodios
   attr_accessor :id
@@ -50,14 +51,6 @@ class Podcast
   def agregar_episodio(episodio, nuevos_episodios = @episodios)
     episodio.podcast = self
     nuevos_episodios << episodio
-  end
-
-  def validar_anio(anio)
-    raise AnioVacio if anio.is_a?(String) && anio.empty?
-    raise AnioInvalido if anio.is_a?(String) && !anio.to_s.match?(/^\d+$/)
-    raise AnioFueraDeRango if anio.to_i > Time.now.year
-
-    anio.to_i
   end
 
   def validar!
