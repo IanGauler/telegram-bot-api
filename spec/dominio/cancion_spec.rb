@@ -28,4 +28,8 @@ describe Cancion do
   it 'debería lanzar AnioVacio si el anio es vacio' do
     expect { described_class.new('Waka-Waka', 'Shakira', '', '3:31') }.to raise_error(AnioVacio)
   end
+
+  it 'deberia lanzar FormatoInvalidoDuracion si la duracion no tiene el formato MM:SS' do
+    expect { described_class.new('Waka-Waka', 'Shakira', 2010, '3:3') }.to raise_error(FormatoInvalidoDuracion)
+  end
 end
