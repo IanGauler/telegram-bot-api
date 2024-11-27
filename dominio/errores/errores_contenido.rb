@@ -130,6 +130,12 @@ class ErrorCancionInvalida < ErrorContenido
   end
 end
 
+class FormatoInvalidoEmail < ErrorValidacion
+  def initialize(msg = 'Mail Invalido.')
+    super(msg)
+  end
+end
+
 class ErrorPodcastInvalido < ErrorContenido
   def initialize(msg = 'Podcast Inválido.')
     super(msg)

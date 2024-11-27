@@ -2,12 +2,15 @@ class Usuario
   attr_reader :email, :updated_on, :created_on
   attr_accessor :id, :reproducciones, :me_gustas, :playlist
 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d-]+(\.[a-z]+)*\.[a-z]+\z/i
+
   def initialize(id, email)
     @email = email
     @id = id
     @reproducciones = []
     @me_gustas = []
     @playlist = Playlist.new
+    validar!
   end
 
   def esta_registradado?(repositorio_usuarios)
@@ -28,5 +31,11 @@ class Usuario
 
   def agregar_contenido_a_playlist(contenido)
     @playlist.agregar_contenido(contenido)
+  end
+
+  private
+
+  def validar!
+    raise FormatoInvalidoEmail unless email.match?(VALID_EMAIL_REGEX)
   end
 end

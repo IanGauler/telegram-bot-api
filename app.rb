@@ -61,6 +61,9 @@ post '/usuarios' do
 rescue UsuarioYaRegistrado, MailYaRegistrado => e
   status 409
   { error: e.message }.to_json
+rescue FormatoInvalidoEmail => e
+  status 400
+  { error: e.message }.to_json
 end
 
 post '/canciones' do
