@@ -55,7 +55,7 @@ RSpec::Core::RakeTask.new(:spec_report) do |t|
 end
 
 RSpec::Core::RakeTask.new(:spec_regression) do |t|
-  t.rspec_opts = %w[--tag regression --format progress --format RspecJunitFormatter --out reports/spec/rspec.xml]
+  t.rspec_opts = %w[--no-require spec_helper --tag regression --format progress --format RspecJunitFormatter --out reports/spec/rspec.xml]
 end
 
 Cucumber::Rake::Task.new(:feature_indev) do |task|

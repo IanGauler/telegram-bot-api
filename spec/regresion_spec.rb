@@ -1,10 +1,44 @@
 require 'faraday'
 require_relative '../dominio/cancion'
+require  'dotenv/load'
 
 describe 'Test de Regresion', regression: true do
+  api_url = ENV['API_URL'] || 'https://algoserompio.com'
+  Faraday.new(url: api_url) do |faraday|
+    faraday.request :url_encoded
+    faraday.adapter Faraday.default_adapter
+  end
+  timestamp = Time.now.strftime('%Y%m%d%H%M%S')
+
+  it 'deberia crear un usuario' do
+    endpoint = "#{api_url}/usuarios"
+    email = "#{timestamp}@test.com"
+    registro_usuario = { email:, id: timestamp.to_s }
+
+    response = Faraday.post(endpoint, registro_usuario.to_json, { 'Content-Type' => 'application/json' })
+    usuario = JSON.parse(response.body)
+
+    expect(response.status).to eq(201)
+    expect(usuario['email']).to eq(registro_usuario[:email])
+    expect(usuario['id']).to eq(registro_usuario[:id])
+  end
+
   it 'deberia crear una cancion' do
-    cancion = Cancion.new('Waka-Waka', 'Shakira', 2010, '3:31')
-    expect(cancion).to be_a(Cancion)
+    cancion = [{ titulo: "titulo#{timestamp}#{timestamp}", duracion: '1:59', artistas: "Artistas#{timestamp}", anio: 2024 }]
+    response = Faraday.post("#{api_url}/canciones", cancion.to_json, { 'Content-Type' => 'application/json' })
+    expect(response.status).to eq(201)
+    response = Faraday.get("#{api_url}/canciones")
+
+    canciones = JSON.parse(response.body)
+    cancion_devuelta = canciones.find { |c| c['titulo'] == cancion[0][:titulo] }
+    comparar_respuesta(cancion, cancion_devuelta)
+    expect(cancion_devuelta['id']).not_to be_nil
+  end
+
+  def comparar_respuesta(contenido, respuesta)
+    contenido.each do |atributo, valor|
+      expect(respuesta[atributo.to_s]).to eq(valor)
+    end
   end
 end
 
@@ -17,27 +51,13 @@ def pruebas_api(timestamp)
   me_gusta_cancion(cancion, usuario)
 end
 
-def faraday_connection
-  api_url = ENV['API_URL'] || 'https://algoserompio.com'
-  Faraday.new(url: api_url) do |faraday|
-    faraday.request :url_encoded
-    faraday.adapter Faraday.default_adapter
-  end
-end
-
-def crear_usuario(timestamp)
-  endpoint = '/usuarios'
-  email = "#{timestamp}@test.com"
-  registro_usuario = { email:, id: timestamp.to_s }
-
-  response = Faraday.post(endpoint, request_body, { 'Content-Type' => 'application/json' })
-
-  expect(response.status).to eq(201)
-  usuario = JSON.parse(response.body)
-  expect(usuario).to eq(registro_usuario)
-
-  usuario
-end
+# def faraday_connection
+#   api_url = ENV['API_URL'] || 'https://algoserompio.com'
+#   Faraday.new(url: api_url) do |faraday|
+#     faraday.request :url_encoded
+#     faraday.adapter Faraday.default_adapter
+#   end
+# end
 
 def comparar_respuesta(contenido, respuesta)
   contenido.each do |atributo, valor|
