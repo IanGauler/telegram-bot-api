@@ -25,17 +25,10 @@ configure do
 end
 
 before do
-  logger.info("Recibida una request de #{request.request_method} en #{request.path_info}. Body: #{request.body.read}")
   if !request.body.nil? && request.body.size.positive?
     request.body.rewind
     @params = JSON.parse(request.body.read, symbolize_names: true)
   end
-end
-
-after do
-  logger.info("Respuesta enviada (#{@status || '<?>'}): #{@respuesta || '<vacío>'}")
-  status @status
-  @respuesta || json({})
 end
 
 def sistema
@@ -43,46 +36,41 @@ def sistema
 end
 
 get '/version' do
-  @status = 200
-  @respuesta = json({ version: Version.current })
+  status 200
+  json({ version: Version.current })
 end
 
 post '/reset' do
   sistema.resetear
-  @status = 200
+  status 200
 end
 
 get '/usuarios' do
   usuarios = sistema.usuarios
   respuesta = []
   usuarios.map { |u| respuesta << { email: u.email, id: u.id } }
-  @status = 200
-  @respuesta = json(respuesta)
+
+  status 200
+  json(respuesta)
 end
 
 post '/usuarios' do
   usuario = sistema.crear_usuario(@params[:id].to_s, @params[:email])
-  @status = 201
-  @respuesta = { id: usuario.id, email: usuario.email }.to_json
+  status 201
+  { id: usuario.id, email: usuario.email }.to_json
 rescue UsuarioYaRegistrado, MailYaRegistrado => e
-  @status = 409
-  @respuesta = { error: e.message }.to_json
-rescue StandardError => e
-  @status = 500
-  @respuesta = { error: "Error inesperado: #{e.message}" }.to_json
+  status 409
+  { error: e.message }.to_json
 end
 
 post '/canciones' do
   @params.each do |c|
     sistema.crear_cancion(c[:titulo], c[:artistas], c[:anio], c[:duracion])
   end
-  @status = 201
+  status 201
 rescue ErrorValidacion, ErrorCancionInvalida => e
-  @status = 400
-  @respuesta = { error: e.message }.to_json
-rescue StandardError => e
-  @status = 500
-  @respuesta = { error: "Error inesperado: #{e.message}" }.to_json
+  status 400
+  { error: e.message }.to_json
 end
 
 get '/canciones' do
@@ -91,8 +79,8 @@ get '/canciones' do
   canciones.map do |c|
     respuesta << { titulo: c.titulo, artistas: c.artistas, anio: c.anio, duracion: c.duracion, id: c.id }
   end
-  @status = 200
-  @respuesta = json(respuesta)
+  status 200
+  json(respuesta)
 end
 
 get '/novedades' do
@@ -101,38 +89,38 @@ get '/novedades' do
   contenidos.map do |c|
     respuesta << c.representacion_hash
   end
-  @status = 200
-  @respuesta = json(respuesta)
+  status 200
+  json(respuesta)
 end
 
 get '/contenidos/:id_contenido' do
   contenido = sistema.obtener_contenido_por_id(params['id_contenido'].to_i)
   representacion_hash_contenido = contenido.representacion_hash
-  @status = 200
-  @respuesta = json(representacion_hash_contenido)
+  status 200
+  json(representacion_hash_contenido)
 rescue ContenidoNoEncontrado => e
-  @status = 404
-  @respuesta = { error: e.message }.to_json
+  status 404
+  { error: e.message }.to_json
 end
 
 post '/contenidos/:id_contenido/megusta' do
   sistema.registrar_megusta(@params[:id_usuario].to_s, params['id_contenido'].to_i)
-  @status = 201
+  status 201
 rescue ContenidoNoEncontrado, UsuarioNoRegistrado, NoSePuedeDarMeGustaAEpisodios => e
-  @status = 404
-  @respuesta = { error: e.message }.to_json
+  status 404
+  { error: e.message }.to_json
 rescue ContenidoNoEscuchado => e
-  @status = 409
-  @respuesta = { error: e.message }.to_json
+  status 409
+  { error: e.message }.to_json
 end
 
 post '/canciones/:id_cancion/reproduccion' do
   id_cancion = params['id_cancion'].to_i
   sistema.registrar_reproduccion(@params[:email], id_cancion)
-  @status = 201
+  status 201
 rescue UsuarioNoRegistrado, ContenidoNoEncontrado => e
-  @status = 404
-  @respuesta = { error: e.message }.to_json
+  status 404
+  { error: e.message }.to_json
 end
 
 get '/reproducciones' do
@@ -141,8 +129,8 @@ get '/reproducciones' do
   reproducciones.map do |r|
     respuesta << { id_usuario: r.usuario.id, id_contenido: r.contenido.id }
   end
-  @status = 200
-  @respuesta = json(respuesta)
+  status 200
+  json(respuesta)
 end
 
 get '/megustas' do
@@ -151,18 +139,18 @@ get '/megustas' do
   megustas.map do |me_gusta|
     respuesta << { id_usuario: me_gusta.usuario.id, id_contenido: me_gusta.contenido.id }
   end
-  @status = 200
-  @respuesta = json(respuesta)
+  status 200
+  json(respuesta)
 end
 
 post '/podcasts' do
   @params.each do |podcast|
     sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio], podcast[:episodios])
   end
-  @status = 201
+  status 201
 rescue ErrorValidacion, ErrorEpisodioInvalido, EpisodiosVacios => e
-  @status = 400
-  @respuesta = { error: e.message }.to_json
+  status 400
+  { error: e.message }.to_json
 end
 
 get '/podcasts' do
@@ -175,8 +163,8 @@ get '/podcasts' do
     end
     respuesta << { id: podcast.id, titulo: podcast.titulo, creador: podcast.creador, anio: podcast.anio, episodios: }
   end
-  @status = 200
-  @respuesta = json(respuesta)
+  status 200
+  json(respuesta)
 end
 
 get '/recomendaciones' do
@@ -185,8 +173,8 @@ get '/recomendaciones' do
   recomendaciones.map do |r|
     respuesta << { titulo: r.titulo, artistas: r.artistas, anio: r.anio, duracion: r.duracion, id: r.id }
   end
-  @status = 200
-  @respuesta = json(respuesta)
+  status 200
+  json(respuesta)
 end
 
 post '/podcasts/:id_podcast/episodio/:id_episodio/reproduccion' do
@@ -195,10 +183,10 @@ post '/podcasts/:id_podcast/episodio/:id_episodio/reproduccion' do
 
   sistema.registrar_reproduccion_episodio(@params[:email], id_episodio, id_podcast)
 
-  @status = 201
+  status 201
 rescue UsuarioNoRegistrado, ContenidoNoEncontrado, EpisodioNoPerteneceAPodcast => e
-  @status = 404
-  @respuesta = { error: e.message }.to_json
+  status 404
+  { error: e.message }.to_json
 end
 
 post '/contenidos/:id_contenido/playlist' do
@@ -208,14 +196,14 @@ post '/contenidos/:id_contenido/playlist' do
   contenido = sistema.agregar_contenido_a_playlist(id_usuario, id_contenido)
   representacion_hash_contenido = contenido.representacion_hash
 
-  @status = 201
-  @respuesta = json(representacion_hash_contenido)
+  status 201
+  json(representacion_hash_contenido)
 rescue ContenidoNoEncontrado => e
-  @status = 404
-  @respuesta = { error: e.message }.to_json
+  status 404
+  { error: e.message }.to_json
 rescue AgregarPodcastAPlaylist, ContenidoDuplicadoPlaylist => e
-  @status = 409
-  @respuesta = { error: e.message }.to_json
+  status 409
+  { error: e.message }.to_json
 end
 
 get '/usuarios/:id_usuario/playlist' do
@@ -223,25 +211,31 @@ get '/usuarios/:id_usuario/playlist' do
 
   playlist = sistema.obtener_playlist(id_usuario)
   contenidos = playlist.contenidos.map(&:representacion_hash)
-  @status = 200
-  @respuesta = json(contenidos)
+  status 200
+  json(contenidos)
 rescue UsuarioNoRegistrado => e
-  @status = 404
-  @respuesta = { error: e.message }.to_json
+  status 404
+  { error: e.message }.to_json
 end
 
 get '/usuarios/:id_usuario/recomendaciones/artistas' do
   id_usuario = params[:id_usuario].to_s
   recomendaciones = sistema.recomendar_artistas(id_usuario)
-  @status = 200
-  @respuesta = json(recomendaciones)
+  status 200
+  json(recomendaciones)
 rescue UsuarioNoRegistrado => e
-  @status = 404
-  @respuesta = { error: e.message }.to_json
+  status 404
+  { error: e.message }.to_json
 rescue ContenidoNoEscuchado => e
-  @status = 409
-  @respuesta = { error: e.message }.to_json
+  status 409
+  { error: e.message }.to_json
 rescue RecomendacionesNoDisponibles => e
-  @status = 503
-  @respuesta = { error: e.message }.to_json
+  status 503
+  { error: e.message }.to_json
+end
+
+error do
+  e = env['sinatra.error']
+  status 500
+  json({ error: "Error inesperado al procesar la request: #{e.message}" })
 end
