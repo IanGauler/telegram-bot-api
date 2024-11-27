@@ -145,7 +145,13 @@ end
 
 post '/podcasts' do
   @params.each do |podcast|
-    sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio], podcast[:episodios])
+    titulo = podcast[:titulo]
+    creador = podcast[:creador]
+    anio = podcast[:anio]
+    episodios = podcast[:episodios]
+    raise ErrorPodcastInvalido if titulo.nil? || creador.nil? || anio.nil? || episodios.nil?
+
+    sistema.crear_podcast(titulo, creador, anio, episodios)
   end
   status 201
 rescue ErrorValidacion, ErrorPodcastInvalido, ErrorEpisodioInvalido, EpisodiosVacios => e
