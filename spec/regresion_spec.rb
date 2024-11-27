@@ -61,9 +61,9 @@ def crear_podcast(timestamp)
 
   response = Faraday.post('/podcasts', podcast.to_json, { 'Content-Type' => 'application/json' })
 
-  podcast_devuellto = JSON.parse(response.body)
-  comparar_respuesta(podcast, podcast_devuellto)
-  expect(podcast_devuellto[:episodios].first[:titulo]).to eq(episodio[:titulo])
+  podcast_devuelto = JSON.parse(response.body)
+  comparar_respuesta(podcast, podcast_devuelto)
+  expect(podcast_devuelto[:episodios].first[:titulo]).to eq(episodio[:titulo])
 end
 
 # # Probamos novedades
