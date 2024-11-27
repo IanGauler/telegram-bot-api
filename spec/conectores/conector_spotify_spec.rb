@@ -4,7 +4,7 @@ require 'dotenv/load'
 require_relative '../../conectores/conector_spotify'
 
 describe ConectorSpotify do
-  conector = described_class.new(ENV['SPOTIFY_API_URL'], ENV['SPOTIFY_ACCOUNT_API_URL'])
+  conector = described_class.new(ENV['SPOTIFY_API_URL'], ENV['SPOTIFY_ACCOUNT_API_URL'], Configuration.logger)
 
   describe 'artistas similares' do
     it 'deberia buscar un artista' do

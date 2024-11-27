@@ -17,7 +17,7 @@ configure do
   set :default_content_type, :json
   set :environment, ENV['APP_MODE'].to_sym
   administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new, RepositorioPodcasts.new, RepositorioEpisodios.new)
-  proveedor_de_recomendaciones = ConectorSpotify.new(ENV['SPOTIFY_API_URL'], ENV['SPOTIFY_ACCOUNT_API_URL'])
+  proveedor_de_recomendaciones = ConectorSpotify.new(ENV['SPOTIFY_API_URL'], ENV['SPOTIFY_ACCOUNT_API_URL'], customer_logger)
   set :sistema, Sistema.new(RepositorioUsuarios.new, administrador_de_contenido, RepositorioReproducciones.new, RepositorioMeGustas.new, proveedor_de_recomendaciones)
   use LogMiddleware
   customer_logger.info("Aplicación iniciada en modo #{settings.environment}")

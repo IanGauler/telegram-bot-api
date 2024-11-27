@@ -11,7 +11,7 @@ describe Sistema do
   repositorio_reproducciones = RepositorioReproducciones.new
   repositorio_megustas = RepositorioMeGustas.new
   administrador_de_contenido = AdministradorDeContenido.new(RepositorioContenido.new, RepositorioCanciones.new, RepositorioPodcasts.new, RepositorioEpisodios.new)
-  proveedor_de_artistas = ConectorSpotify.new(ENV['SPOTIFY_API_URL'], ENV['SPOTIFY_ACCOUNT_API_URL'])
+  proveedor_de_artistas = ConectorSpotify.new(ENV['SPOTIFY_API_URL'], ENV['SPOTIFY_ACCOUNT_API_URL'], Configuration.logger)
   sistema = described_class.new(repositorio_usuarios, administrador_de_contenido, repositorio_reproducciones, repositorio_megustas, proveedor_de_artistas)
   dia_de_semana = Date.new(2024, 11, 14)
   dia_fin_de_semana = Date.new(2024, 11, 17)
