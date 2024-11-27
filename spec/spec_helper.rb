@@ -12,9 +12,9 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
-unless ARGV.include?('--dry-run')
+unless ARGV.include?('--dry-run') || ARGV.include?('regression')
   require 'simplecov'
-  SimpleCov.minimum_coverage 50
+  SimpleCov.minimum_coverage 75
   SimpleCov.start do
     root(File.join(File.dirname(__FILE__), '..'))
     coverage_dir 'reports/coverage'
