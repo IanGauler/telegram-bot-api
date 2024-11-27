@@ -65,3 +65,10 @@ Característica:
     Cuando publico en la API con "/podcasts" el contenido
     Entonces el podcast "WANShow" es dado de alta
 
+  Escenario: US20-08 Podcast sin titulo
+    Dado que el podcast tiene por "creador" a "LinusTechTips"
+    Y que el podcast tiene por "anio" a "2018"
+    Y que el podcast tiene "1" episodio valido
+    Cuando publico en la API con "/podcasts" el contenido
+    Entonces obtengo el error "Podcast Inválido."
+

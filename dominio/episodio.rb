@@ -25,7 +25,7 @@ class Episodio
   private
 
   def validar
-    validar_titulo(@titulo, TituloVacioEpisodio, ErrorEpisodioInvalido)
+    validar_contenido(@titulo, TituloVacioEpisodio, ErrorEpisodioInvalido)
     validar_participantes
     validar_duracion
   end

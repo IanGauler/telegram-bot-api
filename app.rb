@@ -148,7 +148,7 @@ post '/podcasts' do
     sistema.crear_podcast(podcast[:titulo], podcast[:creador], podcast[:anio], podcast[:episodios])
   end
   status 201
-rescue ErrorValidacion, ErrorEpisodioInvalido, EpisodiosVacios => e
+rescue ErrorValidacion, ErrorPodcastInvalido, ErrorEpisodioInvalido, EpisodiosVacios => e
   status 400
   { error: e.message }.to_json
 end

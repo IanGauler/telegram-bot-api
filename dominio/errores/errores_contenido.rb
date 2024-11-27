@@ -129,3 +129,9 @@ class ErrorCancionInvalida < ErrorContenido
     super(msg)
   end
 end
+
+class ErrorPodcastInvalido < ErrorContenido
+  def initialize(msg = 'Podcast Inválido.')
+    super(msg)
+  end
+end
