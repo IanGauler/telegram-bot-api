@@ -24,14 +24,14 @@ Característica:
     Y que la cancion tiene por "anio": "2013"
     Cuando publico en la API con "/canciones" el contenido
     Entonces obtengo el error "Los artistas no pueden ser vacio"
-  @wip
+
   Escenario: US18-03 Duración vacía
     Dado que la cancion tiene por "titulo": "Africa"
     Y que la cancion tiene por "artistas": "Toto"
     Y que la cancion tiene "duracion" vacio
     Y que la cancion tiene por "anio": "2013"
     Cuando publico en la API con "/canciones" el contenido
-    Entonces obtengo el error "La duracion no puede ser vacia"
+    Entonces obtengo el error "La duración no puede ser vacía"
   @wip
   Escenario: US18-04 Año vacío
     Dado que la cancion tiene por "titulo": "Africa"
