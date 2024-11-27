@@ -16,13 +16,13 @@ Característica:
     Y que la cancion tiene por "anio": "2013"
     Cuando publico en la API con "/canciones" el contenido
     Entonces obtengo el error "El titulo no puede ser vacio"
-  @wip
+
   Escenario: US18-02 Artistas vacío
     Dado que la cancion tiene por "titulo": "Africa"
     Y que la cancion tiene "artistas" vacio
     Y que la cancion tiene por "duracion": "4:31"
     Y que la cancion tiene por "anio": "2013"
-    Cuando intento registrar la cancion
+    Cuando publico en la API con "/canciones" el contenido
     Entonces obtengo el error "Los artistas no pueden ser vacio"
   @wip
   Escenario: US18-03 Duración vacía

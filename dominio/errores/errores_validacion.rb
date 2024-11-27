@@ -33,3 +33,9 @@ class EpisodiosVacios < StandardError
     super(msg)
   end
 end
+
+class ArtistasVacios < StandardError
+  def initialize(msg = 'Los artistas no pueden ser vacio')
+    super(msg)
+  end
+end
