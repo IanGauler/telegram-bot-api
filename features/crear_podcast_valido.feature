@@ -48,20 +48,20 @@ Característica:
     Y que el podcast tiene "1" episodio valido
     Cuando publico en la API con "/podcasts" el contenido
     Entonces obtengo el error "Formato de año inválido. Debe ser un número menor al año actual"
-  @wip
+
   Escenario: US20-06 Episodios vacío
     Dado que el podcast tiene por "titulo" a "WANShow"
     Y que el podcast tiene por "creador" a "LinusTechTips"
-    Y que el podcast tiene por "anio" a "2033"
+    Y que el podcast tiene por "anio" a "2023"
     Y que el podcast tiene "0" episodio valido
-    Cuando publico en la API con "/podcasts"
-    Entonces obtengo el error "Error al registrar podcast. Debe contener al menos 1 episodio"
+    Cuando publico en la API con "/podcasts" el contenido
+    Entonces obtengo el error "Debe contener al menos 1 episodio"
   @wip
   Escenario: US20-07 Podcast válido
     Dado que el podcast tiene por "titulo" a "WANShow"
     Y que el podcast tiene por "creador" a "LinusTechTips"
     Y que el podcast tiene por "anio" a "2018"
     Y que el podcast tiene "1" episodio válido
-    Cuando publico en la API con "/podcasts"
+    Cuando publico en la API con "/podcasts" el contenido
     Entonces el podcast "WANShow" es dado de alta
 

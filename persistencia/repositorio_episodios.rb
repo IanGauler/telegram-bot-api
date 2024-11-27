@@ -9,17 +9,17 @@ class RepositorioEpisodios < AbstractRepository
     super(episodio)
   end
 
-  def obtener_episodios_por_podcast(podcast)
-    hash_episodios = dataset.where(id_podcast: podcast.id).all
-    cargar_episodios(hash_episodios, podcast)
+  def obtener_episodios_por_id_podcast(id_podcast)
+    hash_episodios = dataset.where(id_podcast:).all
+    cargar_episodios(hash_episodios)
   end
 
   private
 
-  def cargar_episodios(hash_episodios, podcast)
+  def cargar_episodios(hash_episodios)
     episodios = []
     hash_episodios.each do |hash|
-      episodios << Episodio.new(podcast, hash[:titulo], hash[:participantes], hash[:duracion], hash[:id])
+      episodios << Episodio.new(hash[:titulo], hash[:participantes], hash[:duracion], hash[:id])
     end
     episodios
   end
@@ -28,7 +28,9 @@ class RepositorioEpisodios < AbstractRepository
 
   def load_object(a_hash)
     podcast = RepositorioPodcasts.new.find(a_hash[:id_podcast])
-    Episodio.new(podcast, a_hash[:titulo], a_hash[:participantes], a_hash[:duracion], a_hash[:id])
+    episodio = Episodio.new(a_hash[:titulo], a_hash[:participantes], a_hash[:duracion], a_hash[:id])
+    episodio.podcast = podcast
+    episodio
   end
 
   def changeset(episodio)

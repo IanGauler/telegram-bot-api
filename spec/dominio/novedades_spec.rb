@@ -19,8 +19,7 @@ describe Novedades do
   end
 
   it 'deberia no incluir episodios' do
-    podcast = crear_podcast
-    RepositorioEpisodios.new.save(Episodio.new(podcast, 'Episodio 1', 'Participante 1', '1:00'))
+    crear_podcast
 
     novedades = described_class.new(5)
     lista_de_novedades = novedades.listar(RepositorioContenido.new)
@@ -34,7 +33,8 @@ describe Novedades do
   end
 
   def crear_podcast
-    podcast = Podcast.new('Podcast', 'Creador', 2021)
+    episodio = Episodio.new('Episodio 1', 'Participante 1', '1:00')
+    podcast = Podcast.new('Podcast', 'Creador', 2021, episodio)
     RepositorioPodcasts.new.save(podcast)
   end
 end

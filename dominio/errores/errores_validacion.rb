@@ -27,3 +27,9 @@ class AnioFueraDeRango < StandardError
     super(msg)
   end
 end
+
+class EpisodiosVacios < StandardError
+  def initialize(msg = 'Debe contener al menos 1 episodio')
+    super(msg)
+  end
+end

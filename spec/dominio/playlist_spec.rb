@@ -4,12 +4,13 @@ require_relative '../../dominio/playlist'
 
 describe Playlist do
   playlist = described_class.new
+  episodio = Episodio.new('titulo', 'creador', '45:20', 1)
   it 'deberia lanzar ContenidoNoEncontrado si se intenta agregar contenido inexistente a una playlist' do
     expect { playlist.agregar_contenido(nil) }.to raise_error(ContenidoNoEncontrado)
   end
 
   it 'deberia lanzar AgregarPodcastAPlaylist si se intenta agregar un podcast una su playlist' do
-    podcast = Podcast.new('titulo', 'creador', 2021)
+    podcast = Podcast.new('titulo', 'creador', 2021, episodio)
 
     expect { playlist.agregar_contenido(podcast) }.to raise_error(AgregarPodcastAPlaylist)
   end

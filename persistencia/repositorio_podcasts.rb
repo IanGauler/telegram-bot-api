@@ -9,6 +9,7 @@ class RepositorioPodcasts < AbstractRepository
     super(podcast)
 
     podcast.episodios.each do |episodio|
+      episodio.podcast = podcast
       RepositorioEpisodios.new.save(episodio)
     end
 
@@ -18,11 +19,8 @@ class RepositorioPodcasts < AbstractRepository
   protected
 
   def load_object(a_hash)
-    podcast = Podcast.new(a_hash[:titulo], a_hash[:creador], a_hash[:anio], a_hash[:id])
-    episodios = RepositorioEpisodios.new.obtener_episodios_por_podcast(podcast)
-
-    podcast.agregar_episodios(episodios)
-    podcast
+    episodios = RepositorioEpisodios.new.obtener_episodios_por_id_podcast(a_hash[:id])
+    Podcast.new(a_hash[:titulo], a_hash[:creador], a_hash[:anio], episodios, a_hash[:id])
   end
 
   def changeset(podcast)

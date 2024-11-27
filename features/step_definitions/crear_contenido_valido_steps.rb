@@ -15,7 +15,7 @@ end
 Dado('que el podcast tiene {string} episodio valido') do |cantidad_episodios|
   episodios = []
   cantidad_episodios.to_i.times do |i|
-    episodios << { titulo: "Episodio #{i}", participantes: "Participante #{i}", duracion: "39:50:#{i}" }
+    episodios << { titulo: "Episodio #{i}", participantes: "Participante #{i}", duracion: '39:50' }
   end
   @podcast[:episodios] = episodios
 end

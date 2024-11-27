@@ -55,12 +55,12 @@ class Sistema # rubocop:disable Metrics/ClassLength
   end
 
   def crear_podcast(titulo, creador, anio, episodios)
-    podcast = Podcast.new(titulo, creador, anio)
-
-    episodios.map do |episodio|
-      episodio = Episodio.new(podcast, episodio[:titulo], episodio[:participantes], episodio[:duracion])
-      podcast.agregar_episodios(episodio)
+    nuevos_episodios = episodios.map do |episodio|
+      Episodio.new(episodio[:titulo], episodio[:participantes], episodio[:duracion])
     end
+
+    podcast = Podcast.new(titulo, creador, anio, nuevos_episodios)
+
     @administrador_de_contenido.repositorio_podcasts.save(podcast)
   end
 

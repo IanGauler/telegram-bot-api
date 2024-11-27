@@ -2,23 +2,17 @@ class Podcast
   attr_reader :titulo, :creador, :anio, :updated_on, :created_on, :episodios
   attr_accessor :id
 
-  def initialize(titulo, creador, anio, id = nil)
+  def initialize(titulo, creador, anio, episodios, id = nil)
     @titulo = titulo
     @creador = creador
     @anio = validar_anio(anio)
     @id = id
-    @episodios = []
+    @episodios = inicializar_episodios(episodios)
     validar!
   end
 
   def agregar_episodios(episodios)
-    if episodios.is_a?(Array)
-      episodios.each do |episodio|
-        agregar_episodio(episodio)
-      end
-    else
-      agregar_episodio(episodios)
-    end
+    sumar_episodios(episodios)
   end
 
   def representacion_hash
@@ -37,8 +31,25 @@ class Podcast
 
   private
 
-  def agregar_episodio(episodio)
-    @episodios << episodio
+  def inicializar_episodios(episodios)
+    nuevos_episodios = []
+    sumar_episodios(episodios, nuevos_episodios)
+    nuevos_episodios
+  end
+
+  def sumar_episodios(episodios, nuevos_episodios = @episodios)
+    if episodios.is_a?(Array)
+      episodios.each do |episodio|
+        agregar_episodio(episodio, nuevos_episodios)
+      end
+    else
+      agregar_episodio(episodios, nuevos_episodios)
+    end
+  end
+
+  def agregar_episodio(episodio, nuevos_episodios = @episodios)
+    episodio.podcast = self
+    nuevos_episodios << episodio
   end
 
   def validar_anio(anio)
@@ -52,5 +63,6 @@ class Podcast
   def validar!
     raise TituloVacio if titulo.empty?
     raise CreadorVacio if creador.empty?
+    raise EpisodiosVacios if episodios.empty?
   end
 end

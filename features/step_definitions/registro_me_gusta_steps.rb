@@ -17,11 +17,9 @@ Cuando('envio el comando {string} con la id de {string}') do |_comando, cancion|
 end
 
 Dado('que existe el podcast {string} con el episodio {string}') do |nombre_podcast, nombre_episodio|
-  podcast = Podcast.new(nombre_podcast, 'Creador', 2020)
+  episodio = Episodio.new(nombre_episodio, 'Participantes', '2:00')
+  podcast = Podcast.new(nombre_podcast, 'Creador', 2020, episodio)
   RepositorioPodcasts.new.save(podcast)
-  podcast = RepositorioPodcasts.new.all.first
-  episodio = Episodio.new(podcast, nombre_episodio, 'Participantes', '2:00')
-  RepositorioEpisodios.new.save(episodio)
 end
 
 Dado('que he reproducido el episodio {string}') do |_nombre_episodio|

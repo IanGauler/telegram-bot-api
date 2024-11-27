@@ -1,10 +1,10 @@
 class Episodio
-  attr_reader :titulo, :participantes, :duracion, :podcast, :updated_on, :created_on
-  attr_accessor :id
+  attr_accessor :podcast, :id
+  attr_reader :titulo, :participantes, :duracion, :updated_on, :created_on
 
   FORMATO_DURACION = /\A[1-9]\d*:[0-5]\d\z/
 
-  def initialize(podcast, titulo, participantes, duracion, id = nil)
+  def initialize(titulo, participantes, duracion, id = nil, podcast = nil)
     @titulo = titulo
     @participantes = participantes
     @duracion = duracion
