@@ -8,13 +8,13 @@ Característica:
 
   Antecedentes:
     Dado que el anio actual es "2024"
-  @wip
+
   Escenario: US18-01 Título vacío
     Dado que la cancion tiene "titulo" vacio
     Y que la cancion tiene por "artistas": "Toto"
     Y que la cancion tiene por "duracion": "4:31"
     Y que la cancion tiene por "anio": "2013"
-    Cuando intento registrar la cancion
+    Cuando publico en la API con "/canciones" el contenido
     Entonces obtengo el error "El titulo no puede ser vacio"
   @wip
   Escenario: US18-02 Artistas vacío

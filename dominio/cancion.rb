@@ -8,6 +8,7 @@ class Cancion
     @anio = anio
     @duracion = duracion
     @id = id
+    validar!
   end
 
   def representacion_hash
@@ -22,5 +23,11 @@ class Cancion
 
   def artistas_participantes
     @artistas.split(',').map(&:strip)
+  end
+
+  private
+
+  def validar!
+    raise TituloVacio if titulo.empty?
   end
 end

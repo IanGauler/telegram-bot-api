@@ -1,15 +1,15 @@
 Dado('que el anio actual es {string}') do |anio|
   @anio = anio
-  @podcast ||= {}
+  @contenido ||= {}
   allow(Time).to receive(:now).and_return(Time.new(anio.to_i))
 end
 
 Dado('que el podcast tiene {string} vacio') do |key|
-  @podcast[key] = ''
+  @contenido[key] = ''
 end
 
 Dado('que el podcast tiene por {string} a {string}') do |key, valor|
-  @podcast[key] = valor
+  @contenido[key] = valor
 end
 
 Dado('que el podcast tiene {string} episodio valido') do |cantidad_episodios|
@@ -17,11 +17,11 @@ Dado('que el podcast tiene {string} episodio valido') do |cantidad_episodios|
   cantidad_episodios.to_i.times do |i|
     episodios << { titulo: "Episodio #{i}", participantes: "Participante #{i}", duracion: '39:50' }
   end
-  @podcast[:episodios] = episodios
+  @contenido[:episodios] = episodios
 end
 
 Cuando('publico en la API con {string} el contenido') do |endpoint|
-  podcasts = [@podcast].to_json
+  podcasts = [@contenido].to_json
   @response = Faraday.post(endpoint, podcasts, { 'Content-Type' => 'application/json' })
 end
 
@@ -56,4 +56,12 @@ end
 
 Entonces('el podcast es dado de alta') do
   expect(@response.status).to eq(201)
+end
+
+Dado('que la cancion tiene {string} vacio') do |parametro|
+  @contenido[parametro] = ''
+end
+
+Dado('que la cancion tiene por {string}: {string}') do |parametro, valor|
+  @contenido[parametro] = valor
 end

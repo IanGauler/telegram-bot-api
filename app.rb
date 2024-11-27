@@ -76,9 +76,9 @@ post '/canciones' do
     sistema.crear_cancion(c[:titulo], c[:artistas], c[:anio].to_i, c[:duracion])
   end
   @status = 201
-rescue TituloVacio, ArtistaVacio, AnioVacio, AnioInvalido, AnioFueraDeRango, DuracionVacia, DuracionInvalida => e
+rescue TituloVacio => e
   @status = 400
-  @respuesta = { error: "Error al crear cancion: #{e.message}" }.to_json
+  @respuesta = { error: e.message }.to_json
 rescue StandardError => e
   @status = 500
   @respuesta = { error: "Error inesperado: #{e.message}" }.to_json
