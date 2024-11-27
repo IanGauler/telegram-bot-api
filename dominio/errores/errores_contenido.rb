@@ -61,7 +61,13 @@ class DuracionVaciaEpisodio < ErrorEpisodioInvalido
   end
 end
 
-class FormatoInvalidoDuracion < ErrorEpisodioInvalido
+class FormatoInvalidoDuracion < StandardError
+  def initialize(msg = 'Formato de duración inválido. Debe ser MM:SS')
+    super(msg)
+  end
+end
+
+class FormatoInvalidoDuracionEpisodio < ErrorEpisodioInvalido
   def initialize(msg = 'Episodio inválido: Formato de duración inválido. Debe ser MM:SS')
     super(msg)
   end

@@ -46,7 +46,7 @@ Característica:
     Y que la cancion tiene por "artistas": "Toto"
     Y que la cancion tiene por "duracion": "Serengeti"
     Y que la cancion tiene por "anio": "2013"
-    Cuando intento registrar la cancion
+    Cuando publico en la API con "/canciones" el contenido
     Entonces obtengo el error "Formato de duración inválido. Debe ser MM:SS"
   @wip
   Escenario: US18-06 Año no numérico

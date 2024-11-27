@@ -26,20 +26,20 @@ describe Episodio do
     expect { described_class.new('Caja Negra', 'Filo.news', '') }.to raise_error(DuracionVaciaEpisodio)
   end
 
-  it 'deberia lanzar error FormatoInvalidoDuracion si la "duracion" no tiene formato MM:SS' do
-    expect { described_class.new('Caja Negra', 'Filo.news', ':33') }.to raise_error(FormatoInvalidoDuracion)
+  it 'deberia lanzar error FormatoInvalidoDuracionEpisodio si la "duracion" no tiene formato MM:SS' do
+    expect { described_class.new('Caja Negra', 'Filo.news', ':33') }.to raise_error(FormatoInvalidoDuracionEpisodio)
   end
 
-  it 'deberia lanzar error FormatoInvalidoDuracion si la "duracion" tiene segundos invalidos' do
-    expect { described_class.new('Caja Negra', 'Filo.news', '3:91') }.to raise_error(FormatoInvalidoDuracion)
+  it 'deberia lanzar error FormatoInvalidoDuracionEpisodio si la "duracion" tiene segundos invalidos' do
+    expect { described_class.new('Caja Negra', 'Filo.news', '3:91') }.to raise_error(FormatoInvalidoDuracionEpisodio)
   end
 
   it 'deberia lanzar error ErrorEpisodioInvalido si la "duracion" no es un string' do
     expect { described_class.new('Caja Negra', 'Filo.news', 5) }.to raise_error(ErrorEpisodioInvalido)
   end
 
-  it 'deberia lanzar error FormatoInvalidoDuracion si la "duracion" tiene minutos que empiezan en 0' do
-    expect { described_class.new('Caja Negra', 'Filo.news', '0:31') }.to raise_error(FormatoInvalidoDuracion)
+  it 'deberia lanzar error FormatoInvalidoDuracionEpisodio si la "duracion" tiene minutos que empiezan en 0' do
+    expect { described_class.new('Caja Negra', 'Filo.news', '0:31') }.to raise_error(FormatoInvalidoDuracionEpisodio)
   end
 
   it 'deberia lanzar error ErrorEpisodioInvalido si alguno de los parametros es nil' do
