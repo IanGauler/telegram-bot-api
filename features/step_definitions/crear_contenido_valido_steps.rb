@@ -66,3 +66,7 @@ end
 Dado('que la cancion tiene por {string}: {string}') do |parametro, valor|
   @contenido[parametro] = valor
 end
+
+Entonces('la canción {string} es dada de alta') do |_string|
+  expect(@response.status).to eq(201)
+end
