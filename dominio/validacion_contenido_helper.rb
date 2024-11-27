@@ -15,7 +15,7 @@ def validar_anio(anio)
   anio.to_i
 end
 
-def validar_contenido(contenido, error_contenido_vacio, error_invalido)
-  raise error_invalido unless contenido.is_a?(String)
-  raise error_contenido_vacio if contenido.empty?
+def validar_parametro(parametro, error_parametro_vacio, error_invalido)
+  raise error_invalido unless parametro.is_a?(String)
+  raise error_parametro_vacio if parametro.empty?
 end

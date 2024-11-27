@@ -72,3 +72,9 @@ Característica:
     Cuando publico en la API con "/podcasts" el contenido
     Entonces obtengo el error "Podcast Inválido."
 
+  Escenario: US20-09 Podcast sin creador
+    Dado que el podcast tiene por "titulo" a "WANShow"
+    Y que el podcast tiene por "anio" a "2018"
+    Y que el podcast tiene "1" episodio valido
+    Cuando publico en la API con "/podcasts" el contenido
+    Entonces obtengo el error "Podcast Inválido."

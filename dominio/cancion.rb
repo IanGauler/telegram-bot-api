@@ -29,7 +29,7 @@ class Cancion
   private
 
   def validar!
-    validar_contenido(@titulo, TituloVacio, ErrorCancionInvalida)
+    validar_parametro(@titulo, TituloVacio, ErrorCancionInvalida)
     validar_artistas
     validar_formato_duracion(duracion, FormatoInvalidoDuracion, DuracionVacia, ErrorCancionInvalida)
   end

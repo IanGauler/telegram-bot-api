@@ -54,8 +54,8 @@ class Podcast
   end
 
   def validar!
-    validar_contenido(@titulo, TituloVacio, ErrorPodcastInvalido)
-    raise CreadorVacio if creador.empty?
+    validar_parametro(@titulo, TituloVacio, ErrorPodcastInvalido)
+    validar_parametro(@creador, CreadorVacio, ErrorPodcastInvalido)
     raise EpisodiosVacios if episodios.empty?
   end
 end
