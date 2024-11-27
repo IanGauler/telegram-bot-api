@@ -76,7 +76,7 @@ post '/canciones' do
     sistema.crear_cancion(c[:titulo], c[:artistas], c[:anio], c[:duracion])
   end
   @status = 201
-rescue TituloVacio, ArtistasVacios, DuracionVacia, AnioVacio => e
+rescue TituloVacio, ArtistasVacios, DuracionVacia, AnioVacio, FormatoInvalidoDuracion => e
   @status = 400
   @respuesta = { error: e.message }.to_json
 rescue StandardError => e

@@ -40,7 +40,7 @@ Característica:
     Y que la cancion tiene "anio" vacio
     Cuando publico en la API con "/canciones" el contenido
     Entonces obtengo el error "El año no puede ser vacio"
-  @wip
+
   Escenario: US18-05 Duración no numérica
     Dado que la cancion tiene por "titulo": "Africa"
     Y que la cancion tiene por "artistas": "Toto"
