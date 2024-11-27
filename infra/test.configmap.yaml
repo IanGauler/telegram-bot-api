@@ -13,3 +13,4 @@ data:
   SPOTIFY_ACCOUNT_API_URL: https://accounts.spotify.com/api
   SPOTIFY_CLIENT_ID: 0e21f67e4e5a42148beb264128260dd9
   SPOTIFY_CLIENT_SECRET: 417dea9a145a4948be664aa1a9266ebe
+  SPOTIFY_RECOMENDATION_URL: https://my-json-server.typicode.com/alejorodriguez96/spotify-mock-ingsoft2/related_artists

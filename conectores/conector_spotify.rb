@@ -3,13 +3,15 @@ require 'faraday'
 
 class ConectorSpotify
   N_REINTENTOS = 3
+  AUTH_URL = ENV['SPOTIFY_ACCOUNT_API_URL']
 
-  def initialize(api_url, auth_url, logger, client_id = ENV['SPOTIFY_CLIENT_ID'], client_secret = ENV['SPOTIFY_CLIENT_SECRET'])
+  def initialize(api_url, logger, client_id = ENV['SPOTIFY_CLIENT_ID'], client_secret = ENV['SPOTIFY_CLIENT_SECRET'], recommendation_url = ENV['SPOTIFY_RECOMENDATION_URL'])
     @api_url = api_url
     @client_id = client_id
     @client_secret = client_secret
-    @auth_url = auth_url
+    @auth_url = AUTH_URL
     @logger = logger
+    @recommendation_url = recommendation_url
     @api_token = nil
   end
 
@@ -27,7 +29,12 @@ class ConectorSpotify
   private
 
   def obtener_similares(id_artista, reintentos = N_REINTENTOS)
-    uri = "#{@api_url}/artists/#{id_artista}/related-artists"
+    uri = if @recommendation_url.nil?
+            "#{@api_url}/artists/#{id_artista}/related-artists"
+          else
+            @recommendation_url.to_s
+          end
+
     headers = {
       'Authorization' => "Bearer #{@api_token}"
     }

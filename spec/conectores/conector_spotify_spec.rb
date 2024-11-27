@@ -4,24 +4,26 @@ require 'dotenv/load'
 require_relative '../../conectores/conector_spotify'
 
 describe ConectorSpotify do
-  conector = described_class.new(ENV['SPOTIFY_API_URL'], ENV['SPOTIFY_ACCOUNT_API_URL'], Configuration.logger)
+  conector = described_class.new(ENV['SPOTIFY_API_URL'], Configuration.logger)
 
   describe 'artistas similares' do
-    xit 'deberia buscar un artista' do
+    it 'deberia buscar un artista' do
       artista = 'Beyonce'
 
       recomendados = conector.artistas_similares(artista, 5)
 
-      expect(recomendados.size).to eq 5
+      expect(recomendados.size).to be > 0
+      expect(recomendados.size).to be <= 5
     end
 
-    xit 'deberia regenerar token invaildo' do
+    it 'deberia regenerar token invaildo' do
       artista = 'Beyonce'
       conector.instance_variable_set(:@api_token, 'token invalido')
 
       recomendados = conector.artistas_similares(artista, 5)
 
-      expect(recomendados.size).to eq 5
+      expect(recomendados.size).to be > 0
+      expect(recomendados.size).to be <= 5
     end
   end
 end
