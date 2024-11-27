@@ -13,15 +13,19 @@ describe Cancion do
     expect(cancion.representacion_hash).to eq({ titulo: 'Waka-Waka', artistas: 'Shakira', anio: 2010, duracion: '3:31', id: 1 })
   end
 
-  it 'debería lanzar error si el título es vacío' do
+  it 'debería lanzar TituloVacio si el título es vacío' do
     expect { described_class.new('', 'Shakira', 2010, '3:31') }.to raise_error(TituloVacio)
   end
 
-  it 'debería lanzar error si los artistas son vacíos' do
+  it 'debería lanzar ArtistasVacios si los artistas son vacíos' do
     expect { described_class.new('Waka-Waka', '', 2010, '3:31') }.to raise_error(ArtistasVacios)
   end
 
-  it 'debería lanzar error si la duracion es vacía' do
+  it 'debería lanzar DuracionVacia si la duracion es vacía' do
     expect { described_class.new('Waka-Waka', 'Shakira', 2010, '') }.to raise_error(DuracionVacia)
+  end
+
+  it 'debería lanzar AnioVacio si el anio es vacio' do
+    expect { described_class.new('Waka-Waka', 'Shakira', '', '3:31') }.to raise_error(AnioVacio)
   end
 end

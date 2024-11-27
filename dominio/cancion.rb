@@ -31,5 +31,6 @@ class Cancion
     raise TituloVacio if titulo.empty?
     raise ArtistasVacios if artistas.empty?
     raise DuracionVacia if duracion.empty?
+    raise AnioVacio if anio.is_a?(String) && anio.empty?
   end
 end
